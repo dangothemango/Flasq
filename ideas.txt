@@ -1,10 +1,13 @@
 Stealth Item-Invisibility cloak type thing
 disguise
 Book
+	Spell
+	Secret
 Grappling Hook
 
 Use item to win game
-vaulting
+	like a ball
+vaulting 
 Magnifying glass
 Revealing items
 
@@ -41,3 +44,33 @@ vehicle
 ikea furniture
 
 controller
+
+time turner
+
+that thing from shift
+
+color changers
+
+Empty Bottle- find places to get liquids with different powers
+	you can mix liquids or dispose of them. 
+
+	Interesting power interactions. 
+	Dangerous combinations. 
+	Simple learning game. 
+	Drop bottle to lay traps. 
+	vague descriptions of contents. 
+	Book with history.
+	pick up, drop and throw bottle
+	pour bottle for effects/dispose of liquid in trash can
+
+	Potions:
+		Invisibilty
+		Fire
+		Speed
+		Jump Height
+
+	Monochromatic art style
+		smooth vector lines
+		potions will be only color more or less
+		player turns color when using potion
+		desaturates as potion wears off
