@@ -1,0 +1,43 @@
+Stealth Item-Invisibility cloak type thing
+disguise
+Book
+Grappling Hook
+
+Use item to win game
+vaulting
+Magnifying glass
+Revealing items
+
+Portal Gun
+Skeleton Key
+hacking device
+
+binoculars
+
+car keys
+
+consumables
+	Bottle
+	Jar
+	Potion
+	Fairy
+
+Surfboard
+
+navi/companion item
+
+protect this item
+	use it in the world dont let it break
+	kinda like a consumable
+
+backpack
+
+communication device
+
+vehicle
+	helicopter
+		harvest organs
+
+ikea furniture
+
+controller
