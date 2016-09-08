@@ -2,7 +2,7 @@ Template for potion idea
 
 Name of potion
 	Description of effects
-	recipie
+	recipie or standalone
 	potential uses
 
 Invisiblity Potion
@@ -13,3 +13,24 @@ Invisiblity Potion
 
 Speed Potion
 	increases player speed
+	standalone
+	potential uses
+		dodge moving squishy things
+
+Jump Potion
+	increases jump height
+	standalone
+	potential uses
+		hit unreachable platforms
+
+Double Jump Potion
+	allows player to double jump
+	recipie: speed+jump
+	potential uses
+		jump across long gaps with short celings
+
+Fire Potion
+	sets fire to things
+	standalon
+	potential uses
+		burn stuff

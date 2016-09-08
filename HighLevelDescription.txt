@@ -20,9 +20,10 @@ How does the player interact with the bottle?
 	pick up bottle
 	pour bottle into trash/disposal unit - empty bottle - no effect
 
+	Each potion class should inherit from a virtual potion class with member functions for all these interactions. they will be called from the player or the bottle class as the case may be. probably called from the player. bottle.drink() causes an effect based on the properties of the contained potion
+
 Art Style
 	monochromatic character and environment
 	potion dispensers are brightly colored
 	character turns color of potion on use
 		saturation fades back to monochrome as potion wears off
-	
