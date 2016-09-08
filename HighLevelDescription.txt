@@ -1,0 +1,28 @@
+Its dangerous to go alone, take what?
+	an Empty Bottle/Flask
+
+What does the bottle do?
+	The player can fill it with liquids of various colors at certain locations in the world.
+	It can hold up to 2 liquids at one time
+	Mixing liquids causes different effects
+
+What type of game is it?
+	Simple learning and experimental puzzle/platformer game
+
+What else does the player have access too?
+	A journal with the discovered liquids and their effects
+
+How does the player interact with the bottle?
+	drink the contents - empty bottle - interesting effects
+	pour contents on ground - empty bottle - interesting effects
+	throw bottle - empty bottle - interesting effects
+	place bottle on ground - empty bottle - interesting effects
+	pick up bottle
+	pour bottle into trash/disposal unit - empty bottle - no effect
+
+Art Style
+	monochromatic character and environment
+	potion dispensers are brightly colored
+	character turns color of potion on use
+		saturation fades back to monochrome as potion wears off
+	
