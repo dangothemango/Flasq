@@ -1,0 +1,15 @@
+Template for potion idea
+
+Name of potion
+	Description of effects
+	recipie
+	potential uses
+
+Invisiblity Potion
+	makes player invisible for a short time
+	standalone
+	potential uses
+		sneak past something
+
+Speed Potion
+	increases player speed
