@@ -1,0 +1,919 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"re",
+				"requests"
+			],
+			[
+				"de",
+				"default"
+			],
+			[
+				"num",
+				"num_threads"
+			],
+			[
+				"co",
+				"COLUMNS"
+			],
+			[
+				"Tem",
+				"Temperature_last"
+			],
+			[
+				"te",
+				"Temperature_last"
+			],
+			[
+				"sto",
+				"stopVar"
+			],
+			[
+				"i2",
+				"i2c_read_data"
+			],
+			[
+				"cal",
+				"calGY"
+			],
+			[
+				"gy",
+				"gy"
+			],
+			[
+				"read",
+				"readAccelerometer"
+			],
+			[
+				"upd",
+				"update"
+			],
+			[
+				"di",
+				"Drive_PW"
+			],
+			[
+				"SPW",
+				"SPW_MIN"
+			],
+			[
+				"serv",
+				"Servo_PW"
+			],
+			[
+				"SP",
+				"SPW_MIN"
+			],
+			[
+				"PCA",
+				"PCA0CPM0"
+			],
+			[
+				"S",
+				"SPW_CENTER"
+			],
+			[
+				"Ser",
+				"Servo_PW"
+			],
+			[
+				"av",
+				"avg_gy"
+			],
+			[
+				"a",
+				"avg_gy"
+			],
+			[
+				"avg",
+				"avg_gx"
+			],
+			[
+				"lcd",
+				"lcd_count"
+			],
+			[
+				"new",
+				"new_lcd"
+			],
+			[
+				"ne",
+				"new_lcd"
+			],
+			[
+				"lc",
+				"lcd_count"
+			],
+			[
+				"usr",
+				"userid"
+			],
+			[
+				"req",
+				"request"
+			],
+			[
+				"in",
+				"instruction"
+			],
+			[
+				"per",
+				"permissionlevel"
+			],
+			[
+				"get",
+				"getSingleUserAssignment"
+			],
+			[
+				"na",
+				"name_last"
+			],
+			[
+				"name",
+				"nameSort"
+			],
+			[
+				"user",
+				"userid"
+			],
+			[
+				"i",
+				"instruction_address"
+			],
+			[
+				"pip",
+				"pipeline"
+			],
+			[
+				"PW",
+				"PW_CENTER"
+			],
+			[
+				"update",
+				"Update_Value"
+			],
+			[
+				"rea",
+				"read_keypad"
+			],
+			[
+				"wait",
+				"waitcount"
+			],
+			[
+				"input",
+				"inputMode"
+			],
+			[
+				"end",
+				"idx_end"
+			],
+			[
+				"bob",
+				"bob"
+			],
+			[
+				"idx",
+				"idx_end"
+			],
+			[
+				"id",
+				"idx_end"
+			],
+			[
+				"bit",
+				"bit_twiddling"
+			],
+			[
+				"u",
+				"user_id"
+			],
+			[
+				"file",
+				"filepath"
+			],
+			[
+				"print",
+				"printBinary"
+			],
+			[
+				"make",
+				"makeLong"
+			],
+			[
+				"ret",
+				"retMatrix"
+			],
+			[
+				"B",
+				"BILED1"
+			],
+			[
+				"mm",
+				"mm_alloc"
+			],
+			[
+				"size",
+				"sizeof"
+			],
+			[
+				"al",
+				"alloc"
+			],
+			[
+				"del",
+				"deleteAll"
+			],
+			[
+				"sh",
+				"dsSharedPtr"
+			],
+			[
+				"Has",
+				"HasAllEqualAngles"
+			],
+			[
+				"has",
+				"HasAllEqualSides"
+			],
+			[
+				"Ha",
+				"HasARightAngle"
+			],
+			[
+				"HasAn",
+				"HasAnAcuteAngle"
+			],
+			[
+				"HasA",
+				"HasAnObtuseAngle"
+			],
+			[
+				"Is",
+				"IsConcave"
+			],
+			[
+				"IsCon",
+				"IsConcave"
+			],
+			[
+				"I",
+				"IsoscelesTriangle"
+			],
+			[
+				"Pol",
+				"Polygon"
+			],
+			[
+				"out",
+				"output_count"
+			],
+			[
+				"inp",
+				"input_data"
+			],
+			[
+				"current",
+				"current_count"
+			],
+			[
+				"inpu",
+				"input_count"
+			],
+			[
+				"output",
+				"output_count"
+			],
+			[
+				"mode",
+				"mode_count"
+			],
+			[
+				"is",
+				"isBlack"
+			],
+			[
+				"to",
+				"tocheck"
+			],
+			[
+				"loop",
+				"loopcurrent"
+			],
+			[
+				"set",
+				"setValue"
+			],
+			[
+				"dis",
+				"distance_image"
+			],
+			[
+				"distan",
+				"distance_image"
+			],
+			[
+				"distance",
+				"distance_image"
+			],
+			[
+				"ge",
+				"get_right_child"
+			],
+			[
+				"parentp",
+				"parentp"
+			],
+			[
+				"has_",
+				"has_left_child"
+			],
+			[
+				"std",
+				"stdpixel"
+			],
+			[
+				"k",
+				"keys"
+			],
+			[
+				"si",
+				"m_size"
+			],
+			[
+				"it",
+				"iterator"
+			],
+			[
+				"m_",
+				"m_table"
+			],
+			[
+				"Sup",
+				"Superhero"
+			],
+			[
+				"s",
+				"superheroes"
+			],
+			[
+				"superher",
+				"superheroes"
+			],
+			[
+				"Q",
+				"QuadTree"
+			],
+			[
+				"us",
+				"using"
+			],
+			[
+				"l",
+				"label_type"
+			],
+			[
+				"n",
+				"number_type"
+			],
+			[
+				"labe",
+				"label_type"
+			],
+			[
+				"lab",
+				"label_type"
+			],
+			[
+				"tot",
+				"totalthingies"
+			],
+			[
+				"con",
+				"continue"
+			],
+			[
+				"rand",
+				"randitr"
+			],
+			[
+				"const",
+				"const_iterator"
+			],
+			[
+				"max",
+				"maxquant"
+			],
+			[
+				"t",
+				"totalkey"
+			],
+			[
+				"ignor",
+				"ignore_punctuation"
+			],
+			[
+				"word",
+				"wordpunc"
+			],
+			[
+				"pa",
+				"parseyThing"
+			],
+			[
+				"parse",
+				"parse_method"
+			],
+			[
+				"qua",
+				"quadrant_size"
+			],
+			[
+				"old",
+				"old_root"
+			],
+			[
+				"se",
+				"setBoardtoSol"
+			],
+			[
+				"so",
+				"solutions"
+			],
+			[
+				"g",
+				"getTile"
+			],
+			[
+				"boa",
+				"board1"
+			],
+			[
+				"clear",
+				"clearDuplicateSolutions"
+			],
+			[
+				"rot",
+				"rotdif"
+			],
+			[
+				"all",
+				"all_solutions"
+			],
+			[
+				"find",
+				"findsolution"
+			],
+			[
+				"che",
+				"checkSolution"
+			],
+			[
+				"ro",
+				"rotation"
+			],
+			[
+				"allow",
+				"allow_rotations"
+			],
+			[
+				"west",
+				"west_"
+			],
+			[
+				"prepare",
+				"prepare_ascii_art"
+			],
+			[
+				"chec",
+				"checkAllTilesUsed"
+			],
+			[
+				"nu",
+				"numRows"
+			],
+			[
+				"phone",
+				"phonebook"
+			],
+			[
+				"st",
+				"string"
+			],
+			[
+				"itr",
+				"itr"
+			],
+			[
+				"block",
+				"blocked_grid"
+			],
+			[
+				"check",
+				"checker"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 367.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Markdown Preview: Preview in Browser"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/dan/Desktop/pskchurch.csv",
+		"/Users/dan/Desktop/Brazil Highlights - Street View - Google Maps.html",
+		"/Users/dan/Desktop/Switzerland Highlights - Street View - Google Maps.html",
+		"/Users/dan/Desktop/France Highlights - Street View - Google Maps.html",
+		"/Users/dan/Desktop/Canadian Parks - Street View - Google Maps.html",
+		"/Users/dan/Desktop/Russia Highlights - Street View - Google Maps.html",
+		"/Users/dan/Desktop/Canada Highlights - Street View - Google Maps.html",
+		"/Users/dan/Desktop/Mexico Highlights - Street View - Google Maps.html",
+		"/Users/dan/Desktop/Antarctica - Street View - Google Maps.html",
+		"/Users/dan/Desktop/UK Highlights - Street View - Google Maps.html",
+		"/Users/dan/Desktop/Argentina Highlights - Street View - Google Maps.html",
+		"/Users/dan/Desktop/World Wonders Project - Street View - Google Maps.html",
+		"/Users/dan/Desktop/Italy Highlights - Street View - Google Maps.html",
+		"/Users/dan/Desktop/Israel Highlights - Street View - Google Maps.html",
+		"/Users/dan/Desktop/India Highlights - Street View - Google Maps.html",
+		"/Users/dan/Desktop/US Highlights - Street View - Google Maps.html",
+		"/Users/dan/Library/Caches/Cleanup At Startup/com.fetchsoftworks.Fetch/Fetch Temporary Folder/contact.html",
+		"/Users/dan/Documents/Dropbox/School/2016 Spring/Comp Org/assign56-dangothemango/README.md",
+		"/Users/dan/Documents/Daydream/llScraper.py",
+		"/Users/dan/Documents/MobileBusinesSolutions/AEC/templates/userInfo.html",
+		"/Users/dan/Documents/Dropbox/School/2016 Spring/pizzadash/app.js",
+		"/Users/dan/Documents/Dropbox/School/2016 Spring/LITEC/lab5.c",
+		"/Users/dan/Documents/MobileBusinesSolutions/AEC/templates/registration.html",
+		"/Users/dan/Documents/MobileBusinesSolutions/AEC/templates/contact.html",
+		"/Users/dan/Documents/MobileBusinesSolutions/AEC/flaskTesting/utils.py",
+		"/Users/dan/Documents/Dropbox/School/2016 Spring/Comp Org/Team19-project/iplc-sim.c",
+		"/Users/dan/Documents/MobileBusinesSolutions/AEC/flaskTesting/templates/js/apicalls.js",
+		"/Users/dan/Documents/AEC/flaskTesting/templates/heading.html",
+		"/Users/dan/Documents/AEC/flaskTesting/templates/page1.html",
+		"/Users/dan/Documents/AEC/flaskTesting/templates/page2.html",
+		"/Users/dan/Documents/AEC/flaskTest.py",
+		"/Users/dan/Documents/Dropbox/School/2015 Spring/Game Mechanics/Unity/FinalProjectDanielGorman/Assets/Scripts/Player.cs",
+		"/Users/dan/Desktop/Semester4/DevEx/notes.md",
+		"/Users/dan/Desktop/Semester4/answers/hw1_answers.txt",
+		"/Users/dan/Desktop/5500/all/f_5500_2014_all.csv",
+		"/Users/dan/Desktop/5500/all/F_SCH_H_2014_all.csv",
+		"/Users/dan/Desktop/5500/all/F_SCH_H_PART1_2014_all.csv",
+		"/Users/dan/Documents/Dropbox/School/2016 Spring/LITEC/lab1-2.c",
+		"/Users/dan/Documents/Dropbox/School/book.xml",
+		"/Users/dan/Desktop/Spanish/work.html",
+		"/Users/dan/Desktop/Supremia Website HTML/Spanish/work.html",
+		"/Users/dan/Documents/Dropbox/School/Principles of Software/workspace/csci2600/src/hw5/data/Test3.csv",
+		"/Users/dan/Desktop/New Folder With Items/account.html",
+		"/Users/dan/Desktop/New Folder With Items/career.html",
+		"/Users/dan/Desktop/New Folder With Items/contact.html",
+		"/Users/dan/Desktop/New Folder With Items/creative.html",
+		"/Users/dan/Desktop/New Folder With Items/ethics.html",
+		"/Users/dan/Desktop/New Folder With Items/index.html",
+		"/Users/dan/Desktop/New Folder With Items/logistics.html",
+		"/Users/dan/Desktop/New Folder With Items/qa.html",
+		"/Users/dan/Desktop/New Folder With Items/work.html",
+		"/Users/dan/Desktop/New Folder With Items/about.html",
+		"/Users/dan/Desktop/New Folder With Items/404.html",
+		"/Users/dan/Documents/Dropbox/School/Principles of Software/workspace/csci2600/src/hw1/answers/reflection.txt",
+		"/Users/dan/Documents/Dropbox/School/Principles of Software/workspace/csci2600/src/hw1/answers/collaboration.txt",
+		"/Users/dan/Documents/Dropbox/School/Principles of Software/workspace/csci2600/src/hw1/answers/hw1_answers.txt",
+		"/Users/dan/Documents/Customers/Main Line Gardens/label.tpl",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab14/ds_smart_pointers.h",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab14/main_smart_pointers.cpp",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Homeworks/HW10/polygon.cpp",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Homeworks/HW10/polygon.h",
+		"/Users/dan/Documents/Customers/Main Line Gardens/receiptbackup.tpl",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Homeworks/HW9/README.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/test_ds_set.cpp",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/puzzle10.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/puzzles.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/puzzle9.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/puzzle8.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/puzzle7.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/puzzle6.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/puzzle5.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/puzzle4.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/puzzle3.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/puzzle2.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/puzzle1.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab10/ds_set.h",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Homeworks/HW6/main.cpp",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab9/in.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab1/lab9/#include <iostream>",
+		"/Users/dan/Desktop/Supremia/about.html",
+		"/Users/dan/Desktop/Supremia/account.html",
+		"/Users/dan/Desktop/Supremia/career.html",
+		"/Users/dan/Desktop/Supremia/contact.html",
+		"/Users/dan/Desktop/Supremia/creative.html",
+		"/Users/dan/Desktop/Supremia/ethics.html",
+		"/Users/dan/Desktop/Supremia/index.html",
+		"/Users/dan/Desktop/Supremia/logistics.html",
+		"/Users/dan/Desktop/Supremia/qa.html",
+		"/Users/dan/Desktop/Supremia/work.html",
+		"/Users/dan/Desktop/Supremia/about_.html",
+		"/Users/dan/Desktop/Supremia/account_.html",
+		"/Users/dan/Desktop/Supremia/career_us.html",
+		"/Users/dan/Desktop/Supremia/career.htm",
+		"/Users/dan/Desktop/Supremia/contact_.html",
+		"/Users/dan/Desktop/Supremia/creative_.html",
+		"/Users/dan/Desktop/Supremia/ethics_.html",
+		"/Users/dan/Desktop/Supremia/index_.html",
+		"/Users/dan/Desktop/Supremia/logistics_.html",
+		"/Users/dan/Desktop/Supremia/qa_.html",
+		"/Users/dan/Desktop/Supremia/work_.html",
+		"/Users/dan/Desktop/career.html",
+		"/Users/dan/Desktop/account.html",
+		"/Users/dan/Desktop/ethics.html",
+		"/Users/dan/Desktop/contact.html",
+		"/Users/dan/Desktop/qa.html",
+		"/Users/dan/Desktop/about.html",
+		"/Users/dan/Desktop/work.html",
+		"/Users/dan/Desktop/creative.html",
+		"/Users/dan/Desktop/logistics.html",
+		"/Users/dan/Desktop/index.html",
+		"/Users/dan/Desktop/ethics_.html",
+		"/Users/dan/Desktop/contact_.html",
+		"/Users/dan/Desktop/creative_.html",
+		"/Users/dan/Desktop/qa_.html",
+		"/Users/dan/Desktop/career_us.html",
+		"/Users/dan/Desktop/account_.html",
+		"/Users/dan/Desktop/index_.html",
+		"/Users/dan/Desktop/career.htm",
+		"/Users/dan/Desktop/logistics_.html",
+		"/Users/dan/Desktop/work_.html",
+		"/Users/dan/Desktop/404.html",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Homeworks/HW5/traincar.h",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Homeworks/HW5/traincar.cpp",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab5/vec.h",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Labs/lab5/test_vec.cpp",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Homeworks/HW2/out.txt",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Homeworks/HW2/sort.h",
+		"/Users/dan/Documents/Dropbox/School/Data Structures/Homeworks/HW2/sort.cpp"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"- ",
+			"drag",
+			");\n",
+			".com",
+			".com.+",
+			"HEAD",
+			"thumb",
+			"ll=[\\s\\S]*?\\)",
+			"%2C",
+			"ll",
+			"ll=-*[0-9]+\\.[0-9]+%2C-*[0-9]+\\.[0-9]+",
+			"ll=-*[0-9]+\\.[0-9]+%2C*[0-9]+\\.[0-9]+",
+			"bogota",
+			"dotme",
+			"mexico.",
+			"#pragma",
+			"default(none)",
+			"S",
+			"Servo",
+			"MIN",
+			"cache_size",
+			"BlockS",
+			"unsigned int",
+			"char",
+			"long",
+			"int",
+			"20",
+			"x",
+			"0",
+			"x",
+			"j=0",
+			"contact",
+			"']",
+			"last",
+			"Address",
+			"address",
+			"cyc",
+			"trap",
+			"bzero",
+			"nop",
+			"TODO",
+			"	\n",
+			"˚",
+			"waitc",
+			"car",
+			"Num",
+			"email",
+			"first",
+			"bit*",
+			"]);\n",
+			"bit*",
+			"I",
+			"p",
+			"g",
+			"i",
+			"|",
+			"i",
+			"jI",
+			"iI",
+			"jIndex",
+			"iIndex",
+			"index",
+			"i",
+			"int",
+			"unsigned int",
+			"f",
+			"O",
+			"return",
+			"s",
+			"S",
+			"I",
+			"i",
+			"I",
+			"str3",
+			"Transpose",
+			"20150309150409P030117088999001",
+			"20150109093911P040051063889001",
+			"AccEx",
+			"•",
+			"str",
+			"string",
+			"slide",
+			"<li><a href=\"http://www.supremia.com/German\">Deutsch</a></li>\n<li>|</li>",
+			"29",
+			".",
+			"•",
+			".",
+			"<li>",
+			"•",
+			".",
+			"•",
+			"mexico",
+			"mex",
+			"PLC",
+			"place",
+			"garcia",
+			"daniel",
+			"the l",
+			"h1",
+			"body",
+			"<p",
+			"sku",
+			"Obtuse",
+			"std::",
+			"mp",
+			"vec",
+			", ",
+			"thank",
+			"store_rec",
+			"store co",
+			"thank",
+			"store co",
+			"p",
+			"thank",
+			"empl",
+			"thank",
+			"Sale",
+			"thank",
+			"cout",
+			"m_data",
+			"m_hash",
+			"hash_list",
+			"b",
+			"();\n",
+			"QuadTree",
+			"std::",
+			"insert",
+			"std::"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"<!--<li><a href=\"http://www.supremia.com/German\">Deutsch</a></li>\n<li>|</li>-->",
+			"LTD"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/dan/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/B5976575-36F5-45B4-842C-3ABFEF23CE1F/lab32.c"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
