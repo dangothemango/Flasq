@@ -11,12 +11,15 @@ class TestState extends FlxState
 {
 
 	var player:Player;
+	var floor:ImmutableObject;
 
 	override public function create():Void
 	{
 		super.create();
 		player=new Player();
 		add(player);
+		floor = new ImmutableObject(0,400);
+		add(floor);
 	}
 
 	override public function update(elapsed:Float):Void
