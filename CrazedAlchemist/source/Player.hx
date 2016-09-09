@@ -13,7 +13,6 @@
  	//Movement Varables
  	var left:Bool=false;
  	var right:Bool=false;
- 	var onGround:Bool=true;
  	var dragC:Float=1000;
  	var gravity:Float=1000;
 
@@ -46,7 +45,7 @@
 		} else if (right){
 			velocity.x=speed;
 		}
-		if ((FlxG.keys.justPressed.W || FlxG.keys.justPressed.UP) && onGround){
+		if ((FlxG.keys.justPressed.W || FlxG.keys.justPressed.UP) && isTouching(FlxObject.DOWN)){
 			velocity.y=-jumpSpeed;
 		}
 	}
