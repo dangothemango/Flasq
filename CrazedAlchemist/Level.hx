@@ -24,6 +24,7 @@ class Level extends FlxState
 		player=new Player(pX,pY);
 		add(player);
 		FlxG.camera.follow(player);
+		FlxG.camera.setScrollBoundsRect(0,0,1000,800);
 	}
 
 	function loadTileMap(mapData:String, mapTiles:String){
