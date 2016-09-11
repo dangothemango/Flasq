@@ -7,17 +7,15 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 
-class TestState extends FlxState
+class TestState extends Level
 {
 
-	var player:Player;
 	var floor:ImmutableObject;
 
 	override public function create():Void
 	{
 		super.create();
-		player=new Player();
-		add(player);
+		addPlayer(0,0);
 		floor = new ImmutableObject(0,400);
 		add(floor);
 	}

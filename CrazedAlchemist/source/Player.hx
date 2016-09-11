@@ -17,7 +17,7 @@
  	var gravity:Float=1000;
 
  	var speed:Float=200;
- 	var jumpSpeed:Float=200;
+ 	var jumpSpeed:Float=1000;
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
 	{
@@ -28,8 +28,8 @@
 	}
 
 	override public function update(elapsed:Float):Void{
-		super.update(elapsed);
 		handleMovement();
+		super.update(elapsed);
 	}
 
 	function handleMovement():Void
@@ -49,4 +49,5 @@
 			velocity.y=-jumpSpeed;
 		}
 	}
+
  }
