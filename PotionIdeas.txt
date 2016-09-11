@@ -1,36 +1,57 @@
 Template for potion idea
 
-Name of potion
+Name of potion - Color
 	Description of effects
 	recipie or standalone
 	potential uses
 
-Invisiblity Potion
+Invisiblity Potion - Blue
 	makes player invisible for a short time
 	standalone
 	potential uses
 		sneak past something
+		Avoid Lasers
 
-Speed Potion
-	increases player speed
+Haste Potion - Yellow
+	increases player speed and jump height
 	standalone
 	potential uses
-		dodge moving squishy things
-
-Jump Potion
-	increases jump height
+		dodge moving platforms or something
+		jump over broken walls
+	
+Catalyst Potion - Red
+	sets fire to things, Light source
 	standalone
-	potential uses
-		hit unreachable platforms
-
-Double Jump Potion
-	allows player to double jump
-	recipie: speed+jump
-	potential uses
-		jump across long gaps with short celings
-
-Fire Potion
-	sets fire to things
-	standalon
 	potential uses
 		burn stuff
+		get past the dark rooms
+
+Gaseous Form - Purple
+	Turn Player into a gas
+	Invisibility + Catalyst
+	potential uses
+		move through vents
+		fly over stuff
+
+Dragon Breath - Orange
+	Breathe fire
+	Catalyst + Haste
+	potential usesope
+		burn obstacles, enemies
+
+Might - Green
+	Makes player extra strong
+	Invisibility + Haste
+	potential uses
+		move heavy objects
+		avoid fall damage
+
+Unstable - Brown
+	Bad stuff happens
+	Any 3 colors
+	potential uses
+		explosive gas
+		hurts player when drank
+		must be disposed of
+
+

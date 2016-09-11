@@ -17,7 +17,7 @@
  	var gravity:Float=1000;
 
  	var speed:Float=200;
- 	var jumpSpeed:Float=200;
+ 	var jumpSpeed:Float=500;
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
 	{
@@ -25,11 +25,12 @@
 		makeGraphic(100,114,FlxColor.RED);
 		drag.x=drag.y=dragC;
 		acceleration.y=gravity;
+		maxVelocity.x=speed;
 	}
 
 	override public function update(elapsed:Float):Void{
-		super.update(elapsed);
 		handleMovement();
+		super.update(elapsed);
 	}
 
 	function handleMovement():Void
@@ -41,12 +42,15 @@
 			left=right=false;
 		}
 		if (left){
-			velocity.x=-speed;
+			acceleration.x=-dragC;
 		} else if (right){
-			velocity.x=speed;
+			acceleration.x=dragC;
+		} else {
+			acceleration.x=0;
 		}
 		if ((FlxG.keys.justPressed.W || FlxG.keys.justPressed.UP) && isTouching(FlxObject.DOWN)){
 			velocity.y=-jumpSpeed;
 		}
 	}
+
  }
