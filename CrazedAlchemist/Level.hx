@@ -6,11 +6,14 @@ import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
+import flixel.tile.FlxTilemap;
+import openfl.Assets;
 
 class Level extends FlxState
 {
 
 	var player:Player;
+	var tileMap:FlxTilemap;
 
 	override public function create():Void
 	{
@@ -22,8 +25,15 @@ class Level extends FlxState
 		add(player);
 	}
 
+	function loadTileMap(mapData:String, mapTiles:String){
+		tileMap=new FlxTilemap();
+		tileMap.loadMapFromCSV(Assets.getText(mapData),mapTiles,16,16);
+		add(tileMap);
+	}
+
 	override public function update(elapsed:Float):Void
 	{
+		FlxG.collide(player,tileMap);
 		super.update(elapsed);
 	}
 }

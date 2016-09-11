@@ -16,8 +16,7 @@ class TestState extends Level
 	{
 		super.create();
 		addPlayer(0,0);
-		floor = new ImmutableObject(0,400);
-		add(floor);
+		loadTileMap("assets/tilemaps/testmap.csv","assets/tilemaps/testmap.png");
 	}
 
 	override public function update(elapsed:Float):Void
