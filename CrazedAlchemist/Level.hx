@@ -23,6 +23,7 @@ class Level extends FlxState
 	function addPlayer(?pX:Float=0, ?pY:Float=0){
 		player=new Player(pX,pY);
 		add(player);
+		FlxG.camera.follow(player);
 	}
 
 	function loadTileMap(mapData:String, mapTiles:String){
