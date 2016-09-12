@@ -39,7 +39,6 @@ class Level extends FlxState
 
 	private function interaction(A:FlxObject, B:FlxObject):Void
 	{
-		trace("Collision Detected");
 		if (A == player){
 			cast(B,InteractableObject).interact();
 		} else if (B == player){
@@ -55,7 +54,6 @@ class Level extends FlxState
 	{
 		FlxG.collide(player,tileMap);
 		if (FlxG.keys.justPressed.C){
-			trace("Start Interaction");
 			interact();
 		}
 		super.update(elapsed);

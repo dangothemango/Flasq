@@ -14,7 +14,7 @@ class InteractableObject extends FlxSprite
         makeGraphic (W,H,FlxColor.WHITE);
     }
 
-    public function interact():Void{trace("?");}
+    public function interact():Void{trace("Interact function was not overridden properly");}
 
     override public function update(elapsed:Float):Void
     {
