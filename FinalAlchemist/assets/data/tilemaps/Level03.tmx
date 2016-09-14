@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="60" tilewidth="50" tileheight="50" nextobjectid="59">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="60" tilewidth="50" tileheight="50" nextobjectid="61">
  <tileset firstgid="1" source="Basic Tiles.tsx"/>
- <tileset firstgid="28" name="Object Tiles" tilewidth="50" tileheight="50" tilecount="4" columns="0">
+ <tileset firstgid="28" name="Object Tiles" tilewidth="50" tileheight="50" tilecount="5" columns="0">
   <tile id="0">
    <image width="50" height="50" source="../../images/tile_set/cooler_bot.png"/>
   </tile>
@@ -14,11 +14,14 @@
   <tile id="3">
    <image width="50" height="50" source="../../images/tile_set/cooler_top_yellow.png"/>
   </tile>
+  <tile id="5">
+   <image width="50" height="50" source="../../images/tile_set/turret_base.png"/>
+  </tile>
  </tileset>
  <layer name="Background" width="50" height="60">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,24,8,24,9,9,9,9,9,9,0,13,13,13,13,8,13,13,13,13,13,13,13,13,8,13,13,13,13,0,9,9,9,9,9,9,9,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,24,8,24,9,9,9,9,9,9,0,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,0,9,9,9,9,9,9,9,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,24,8,24,9,9,9,9,9,9,24,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,24,9,9,9,9,9,9,9,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,24,8,24,9,9,9,9,9,9,24,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,24,9,9,5,9,9,9,9,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,24,8,24,9,9,9,9,9,5,24,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,24,5,5,5,5,9,9,9,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -82,7 +85,7 @@
  <layer name="Background with Transparency" width="50" height="60">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,11,16,17,17,17,17,17,18,12,0,11,0,0,12,0,11,16,17,17,17,17,18,12,0,11,0,0,12,0,11,0,17,17,17,18,12,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,11,16,17,17,17,17,17,18,12,0,11,0,0,0,33,0,16,17,17,17,17,18,0,33,0,0,0,12,0,11,0,17,17,17,18,12,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -207,7 +210,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup color="#aa0000" name="Objects">
+ <objectgroup color="#aa0000" name="Objects" visible="0">
   <object id="38" type="blue" x="302.667" y="549.333" width="42.6667" height="100"/>
   <object id="39" type="yellow" x="649.333" y="898.667" width="48" height="102.667"/>
   <object id="40" type="red" x="1653.33" y="197.333" width="46.6667" height="105.333"/>
@@ -222,5 +225,7 @@
   <object id="55" type="door" x="1502.67" y="100" width="45.3333" height="197.333"/>
   <object id="56" type="door" x="452" y="801.333" width="45.3333" height="198.667"/>
   <object id="58" type="lever" x="452" y="602.667" width="49.3333" height="48"/>
+  <object id="59" type="box" x="1698" y="899" width="100" height="99"/>
+  <object id="60" type="lift" x="149" y="202" width="52" height="49"/>
  </objectgroup>
 </map>
