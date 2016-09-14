@@ -12,7 +12,7 @@ class MenuState extends FlxState
 	override public function create():Void
 	{
 		super.create();
-		FlxG.switchState(new TestState());
+		FlxG.switchState(new Level0());
 	}
 
 	override public function update(elapsed:Float):Void
