@@ -10,6 +10,8 @@ import flixel.math.FlxMath;
 import flixel.tile.FlxTilemap;
 import openfl.Assets;
 import flixel.group.FlxGroup;
+import flixel.tile.FlxTilemap;
+import flixel.addons.editors.tiled.TiledMap;
 
 class Level extends FlxState
 {
