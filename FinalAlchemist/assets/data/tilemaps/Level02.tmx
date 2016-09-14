@@ -230,16 +230,16 @@
 </data>
  </layer>
  <objectgroup name="Objects">
-  <object id="1" x="152" y="298.667" width="146.667" height="205.333"/>
-  <object id="2" x="452" y="398.667" width="48" height="100"/>
-  <object id="3" x="552" y="300" width="48" height="198.667"/>
-  <object id="4" x="1453.33" y="300" width="45.3333" height="200"/>
-  <object id="6" x="1202.67" y="100" width="49.3333" height="46.6667"/>
-  <object id="7" x="1650.67" y="498.667" width="300" height="53.3333"/>
-  <object id="8" x="2153.33" y="398.667" width="46.6667" height="102.667"/>
-  <object id="9" x="1852" y="702.667" width="45.3333" height="100"/>
-  <object id="10" x="1154.67" y="902.667" width="41.3333" height="93.3333"/>
-  <object id="11" x="1300" y="749.333" width="49.3333" height="46.6667"/>
-  <object id="12" x="652" y="800" width="148" height="201.333"/>
+  <object id="1" type="start" x="152" y="298.667" width="146.667" height="205.333"/>
+  <object id="2" type="blue" x="452" y="398.667" width="48" height="100"/>
+  <object id="3" type="door" x="552" y="300" width="48" height="198.667"/>
+  <object id="4" type="door" x="1453.33" y="300" width="45.3333" height="200"/>
+  <object id="6" type="turret" x="1202.67" y="100" width="49.3333" height="46.6667"/>
+  <object id="7" type="floor_burnable" x="1650.67" y="498.667" width="300" height="53.3333"/>
+  <object id="8" type="red" x="2153.33" y="398.667" width="46.6667" height="102.667"/>
+  <object id="9" type="blue" x="1852" y="702.667" width="45.3333" height="100"/>
+  <object id="10" type="yellow" x="1154.67" y="902.667" width="41.3333" height="93.3333"/>
+  <object id="11" type="turret" x="1300" y="749.333" width="49.3333" height="46.6667"/>
+  <object id="12" type="end" x="652" y="800" width="148" height="201.333"/>
  </objectgroup>
 </map>
