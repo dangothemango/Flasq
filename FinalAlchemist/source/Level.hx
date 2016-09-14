@@ -40,7 +40,7 @@ class Level extends FlxState
 	}
 
 	function loadTileMap(LevelNumber:Int){
-		mapData="Level" + LevelNumber.toString() + ".tmx"
+		mapData="Level" + LevelNumber.toString() + ".tmx";
 
 		//Load the tmx file
 		var tiledLevel:TiledMap = new TiledMap(mapData);
@@ -56,7 +56,7 @@ class Level extends FlxState
 			//var layerData:String = layer.csvData;
 
 			//get the tilesheet
-			var tilesheetName:String =layer.properties.get("tilesheet")
+			var tilesheetName:String =layer.properties.get("tilesheet");
 			var tilesheetPath:String="assets/images/"+tilesheetName;
 
 			//TODO::get the right tilemap for now, make one up
@@ -67,7 +67,7 @@ class Level extends FlxState
 
 			//TODO::Actually just use this one and attach later
 
-			ver tileGID:Int = getStartGid(tiledLevel,tilesheetName);
+			var tileGID:Int = getStartGid(tiledLevel,tilesheetName);
 
 			tileMap.loadMap(layer.tileArray, tilesheetPath, tileSize, tileSize, FlxTilemap.OFF, tileGID);
 

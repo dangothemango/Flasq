@@ -1,0 +1,25 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"name": "FinalAlchemist",
+			"path": "/Users/dan/Documents/Dropbox/School/2016 Fall/GD1/HaxeFlixel/Dat-Boii/FinalAlchemist"
+		},
+		{
+			"follow_symlinks": true,
+			"name": "Flixel",
+			"path": "/usr/local/lib/haxe/lib/flixel/4,1,1/"
+		},
+		{
+			"follow_symlinks": true,
+			"name": "Flixel Addons",
+			"path": "/usr/local/lib/haxe/lib/flixel-addons/2,1,0/"
+		},
+		{
+			"follow_symlinks": true,
+			"name": "Haxe",
+			"path": "/usr/local/lib/haxe/std"
+		}
+	]
+}
