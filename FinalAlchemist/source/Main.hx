@@ -4,14 +4,19 @@ import flixel.FlxGame;
 import openfl.Lib;
 import openfl.display.Sprite;
 import flixel.FlxG;
-import flixel.system.scaleModes.FillScaleMode;
+import lime.ui.Window;
+import flixel.system.scaleModes.PixelPerfectScaleMode;
 
 
 class Main extends Sprite
 {
+
 	public function new()
 	{
 		super();
-		addChild(new FlxGame(1900, 1080, MenuState, 1, 60,60,false, true));
+		addChild(new FlxGame(960, 720, MenuState, 1, 60,60,false, false));
+		stage.resize(960,720);
+		FlxG.scaleMode =new PixelPerfectScaleMode();
+		
 	}
 }
