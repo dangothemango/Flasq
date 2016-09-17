@@ -116,7 +116,7 @@ class TiledLevel extends TiledMap
 			}
 			
 			//objects layer
-			if (layer.name == "objects")
+			if (layer.name == "Objects")
 			{
 				for (o in objectLayer.objects)
 				{
@@ -170,7 +170,11 @@ class TiledLevel extends TiledMap
 		
 		switch (o.type.toLowerCase())
 		{
-
+			case "start":
+				var player = state.addPlayer(x,y);
+				group.add(player);
+			default:
+				trace (o.type);
 		}
 
 	}

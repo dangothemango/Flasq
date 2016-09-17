@@ -13,7 +13,6 @@ class Level3 extends Level
 	{
 		super.create();
 		loadTiledData("Level03.tmx");
-		addPlayer(0,0);
 	}
 
 	override public function update(elapsed:Float):Void

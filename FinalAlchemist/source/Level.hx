@@ -28,10 +28,10 @@ class Level extends FlxState
 		interactables=new FlxTypedGroup<InteractableObject>();
 	}
 
-	function addPlayer(?pX:Float=0, ?pY:Float=0){
+	public function addPlayer(?pX:Float=0, ?pY:Float=0):Player{
 		player=new Player(pX,pY);
-		add(player);
 		FlxG.camera.follow(player);
+		return player;
 	}
 
 	function loadTiledData(mapData:String){
@@ -42,9 +42,10 @@ class Level extends FlxState
 		//I dont think we need this, uncomment it if something is missing
 		//add(level.imagesLayer);
 
-		add (level.objectsLayer);
-
 		add (level.foregroundTiles);
+
+
+		add (level.objectsLayer);
 
 	}
 
@@ -67,7 +68,7 @@ class Level extends FlxState
 		if (FlxG.keys.justPressed.C){
 			interact();
 		}
-		
+
 		level.collideWithLevel(player);
 		super.update(elapsed);
 	}
