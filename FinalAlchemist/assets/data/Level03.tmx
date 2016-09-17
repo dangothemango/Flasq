@@ -37,7 +37,7 @@
   <object id="42" type="yellow" x="598.667" y="2346.67" width="46.6667" height="102.667"/>
   <object id="45" type="start" x="154.667" y="794.667" width="142.667" height="204"/>
   <object id="46" type="end" x="2253.33" y="1452" width="142.667" height="200"/>
-  <object id="47" x="2202.67" y="1800" width="48" height="198.667"/>
+  <object id="47" type="fan" x="2202.67" y="1800" width="48" height="198.667"/>
   <object id="48" type="turret" x="801.333" y="52" width="48" height="48"/>
   <object id="51" type="turret" x="1250.67" y="50.6667" width="49.3333" height="48"/>
   <object id="52" type="door" x="553.333" y="100" width="44" height="200"/>

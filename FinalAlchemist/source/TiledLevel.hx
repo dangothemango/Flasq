@@ -168,10 +168,10 @@ class TiledLevel extends TiledMap
 		if (o.gid != -1)
 			y -= g.map.getGidOwner(o.gid).tileHeight;
 		
-		/*switch (o.type.toLowerCase())
+		switch (o.type.toLowerCase())
 		{
 
-		}*/
+		}
 
 	}
 
