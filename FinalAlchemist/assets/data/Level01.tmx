@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="50" tileheight="50" nextobjectid="6">
  <tileset firstgid="1" name="Basic TileSet" tilewidth="50" tileheight="50" tilecount="32" columns="16">
-  <image source="../../images/tile_set/TileSheet.png" width="815" height="101"/>
+  <image source="../images/tileSet/TileSheet.png" width="815" height="101"/>
  </tileset>
  <layer name="New Background" width="50" height="40">
   <data encoding="base64">
