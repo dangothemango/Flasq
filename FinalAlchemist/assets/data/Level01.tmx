@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="50" tileheight="50" nextobjectid="6">
- <tileset firstgid="1" name="Basic Tiles" tilewidth="50" tileheight="50" tilecount="27" columns="0">
+ <tileset firstgid="1" name="basictiles" tilewidth="50" tileheight="50" tilecount="27" columns="0">
   <tile id="0">
    <image width="50" height="50" source="../../images/tile_set/Broken_Floor_Left.png"/>
   </tile>
@@ -101,6 +101,10 @@
   <image source="../../images/tile_set/roof_sign.png" width="150" height="100"/>
  </tileset>
  <layer name="Background" width="50" height="40">
+  <properties>
+   <property name="nocollide" value="true"/>
+   <property name="tileset" value="basictiles"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -145,6 +149,10 @@
 </data>
  </layer>
  <layer name="Background with Transparency" width="50" height="40">
+  <properties>
+   <property name="nocollide" value="true"/>
+   <property name="tileset" value="basictiles"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -189,6 +197,10 @@
 </data>
  </layer>
  <layer name="Walkable Terrain" width="50" height="40">
+  <properties>
+   <property name="nocollide" value="false"/>
+   <property name="tileset" value="basictiles"/>
+  </properties>
   <data encoding="csv">
 15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,
 15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,

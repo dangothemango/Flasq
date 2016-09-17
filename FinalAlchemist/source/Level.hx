@@ -16,13 +16,15 @@ import flixel.addons.editors.tiled.TiledMap;
 class Level extends FlxState
 {
 
-	var player:Player;
-	var wallsMap:FlxTilemap;
-	var interactables:FlxTypedGroup<InteractableObject>;
+	public var level:TiledLevel;
+
+	public var player:Player;
+	public var interactables:FlxTypedGroup<InteractableObject>;
 
 	override public function create():Void
 	{
 		super.create();
+		FlxG.mouse.visible=false;
 		interactables=new FlxTypedGroup<InteractableObject>();
 	}
 
@@ -30,74 +32,21 @@ class Level extends FlxState
 		player=new Player(pX,pY);
 		add(player);
 		FlxG.camera.follow(player);
-		FlxG.camera.setScrollBoundsRect(0,0,1000,800);
 	}
 
-	function loadTileMap(mapData:String, mapTiles:String){
-		wallsMap=new FlxTilemap();
-		wallsMap.loadMapFromCSV(Assets.getText(mapData),mapTiles,16,16);
-		add(willsMap);
-	}
+	function loadTiledData(mapData:String){
+		level = new TiledLevel("assets/data/"+mapData,this);
+		trace("G");
+		add(level.backgroundLayer);
 
-	function loadTileMap(LevelNumber:Int){
-		mapData="Level" + LevelNumber.toString() + ".tmx";
+		//I dont think we need this, uncomment it if something is missing
+		//add(level.imagesLayer);
 
-		//Load the tmx file
-		var tiledLevel:TiledMap = new TiledMap(mapData);
+		add (level.objectsLayer);
 
-		//get world size information
-		var tileSize = tiledLevel.tileWidth;
-		var mapW = tiledLevel.width;
-		var mapH = tiledLevel.height;
-
-		for (layer in tiledLevel.layers){
-			var layerData:Array<Int> = layer.tileArray;
-			//If ^that doesnt work, use this
-			//var layerData:String = layer.csvData;
-
-			//get the tilesheet
-			var tilesheetName:String =layer.properties.get("tilesheet");
-			var tilesheetPath:String="assets/images/"+tilesheetName;
-
-			//TODO::get the right tilemap for now, make one up
-			var tileMap:FlxTilemap = new FlxTilemap();
-
-			tileMap.widthInTiles=mapW;
-			tileMap.heightInTiles=mapH;
-
-			//TODO::Actually just use this one and attach later
-
-			var tileGID:Int = getStartGid(tiledLevel,tilesheetName);
-
-			tileMap.loadMap(layer.tileArray, tilesheetPath, tileSize, tileSize, FlxTilemap.OFF, tileGID);
-
-
-		}
+		add (level.foregroundTiles);
 
 	}
-
-    function getStartGid (tiledLevel:TiledMap, tilesheetName:String):Int
-    {
-        // This function gets the starting GID of a tilesheet
- 
-        // Note: "0" is empty tile, so default to a non-empty "1" value.
-        var tileGID:Int = 1;
- 
-        for (tileset in tiledLevel.tilesets)
-        {
-            // We need to search the tileset's firstGID -- to do that,
-            // we compare the tilesheet paths. If it matches, we
-            // extract the firstGID value.
-            var tilesheetPath:Path = new Path(tileset.imageSource);
-            var thisTilesheetName = tilesheetPath.file + "." + tilesheetPath.ext;
-            if (thisTilesheetName == tilesheetName)
-            {
-                tileGID = tileset.firstGID;
-            }
-        }
- 
-        return tileGID;
-    }
 
 	private function interaction(A:FlxObject, B:FlxObject):Void
 	{
@@ -114,10 +63,12 @@ class Level extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
-		FlxG.collide(player,wallsMap);
+		//FlxG.collide(player,wallsMap);
 		if (FlxG.keys.justPressed.C){
 			interact();
 		}
+		
+		level.collideWithLevel(player);
 		super.update(elapsed);
 	}
 }
