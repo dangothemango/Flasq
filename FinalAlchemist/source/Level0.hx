@@ -15,7 +15,7 @@ class Level0 extends FlxState
 	override public function create():Void
 	{
 		super.create();
-		FlxG.switchState(new Level1());
+		FlxG.switchState(new Level3());
 	}
 
 	override public function update(elapsed:Float):Void

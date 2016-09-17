@@ -7,7 +7,7 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 
-class Level1 extends Level
+class Level3 extends Level
 {
 	override public function create():Void
 	{

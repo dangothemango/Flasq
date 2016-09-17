@@ -24,7 +24,7 @@ class TiledLevel extends TiledMap
 {
 	// For each "Tile Layer" in the map, you must define a "tileset" property which contains the name of a tile sheet image 
 	// used to draw tiles in that layer (without file extension). The image file must be located in the directory specified bellow.
-	private inline static var c_PATH_LEVEL_TILESHEETS = "assets/images/";
+	private inline static var c_PATH_LEVEL_TILESHEETS = "assets/images/tileSet/";
 	
 	// Array of tilemaps used for collision
 	public var foregroundTiles:FlxGroup;
@@ -168,10 +168,10 @@ class TiledLevel extends TiledMap
 		if (o.gid != -1)
 			y -= g.map.getGidOwner(o.gid).tileHeight;
 		
-		switch (o.type.toLowerCase())
+		/*switch (o.type.toLowerCase())
 		{
 
-		}
+		}*/
 
 	}
 
