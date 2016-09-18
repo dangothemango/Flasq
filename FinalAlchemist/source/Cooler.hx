@@ -4,18 +4,21 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.util.FlxColor;
 
-class InteractableObject extends FlxSprite
+class Cooler extends InteractableObject
 {
+
+    var potion:Potion;
+
     public function new(?X:Float=0, ?Y:Float=0, ?W:Int=10,?H:Int=10)
     {
-        super();
-        x=X;
-        y=Y;
-        width=W;
-        height=H;
+        super(X,Y,W,H);
     }
 
-    public function interact(player:Player):Void{trace("Interact function was not overridden properly");}
+    public function fillWith(p:Potion){
+        potion=p;
+    }
+
+    override public function interact(player:Player):Void{ trace("fill"); player.fillBottle(potion); }
 
     override public function update(elapsed:Float):Void
     {

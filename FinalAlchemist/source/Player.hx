@@ -1,11 +1,13 @@
  package;
 
  import flixel.FlxSprite;
+ import flixel.addons.util.FlxAsyncLoop;
  import flixel.system.FlxAssets.FlxGraphicAsset;
  import flixel.util.FlxColor;
  import flixel.FlxObject;
  import flixel.math.FlxPoint;
  import flixel.FlxG;
+ import flash.display.BitmapData;
 
  class Player extends FlxSprite
  {
@@ -21,6 +23,20 @@
 
  	var speed:Float=200;
  	var jumpSpeed:Float=500;
+
+ 	//Used for Asyncronous color replacement
+ 	var rCRow:UInt;
+ 	var rCColumn:UInt;
+ 	//The color being replaced
+ 	var rCOrig:UInt;
+ 	//The new color
+ 	var rCNew:UInt;
+ 	public var rCLoop:FlxAsyncLoop;
+ 	var rCPixels:BitmapData;
+
+ 	public var bottle:Bottle;
+
+
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
 	{
@@ -44,6 +60,11 @@
 	override public function update(elapsed:Float):Void{
 		handleMovement();
 		super.update(elapsed);
+	}
+
+	public function fillBottle(p:Potion){
+		if (bottle==null) return;
+		bottle.fill(p);
 	}
 
 	function handleMovement():Void
@@ -91,6 +112,35 @@
 			animation.stop();
 			animation.frameIndex=0;
 		}
+	}
+
+	public function replaceColorDriver(Color:UInt,NewColor:UInt){
+		trace("<");
+		if (rCLoop != null && !rCLoop.finished) return;
+		trace(">");
+		rCRow=0;
+		rCColumn=0;
+		rCOrig=Color;
+		rCNew=NewColor;
+		rCPixels=get_pixels();
+		trace(rCPixels.height);
+		rCLoop=new FlxAsyncLoop(rCPixels.height, replaceColorAsync,2);
+	}
+
+	public function replaceColorAsync():Void
+	{
+		var columns:UInt = rCPixels.width;
+		var column:UInt = 0;
+		while(column < columns)
+		{
+			if(rCPixels.getPixel32(column,rCRow) == rCOrig)
+			{
+				rCPixels.setPixel32(column,rCRow,rCNew);
+				//maybe do this at the end if its still slow
+			}
+			column++;
+		}
+		rCRow++;
 	}
 
  }

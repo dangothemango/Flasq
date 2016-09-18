@@ -11,9 +11,11 @@
  {
 
  	public var attached=false;
+ 	public var contents:Potion;
 
  	public function new(X:Float, Y:Float, ?SimpleGraphic:FlxGraphicAsset){
  		super(X,Y,SimpleGraphic);
+ 		contents=new Potion();
  	}
 
  	public function config(velocityX:Float, velocityY:Float, animationFrame:Int, animationName:String, direction:Int):Void{
@@ -32,5 +34,11 @@
 			super.update(elapsed);
 		}
 		
+	}
+
+	public function fill(p:Potion){
+		trace("Got to Bottle");
+		replaceColorDriver(contents.color+0xFF000000,p.color+0xFF000000);
+		contents=p;
 	}
  }

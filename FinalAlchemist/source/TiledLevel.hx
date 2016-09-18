@@ -173,6 +173,29 @@ class TiledLevel extends TiledMap
 			case "start":
 				var player = state.addPlayer(x,y);
 				group.add(player);
+			case "blue":
+				var cooler = state.addCooler(x,y,o.width,o.height,new PotionBlue());
+				group.add(cooler);
+			case "red":
+				var cooler = state.addCooler(x,y,o.width,o.height,new PotionRed());
+				group.add(cooler);
+			case "yellow":
+				var cooler = state.addCooler(x,y,o.width,o.height,new PotionYellow());
+				group.add(cooler);
+			case "end":
+
+			case "fan":
+
+			case "turret":
+
+			case "door":
+
+			case "lever":
+
+			case "box":
+
+			case "lift":
+
 			default:
 				trace (o.type);
 		}
