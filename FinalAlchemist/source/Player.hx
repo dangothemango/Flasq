@@ -9,6 +9,7 @@
  import flixel.FlxG;
  import flash.display.BitmapData;
  import flixel.tweens.FlxTween;
+ import flixel.group.FlxGroup;
 
  class Player extends FlxSprite
  {
@@ -22,7 +23,6 @@
 	var jumping:Bool;
 	var falling:Bool;
 	var drinking:Bool=false;
-	var colorChanging:Bool=false;
 
 	public var colorCallback:UInt=null;
 
@@ -42,6 +42,8 @@
  	public var rCLoop:FlxAsyncLoop;
  	var rCPixels:BitmapData;
  	public var rCCallback:String="none";
+ 	var coloredPixels:Array<FlxPoint>;
+ 	var rCPreloaded:Bool=false;
 
  	public var bottle:Bottle;
 
@@ -61,6 +63,8 @@
 		setFacingFlip(FlxObject.LEFT,true,false);
 		drag.x=dragC;
 		setDefaults();
+		FlxG.debugger.visible=true;
+		FlxG.watch.add(this,"rCPreloaded");
 	}
 
 	public function getStatus(){
@@ -111,13 +115,12 @@
 			default:
 
 		}
-		colorChanging=false;
 		rCCallback="none";
+		rCPreloaded=true;
 		
 	}
 
 	public function becomeVisible(c:UInt){
-		colorCallback=bottle.colorCallback=c;
 		tweenDriver(alpha,1.0);
 		bottle.tweenDriver(alpha,1.0);
 	}
@@ -208,19 +211,38 @@
 	}
 
 	public function replaceColorDriver(Color:UInt,NewColor:UInt,mult:Float=(2/3)){
-		if (rCLoop != null && !rCLoop.finished) return;
-		colorChanging=true;
-		rCRow=0;
+		if (rCLoop != null){
+			rCLoop.kill();
+			rCLoop.destroy();
+		}
 		rCColumn=0;
 		rCOrig=Color;
 		rCNew=NewColor;
 		rCPixels=get_pixels();
-		rCRow=Std.int(rCPixels.height*mult);
-		rCLoop=new FlxAsyncLoop(rCRow, replaceColorAsync,1);
+		if (!rCPreloaded){
+			rCRow=Std.int(rCPixels.height*mult);
+			rCLoop=new FlxAsyncLoop(rCRow, replaceColorAsync,1);
+		}
+		else{
+			rCRow=0;
+			trace("Preloaded");
+			rCLoop=new FlxAsyncLoop(coloredPixels.length, replaceColorPreloaded,500);
+		}
+	}
+
+	public function replaceColorPreloaded(){
+		var pix:FlxPoint=coloredPixels[rCRow];
+		rCPixels.setPixel32(Std.int(pix.x),Std.int(pix.y),rCNew);
+		rCRow++;
 	}
 
 	public function replaceColorAsync():Void
 	{
+		if (coloredPixels==null){
+			coloredPixels=new Array<FlxPoint>();
+		}
+
+
 		var columns:UInt = rCPixels.width;
 		var column:UInt = 0;
 		while(column < columns)
@@ -228,7 +250,7 @@
 			if(rCPixels.getPixel32(column,rCRow) == rCOrig)
 			{
 				rCPixels.setPixel32(column,rCRow,rCNew);
-				//maybe do this at the end if its still slow
+				coloredPixels.push(new FlxPoint(column,rCRow));
 			}
 			column++;
 		}
@@ -236,7 +258,6 @@
 	}
 
 	public function drink(){
-		if (colorChanging || (bottle!=null && bottle.colorChanging)) return;
 		animation.stop();
 		animation.play("drink");
 		drinking=true;
