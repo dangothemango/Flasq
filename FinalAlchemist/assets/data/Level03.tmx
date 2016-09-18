@@ -34,7 +34,7 @@
   <object id="39" type="yellow" x="649.333" y="898.667" width="48" height="102.667"/>
   <object id="40" type="red" x="1653.33" y="197.333" width="46.6667" height="105.333"/>
   <object id="41" type="blue" x="354.667" y="2002.67" width="40" height="101.333"/>
-  <object id="42" type="blue" x="598.667" y="2346.67" width="46.6667" height="102.667"/>
+  <object id="42" type="yellow" x="598.667" y="2346.67" width="46.6667" height="102.667"/>
   <object id="45" type="start" x="154.667" y="794.667" width="142.667" height="204"/>
   <object id="46" type="end" x="2253.33" y="1452" width="142.667" height="200"/>
   <object id="47" type="fan" x="2202.67" y="1800" width="48" height="198.667"/>
