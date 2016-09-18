@@ -10,7 +10,8 @@ class PotionYellow extends Potion
     public function new(){super(); color=Potion.YELLOW; type=1;}
 
     override public function drink(player:Player){
-    	trace ("speed, Yellow Potion");
+    	player.status="yellow";
+        player.setSpeeds(player.defJumpSpeed*1.75,player.defSpeed*2);
     }
 
     override public function mix(o:Potion):Potion{

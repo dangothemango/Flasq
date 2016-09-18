@@ -14,7 +14,7 @@ class Fan extends InteractableObject
     {
         super(X,Y,W,H);
         loadGraphic("assets/images/fan.png",true,50,50);
-        animation.add("blow",[0,1],3);
+        animation.add("blow",[0,1],3,true);
         turnOn();
     }
 
@@ -25,6 +25,10 @@ class Fan extends InteractableObject
     public function turnOff(){
         animation.stop();
     };
+
+    override public function interact(p:Player){
+
+    }
 
     override public function update(elapsed:Float):Void
     {

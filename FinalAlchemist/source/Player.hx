@@ -16,13 +16,15 @@
  	var left:Bool=false;
  	var right:Bool=false;
  	var dragC:Float=1000;
- 	var gravity:Float=1000;
+ 	public var defGravity:Float=1000;
  	var walking:Bool;
 	var jumping:Bool;
 	var falling:Bool;
+	var drinking:Bool=false;
 
- 	var speed:Float=200;
- 	var jumpSpeed:Float=500;
+ 	public var defSpeed(default,never):Float=200;
+ 	public var defJumpSpeed(default,never):Float=500;
+ 	var jumpSpeed:Float;
 
  	//Used for Asyncronous color replacement
  	var rCRow:UInt;
@@ -36,6 +38,8 @@
 
  	public var bottle:Bottle;
 
+ 	public var status:String;
+
 
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
@@ -46,11 +50,30 @@
 		updateHitbox();
 		animation.add("walk",[for (i in 1...24) i],30,true);
 		animation.add("jump",[24,25,26,27,28],30,false);
+		animation.add("drink",[for (i in 29...46) i],30,false);
 		setFacingFlip(FlxObject.RIGHT,false,false);
 		setFacingFlip(FlxObject.LEFT,true,false);
-		drag.x=drag.y=dragC;
-		acceleration.y=gravity;
-		maxVelocity.x=speed;
+		drag.x=dragC;
+		setDefaults();
+	}
+
+	public function setGravity(g:Float){
+		acceleration.y=g;
+		if (bottle==null) return;
+		bottle.setGravity(g);
+	}
+
+	public function setSpeeds(j:Float,s:Float){
+		jumpSpeed=j;
+		maxVelocity.x=s;
+		if (bottle==null) return;
+		bottle.setSpeeds(j,s);
+	}
+
+	public function setDefaults(){
+		status="white";
+		setSpeeds(defJumpSpeed,defSpeed);
+ 		setGravity(defGravity);
 	}
 
 	function loadSprite(){
@@ -69,6 +92,15 @@
 
 	function handleMovement():Void
 	{
+
+		if (drinking){
+			if (animation.finished) { 
+				drinking=false; 
+				if (bottle!=null) bottle.contents.drink(this);
+			}
+			return;
+		}
+
 		left=FlxG.keys.anyPressed([LEFT,A]);
 		right=FlxG.keys.anyPressed([RIGHT,D]);
 
@@ -97,6 +129,10 @@
 		if (!isTouching(FlxObject.DOWN)){
 			falling=true;
 		} else {falling=false;}
+		if (!falling && FlxG.keys.justPressed.F){
+			drink();
+			return;
+		}
 		
 		if (jumping){
 			animation.play("jump");
@@ -121,7 +157,8 @@
 		rCOrig=Color;
 		rCNew=NewColor;
 		rCPixels=get_pixels();
-		rCLoop=new FlxAsyncLoop(rCPixels.height, replaceColorAsync,2);
+		rCRow=Std.int(rCPixels.height*2/3);
+		rCLoop=new FlxAsyncLoop(rCRow, replaceColorAsync,2);
 	}
 
 	public function replaceColorAsync():Void
@@ -137,7 +174,14 @@
 			}
 			column++;
 		}
-		rCRow++;
+		rCRow--;
+	}
+
+	public function drink(){
+		animation.stop();
+		animation.play("drink");
+		drinking=true;
+		acceleration.x=0;
 	}
 
  }

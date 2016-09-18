@@ -195,7 +195,7 @@ class TiledLevel extends TiledMap
 			case "turret":
 
 			case "door":
-
+				
 			case "lever":
 
 			case "box":

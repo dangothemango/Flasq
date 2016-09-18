@@ -44,4 +44,5 @@
 		contents.destroy();
 		contents=tmp;
 	}
+
  }
