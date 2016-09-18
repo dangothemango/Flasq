@@ -38,7 +38,11 @@
 
 	public function fill(p:Potion){
 		trace("Got to Bottle");
-		replaceColorDriver(contents.color+0xFF000000,p.color+0xFF000000);
-		contents=p;
+		var tmp:Potion = contents.mix(p);
+		if (tmp==contents){ return; }
+		replaceColorDriver(contents.color+0xFF000000,tmp.color+0xFF000000);
+		contents.kill();
+		contents.destroy();
+		contents=tmp;
 	}
  }

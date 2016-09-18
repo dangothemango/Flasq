@@ -3,8 +3,9 @@ package;
 import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.util.FlxColor;
+import flixel.FlxBasic;
 
-class Potion
+class Potion extends FlxBasic
 {
 
 	//we probably dont need a separate class for each one, but its the best way i know how to do it off the top of my head.
@@ -27,7 +28,7 @@ class Potion
 	//3=Brown, Bad Potion
 	public var type:Int=0;
 
-    public function new(){color=0x000000;}
+    public function new(){super(); color=0x000000;}
 
     public function drink(player:Player){
     	trace ("no effect, Black Potion");
