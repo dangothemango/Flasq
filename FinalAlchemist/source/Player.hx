@@ -115,15 +115,12 @@
 	}
 
 	public function replaceColorDriver(Color:UInt,NewColor:UInt){
-		trace("<");
 		if (rCLoop != null && !rCLoop.finished) return;
-		trace(">");
 		rCRow=0;
 		rCColumn=0;
 		rCOrig=Color;
 		rCNew=NewColor;
 		rCPixels=get_pixels();
-		trace(rCPixels.height);
 		rCLoop=new FlxAsyncLoop(rCPixels.height, replaceColorAsync,2);
 	}
 

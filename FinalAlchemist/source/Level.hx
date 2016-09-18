@@ -49,11 +49,8 @@ class Level extends FlxState
 		add(bottle);
 	}
 
-	public function addCooler(X:Float,Y:Float,W:Int,H:Int,p:Potion):Cooler{
-		var c=new Cooler(X,Y,W,H);
-		c.fillWith(p);
-		interactables.add(c);
-		return c;
+	public function addInteractable(i:InteractableObject){
+		interactables.add(i);
 	}
 
 	function loadTiledData(mapData:String){

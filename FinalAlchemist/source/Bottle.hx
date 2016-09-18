@@ -37,7 +37,6 @@
 	}
 
 	public function fill(p:Potion){
-		trace("Got to Bottle");
 		var tmp:Potion = contents.mix(p);
 		if (tmp==contents){ return; }
 		replaceColorDriver(contents.color+0xFF000000,tmp.color+0xFF000000);

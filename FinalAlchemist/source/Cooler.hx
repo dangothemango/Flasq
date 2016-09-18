@@ -18,7 +18,7 @@ class Cooler extends InteractableObject
         potion=p;
     }
 
-    override public function interact(player:Player):Void{ trace("fill"); player.fillBottle(potion); }
+    override public function interact(player:Player):Void{ player.fillBottle(potion); }
 
     override public function update(elapsed:Float):Void
     {

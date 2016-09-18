@@ -75,8 +75,6 @@ class TiledLevel extends TiledMap
 				
 			var imagePath 		= new Path(tileSet.imageSource);
 			var processedPath 	= c_PATH_LEVEL_TILESHEETS + imagePath.file + "." + imagePath.ext;
-
-			trace(processedPath);
 			
 			var tilemap:FlxTilemap = new FlxTilemap();
 			tilemap.loadMapFromArray(tileLayer.tileArray, width, height, processedPath,
@@ -173,19 +171,27 @@ class TiledLevel extends TiledMap
 			case "start":
 				var player = state.addPlayer(x,y);
 				group.add(player);
+				trace("TODO: make start be an elevator");
 			case "blue":
-				var cooler = state.addCooler(x,y,o.width,o.height,new PotionBlue());
-				group.add(cooler);
+				var c=new Cooler(x,y,o.width,o.height);
+				c.fillWith(new PotionBlue());
+				state.addInteractable(c);
+				group.add(c);
 			case "red":
-				var cooler = state.addCooler(x,y,o.width,o.height,new PotionRed());
-				group.add(cooler);
+				var c=new Cooler(x,y,o.width,o.height);
+				c.fillWith(new PotionRed());
+				state.addInteractable(c);
+				group.add(c);
 			case "yellow":
-				var cooler = state.addCooler(x,y,o.width,o.height,new PotionYellow());
-				group.add(cooler);
+				var c=new Cooler(x,y,o.width,o.height);
+				c.fillWith(new PotionYellow());
+				state.addInteractable(c);
+				group.add(c);
 			case "end":
-
+				trace("TODO: end level and elevator");
 			case "fan":
-
+				var fan = new Fan(x,y);
+				group.add(fan);
 			case "turret":
 
 			case "door":
