@@ -213,7 +213,7 @@
 		rCNew=NewColor;
 		rCPixels=get_pixels();
 		rCRow=Std.int(rCPixels.height*mult);
-		rCLoop=new FlxAsyncLoop(rCRow, replaceColorAsync,2);
+		rCLoop=new FlxAsyncLoop(rCRow, replaceColorAsync,1);
 	}
 
 	public function replaceColorAsync():Void
