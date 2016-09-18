@@ -11,6 +11,7 @@ class PotionBrown extends Potion
 
     override public function drink(player:Player){
     	trace ("poop, Brown Potion");
+    	super.drink(player);
     }
 
     override public function mix(o:Potion):Potion{
