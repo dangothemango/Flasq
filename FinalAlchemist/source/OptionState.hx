@@ -12,6 +12,7 @@ import flixel.util.FlxColor;
 
 class OptionState extends FlxState
 {
+	//bunch of vars, mostly for sound control
 	private var _pageTitle:FlxText;
 	private var _volumeText:FlxText;
 	#if desktop
@@ -63,6 +64,10 @@ class OptionState extends FlxState
 		
 		updateVolume();
 		
+		var tempbutn = new FlxButton(0, FlxG.height - 60, "Die", clickDeath);
+		tempbutn.screenCenter(FlxAxes.X);
+		add(tempbutn);
+		
 		super.create();
 	}
 
@@ -70,6 +75,7 @@ class OptionState extends FlxState
 		super.update(elapsed);
 	}
 	
+	//If time permits, will update for different resolutions instead of just fullscreen vs windowed
 	#if desktop
 	private function clickResolution():Void
 	{
@@ -78,23 +84,32 @@ class OptionState extends FlxState
 	}
 	#end
 	
+	//turns volume down
 	function clickVolumeDown() : Void {
 		FlxG.sound.volume -= 0.1;
 		updateVolume();
 	}
 	
+	//turns volume up
 	function clickVolumeUp() : Void {
 		FlxG.sound.volume += 0.1;
 		updateVolume();
 	}
 	
+	//updates the window volume and the text displayed
 	function updateVolume() : Void {
 		var vol:Int = Math.round(FlxG.sound.volume * 100);
 		_volumeBar.value = vol;
 		_volumeLevel.text = vol + "%";
 	}
 	
+	//goes back to the menu, might update to go back to screen that sent us here if we put options as part of GUI
 	function clickBack() : Void {
 		FlxG.switchState(new MenuState());
+	}
+	
+	//temp for testing
+	function clickDeath() : Void {
+		FlxG.switchState(new DeathState(false, "test", 0));
 	}
 }

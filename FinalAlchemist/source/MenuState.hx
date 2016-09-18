@@ -20,7 +20,7 @@ class MenuState extends FlxState {
 	
 	
 	override public function create():Void {
-		_gameTitle = new FlxText(0, 20, 0, "Final\nAlchemist", 22);
+		_gameTitle = new FlxText(0, 200, 0, "FLASQ", 40);
 		_gameTitle.alignment = CENTER;
 		_gameTitle.screenCenter(FlxAxes.X);
 		add(_gameTitle);
