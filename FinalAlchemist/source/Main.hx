@@ -14,7 +14,7 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		addChild(new FlxGame(960, 720, MenuState, 1, 60,60,false, false));
+		addChild(new FlxGame(960, 720, MenuState, 1, 60,60,true, false));
 		stage.resize(960,720);
 		FlxG.scaleMode =new PixelPerfectScaleMode();
 		

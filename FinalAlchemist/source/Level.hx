@@ -19,6 +19,7 @@ class Level extends FlxState
 	public var level:TiledLevel;
 
 	public var player:Player;
+	public var bottle:Bottle;
 	public var interactables:FlxTypedGroup<InteractableObject>;
 
 	override public function create():Void
@@ -32,6 +33,15 @@ class Level extends FlxState
 		player=new Player(pX,pY);
 		FlxG.camera.follow(player);
 		return player;
+	}
+
+	public function addBottleAttached(?pX:Float=0, ?pY:Float=0){
+		bottle=new Bottle(pX,pY);
+		bottle.attached=true;
+		bottle.config(player.velocity.x,player.velocity.y,
+						player.animation.frameIndex,
+				    	player.animation.name,player.facing);
+		add(bottle);
 	}
 
 	function loadTiledData(mapData:String){
@@ -68,8 +78,12 @@ class Level extends FlxState
 		if (FlxG.keys.justPressed.C){
 			interact();
 		}
+		if (FlxG.keys.justPressed.B && bottle==null){
+			addBottleAttached(player.x,player.y);
+		}
 
 		level.collideWithLevel(player);
+		level.collideWithLevel(bottle);
 		super.update(elapsed);
 	}
 }
