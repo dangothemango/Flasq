@@ -22,6 +22,7 @@
 	var jumping:Bool;
 	var falling:Bool;
 	var drinking:Bool=false;
+	var colorChanging:Bool=false;
 
 	public var colorCallback:UInt=null;
 
@@ -110,6 +111,7 @@
 			default:
 
 		}
+		colorChanging=false;
 		rCCallback="none";
 		
 	}
@@ -207,6 +209,7 @@
 
 	public function replaceColorDriver(Color:UInt,NewColor:UInt,mult:Float=(2/3)){
 		if (rCLoop != null && !rCLoop.finished) return;
+		colorChanging=true;
 		rCRow=0;
 		rCColumn=0;
 		rCOrig=Color;
@@ -233,6 +236,7 @@
 	}
 
 	public function drink(){
+		if (colorChanging || (bottle!=null && bottle.colorChanging)) return;
 		animation.stop();
 		animation.play("drink");
 		drinking=true;
