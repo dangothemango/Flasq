@@ -33,6 +33,7 @@ class Potion extends FlxBasic
 
     public function drink(player:Player){
     	player.bottle.empty();
+    	player.replaceColorDriver(player.hatColor,color,1/2);
     }
 
     public function mix(o:Potion):Potion{

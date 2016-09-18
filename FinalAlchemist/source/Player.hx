@@ -22,6 +22,8 @@
 	var falling:Bool;
 	var drinking:Bool=false;
 
+	public var hatColor:UInt=0xFF000000;
+
  	public var defSpeed(default,never):Float=200;
  	public var defJumpSpeed(default,never):Float=500;
  	var jumpSpeed:Float;
@@ -150,14 +152,14 @@
 		}
 	}
 
-	public function replaceColorDriver(Color:UInt,NewColor:UInt){
+	public function replaceColorDriver(Color:UInt,NewColor:UInt,mult:Float=(2/3)){
 		if (rCLoop != null && !rCLoop.finished) return;
 		rCRow=0;
 		rCColumn=0;
 		rCOrig=Color;
 		rCNew=NewColor;
 		rCPixels=get_pixels();
-		rCRow=Std.int(rCPixels.height*2/3);
+		rCRow=Std.int(rCPixels.height*mult);
 		rCLoop=new FlxAsyncLoop(rCRow, replaceColorAsync,2);
 	}
 
