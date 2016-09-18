@@ -36,10 +36,17 @@
 		
 	}
 
+	public function empty(){
+		replaceColorDriver(contents.color,Potion.BLACK);
+		contents.kill();
+		contents.destroy();
+		contents=new Potion();
+	}
+
 	public function fill(p:Potion){
 		var tmp:Potion = contents.mix(p);
 		if (tmp==contents){ return; }
-		replaceColorDriver(contents.color+0xFF000000,tmp.color+0xFF000000);
+		replaceColorDriver(contents.color,tmp.color);
 		contents.kill();
 		contents.destroy();
 		contents=tmp;
