@@ -106,6 +106,7 @@ class Level extends FlxState
 			else if (p.rCLoop.finished){
 				p.rCLoop.kill();
 				p.rCLoop.destroy();
+				p.rCCallbackDriver();
 			} else if (!p.rCLoop.started){
 				add(p.rCLoop);
 				p.rCLoop.start();

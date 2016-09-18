@@ -8,6 +8,7 @@
  import flixel.math.FlxPoint;
  import flixel.FlxG;
  import flash.display.BitmapData;
+ import flixel.tweens.FlxTween;
 
  class Player extends FlxSprite
  {
@@ -21,6 +22,8 @@
 	var jumping:Bool;
 	var falling:Bool;
 	var drinking:Bool=false;
+
+	public var colorCallback:UInt=null;
 
 	public var hatColor:UInt=0xFF000000;
 
@@ -37,11 +40,11 @@
  	var rCNew:UInt;
  	public var rCLoop:FlxAsyncLoop;
  	var rCPixels:BitmapData;
+ 	public var rCCallback:String="none";
 
  	public var bottle:Bottle;
 
- 	public var status:String;
-
+ 	var status:String;
 
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
@@ -57,6 +60,27 @@
 		setFacingFlip(FlxObject.LEFT,true,false);
 		drag.x=dragC;
 		setDefaults();
+	}
+
+	public function getStatus(){
+		return status;
+	}
+
+	public function setStatus(s:String,c:UInt){
+		clearEffects(c);
+		status=s;
+	}
+
+	function clearEffects(c:UInt){
+		setDefaults();
+		becomeVisible(c);
+	}
+
+	//Potion Helper Functions
+
+	public function setHatColor(c:UInt){
+		replaceColorDriver(hatColor,c,1/2);
+		hatColor=c;
 	}
 
 	public function setGravity(g:Float){
@@ -78,11 +102,40 @@
  		setGravity(defGravity);
 	}
 
+	public function rCCallbackDriver(){
+		switch (rCCallback){
+			case "invisible":
+				tweenDriver(alpha,0.4);
+				bottle.tweenDriver(alpha,0.4);
+			default:
+
+		}
+		rCCallback="none";
+		
+	}
+
+	public function becomeVisible(c:UInt){
+		colorCallback=bottle.colorCallback=c;
+		tweenDriver(alpha,1.0);
+		bottle.tweenDriver(alpha,1.0);
+	}
+
+	private function tweenFunction(s:FlxSprite, v:Float) { s.alpha = v; }
+
+	function tweenDriver(s:Float,e:Float){
+		FlxTween.num(s, e, 2.0, {}, tweenFunction.bind(this));
+
+	}
+
 	function loadSprite(){
 		loadGraphic("assets/images/player.png",true,122,200);
 	}
 
 	override public function update(elapsed:Float):Void{
+		if (colorCallback!=null && alpha==1.0){
+			setHatColor(colorCallback);
+			colorCallback=null;
+		}
 		handleMovement();
 		super.update(elapsed);
 	}
