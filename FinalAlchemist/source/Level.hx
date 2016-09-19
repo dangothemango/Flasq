@@ -16,11 +16,11 @@ import flixel.addons.editors.tiled.TiledMap;
 class Level extends FlxState
 {
 
-	static public var levelMaps=[	"Level0.tmx",
-								"Level01.tmx",
-								"Level02.tmx",
-								"Level03.tmx"
-							 ];
+	static public var levelMaps=[	"Level00.tmx",
+									"Level01.tmx",
+									"Level02.tmx",
+									"Level03.tmx"
+								];
 
 	//We definitely dont need classes for specific levels, we can create a list of levels in order
 	//and iterate through that instead
@@ -43,6 +43,15 @@ class Level extends FlxState
 		FlxG.mouse.visible=false;
 		interactables=new FlxTypedGroup<InteractableObject>();
 		loadTiledData(levelMaps[levelNum]);
+	}
+
+	public function nextLevel(){
+		var n=levelNum+1;
+		if (n>=levelMaps.length){
+			trace("TODO: Game Over, You win");
+			return;
+		}
+		FlxG.switchState(new Level(n));
 	}
 
 	public function addPlayer(?pX:Float=0, ?pY:Float=0):Player{
@@ -100,6 +109,9 @@ class Level extends FlxState
 		}
 		if (FlxG.keys.justPressed.B && player.bottle==null){
 			addBottleAttached(player.x,player.y);
+		}
+		if (FlxG.keys.justPressed.N){
+			nextLevel();
 		}
 
 		doAsyncLoops(player);
