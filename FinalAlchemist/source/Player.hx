@@ -11,6 +11,7 @@
  import flixel.tweens.FlxTween;
  import flixel.group.FlxGroup;
  import flixel.effects.particles.FlxEmitter;
+ import flixel.effects.particles.FlxParticle;
 
  class Player extends PlayerAndBottle
  {
@@ -40,7 +41,7 @@
  	var status:String;
 
  	//Status helper objects
- 	var Emitters:Map<String,FlxEmitter>;
+ 	public var emitter:FlxTypedEmitter<FlxParticle>;
 
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
@@ -51,6 +52,21 @@
 		animation.add("drink",[for (i in 29...46) i],30,false);
 		drag.x=dragC;
 		setDefaults();
+	}
+
+	//Emitter Helpers
+	function configRedEmit(){
+		emitter = new FlxTypedEmitter<FlxParticle>(x+width/2,y+height/5);
+		emitter.solid=true;
+		emitter.loadParticles("assets/images/fire.png",500);
+	}
+
+	function configPurpleEmit(){
+
+	}
+
+	function configOrangeEmit(){
+
 	}
 
 	public function getStatus(){
@@ -64,6 +80,7 @@
 
 	function clearEffects(c:UInt){
 		setDefaults();
+		if (emitter!=null){emitter.destroy(); emitter=null;}
 		becomeVisible(c);
 	}
 
@@ -94,8 +111,20 @@
 		bottle.tweenDriver(alpha,1.0);
 	}
 
-	public function setAura(a:String,e:Bool){
+	public function startEmitter(){
+		switch (status){
+			case "red":
+				emitter.start(false,.01);
+			case "purple":
 
+			case "orange":
+
+			default:
+		}
+	}
+
+	public function lightFire(){
+		configRedEmit();
 	}
 
 	override function loadSprite(){
@@ -109,6 +138,13 @@
 		}
 		super.update(elapsed);
 		configBottle();
+		emitterFollow();
+	}
+
+	function emitterFollow(){
+		if (emitter==null) return;
+		emitter.x=x+width/2;
+		emitter.y=y+width/5;
 	}
 
 	public function fillBottle(p:Potion){

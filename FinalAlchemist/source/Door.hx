@@ -25,7 +25,7 @@ class Door extends RangedObject
     }
 
     function tweenDriver(s:Float,e:Float){
-        FlxTween.num(s, e, .5, {}, tweenFunction.bind(this));
+        FlxTween.num(s, e, .25, {}, tweenFunction.bind(this));
     }
 
     override function inRange(){

@@ -117,6 +117,10 @@ class Level extends FlxState
 		doAsyncLoops(player);
 		doAsyncLoops(player.bottle);
 
+		if (player.emitter!=null){
+			if (!player.emitter.exists) { add(player.emitter); player.startEmitter(); }
+			FlxG.collide(player.emitter, level.foregroundTiles);
+		}
 		level.collideWithLevel(player);
 		level.collideWithLevel(player.bottle);
 		super.update(elapsed);

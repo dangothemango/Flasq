@@ -12,7 +12,7 @@ class PotionRed extends Potion
     override public function drink(player:Player){
         super.drink(player);
     	player.setStatus("red",color);
-        player.setAura("red",true);
+        player.lightFire();
     }
 
     override public function mix(o:Potion):Potion{
