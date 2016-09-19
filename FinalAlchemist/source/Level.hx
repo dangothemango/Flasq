@@ -16,6 +16,12 @@ import flixel.addons.editors.tiled.TiledMap;
 class Level extends FlxState
 {
 
+	static public var levelMaps=[	"Level0.tmx",
+								"Level01.tmx",
+								"Level02.tmx",
+								"Level03.tmx"
+							 ];
+
 	//We definitely dont need classes for specific levels, we can create a list of levels in order
 	//and iterate through that instead
 	//TODO:
@@ -23,14 +29,20 @@ class Level extends FlxState
 
 	public var level:TiledLevel;
 
+	public var levelNum:Int;
 	public var player:Player;
 	public var interactables:FlxTypedGroup<InteractableObject>;
 
+	public function new(l:Int){
+		super();
+		levelNum=l;
+	}	
 	override public function create():Void
 	{
 		super.create();
 		FlxG.mouse.visible=false;
 		interactables=new FlxTypedGroup<InteractableObject>();
+		loadTiledData(levelMaps[levelNum]);
 	}
 
 	public function addPlayer(?pX:Float=0, ?pY:Float=0):Player{
