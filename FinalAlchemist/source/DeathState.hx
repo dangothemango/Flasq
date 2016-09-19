@@ -67,6 +67,11 @@ class DeathState extends FlxState
 	
 	//will return to where you came from, will be edited once level structure is changed
 	function retryLevel() : Void {
-		FlxG.switchState(new OptionState());
+		if (_lastLevel == -1){
+			FlxG.switchState(new OptionState());
+		}
+		else {
+			FlxG.switchState(new Level(_lastLevel));
+		}
 	}
 }
