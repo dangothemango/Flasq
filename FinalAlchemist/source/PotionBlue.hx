@@ -16,6 +16,7 @@ class PotionBlue extends Potion
     }
 
     override public function mix(o:Potion):Potion{
+        trace(o.type);
     	switch (o.type){
     		case 0:
     			return this;

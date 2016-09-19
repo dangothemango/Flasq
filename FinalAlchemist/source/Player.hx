@@ -62,7 +62,10 @@
 	}
 
 	function configPurpleEmit(){
-
+		emitter=new FlxTypedEmitter<FlxParticle>(x+width/2,y+height/5);
+		emitter.solid=true;
+		emitter.loadParticles("assets/images/gas.png",200);
+		emitter.velocity.set(-5,-5,5,5);
 	}
 
 	function configOrangeEmit(){
@@ -98,17 +101,20 @@
 	public function setSpeeds(j:Float,s:Float){
 		jumpSpeed=j;
 		maxVelocity.x=s;
+		maxVelocity.y=10000;
 	}
 
 	public function setDefaults(){
 		status="white";
 		setSpeeds(defJumpSpeed,defSpeed);
  		setGravity(defGravity);
+ 		updateHitbox();
+ 		drag.y=0;
 	}
 
 	public function becomeVisible(c:UInt){
 		tweenDriver(alpha,1.0);
-		bottle.tweenDriver(alpha,1.0);
+		bottle.tweenDriver(bottle.alpha,1.0);
 	}
 
 	public function startEmitter(){
@@ -116,7 +122,7 @@
 			case "red":
 				emitter.start(false,.01);
 			case "purple":
-
+				emitter.start(false,.03);
 			case "orange":
 
 			default:
@@ -125,6 +131,14 @@
 
 	public function lightFire(){
 		configRedEmit();
+	}
+
+	public function sublimate(){
+		configPurpleEmit();
+		drag.y=dragC;
+		setGravity(0);
+		maxVelocity.y=defSpeed;
+		height=height/2;
 	}
 
 	override function loadSprite(){
@@ -154,6 +168,11 @@
 
 	override function handleMovement():Void
 	{
+
+		if (status=="purple"){
+			handleFlight();
+			return;
+		}
 
 		if (drinking){
 			if (animation.finished) { 
@@ -212,6 +231,47 @@
 		}
 	}
 
+	function handleFlight(){
+		
+		if (drinking){
+			drinking=false; 
+			if (bottle!=null) bottle.contents.drink(this);
+		}
+
+		left=FlxG.keys.anyPressed([LEFT,A]);
+		right=FlxG.keys.anyPressed([RIGHT,D]);
+		var up=FlxG.keys.anyPressed([UP,W]);
+		var down=FlxG.keys.anyPressed([DOWN,S]);
+
+		if(left&&right){
+			left=right=false;
+		}
+		if (up&&down){
+			up=down=false;
+		}
+		if (left){
+			acceleration.x=-dragC;
+			facing=FlxObject.LEFT;
+		} else if (right){
+			acceleration.x=dragC;
+			facing=FlxObject.RIGHT;
+		} else {
+			acceleration.x=0;
+		}
+		if (status=="purple")
+		{if (down){
+					acceleration.y=dragC;
+				} else if (up){
+					acceleration.y=-dragC;
+				} else {
+					acceleration.y=0;
+				}}
+
+		if (FlxG.keys.justPressed.F){
+			drink();
+		}
+	}
+
 	function configBottle(){
 		if (bottle==null) return;
 		var anim:Int=animation.frameIndex;
@@ -232,7 +292,10 @@
 		switch (rCCallback){
 			case "invisible":
 				tweenDriver(alpha,0.4);
-				bottle.tweenDriver(alpha,0.4);
+				bottle.tweenDriver(bottle.alpha,0.4);
+			case "sublimate":
+				tweenDriver(alpha,0,0.3);
+				sublimate();
 			default:
 		}
 		super.rCCallbackDriver();

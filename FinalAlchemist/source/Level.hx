@@ -122,7 +122,6 @@ class Level extends FlxState
 			FlxG.collide(player.emitter, level.foregroundTiles);
 		}
 		level.collideWithLevel(player);
-		level.collideWithLevel(player.bottle);
 		super.update(elapsed);
 
 

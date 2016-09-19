@@ -8,6 +8,10 @@ class Cooler extends InteractableObject
 {
 
     var potion:Potion;
+    var onCooldown:Bool=false;
+
+    var t:Float;
+    var cd:Float=.5;
 
     public function new(?X:Float=0, ?Y:Float=0, ?W:Int=10,?H:Int=10)
     {
@@ -18,10 +22,21 @@ class Cooler extends InteractableObject
         potion=p;
     }
 
-    override public function interact(player:Player):Void{ player.fillBottle(potion); }
+    override public function interact(player:Player):Void{ 
+        if (onCooldown) return;
+        player.fillBottle(potion); 
+        onCooldown=true;
+        t=0;
+    }
 
     override public function update(elapsed:Float):Void
     {
+        if (onCooldown){
+            t+=elapsed;
+            if (t>=cd){
+                onCooldown=false;
+            }
+        }
         super.update(elapsed);
     }
 }

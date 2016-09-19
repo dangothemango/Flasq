@@ -16,14 +16,17 @@ class PotionRed extends Potion
     }
 
     override public function mix(o:Potion):Potion{
+        trace(o.type);
     	switch (o.type){
     		case 0:
     			return this;
     		case 1:
+                trace("wtf");
                 switch (o.color){
                     case Potion.YELLOW:
                         return new PotionOrange();
                     case Potion.BLUE:
+                        trace("Im So Confused");
                         return new PotionPurple();
                     case Potion.RED:
                         return this;

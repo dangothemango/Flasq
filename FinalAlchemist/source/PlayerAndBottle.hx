@@ -28,6 +28,8 @@ package;
  	var coloredPixels:Array<FlxPoint>;
  	var rCPreloaded:Bool=false;
 
+ 	var tween:FlxTween;
+
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
 	{
@@ -48,8 +50,9 @@ package;
 
 	private function tweenFunction(s:FlxSprite, v:Float) { s.alpha = v; }
 
-	function tweenDriver(s:Float,e:Float){
-		FlxTween.num(s, e, 2.0, {}, tweenFunction.bind(this));
+	function tweenDriver(s:Float,e:Float,?t:Float=2.0){
+		if (tween!=null)tween.cancel();
+		tween=FlxTween.num(s, e, t, {}, tweenFunction.bind(this));
 
 	}
 
