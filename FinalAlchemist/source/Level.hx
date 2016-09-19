@@ -63,9 +63,6 @@ class Level extends FlxState
 	public function addBottleAttached(?pX:Float=0, ?pY:Float=0){
 		var bottle=new Bottle(pX,pY);
 		bottle.attached=true;
-		bottle.config(player.velocity.x,player.velocity.y,
-						player.animation.frameIndex,
-				    	player.animation.name,player.facing);
 		player.bottle=bottle;
 		add(bottle);
 	}
@@ -83,8 +80,11 @@ class Level extends FlxState
 
 		add (level.foregroundTiles);
 
-
 		add (level.objectsLayer);
+
+		if (levelNum!=0){
+			addBottleAttached();
+		}
 
 	}
 
@@ -124,7 +124,7 @@ class Level extends FlxState
 
 	}
 
-	function doAsyncLoops(p:Player){
+	function doAsyncLoops(p:PlayerAndBottle){
 		if (p==null) return;
 		if (p.rCLoop==null){}
 			else if (p.rCLoop.finished){
