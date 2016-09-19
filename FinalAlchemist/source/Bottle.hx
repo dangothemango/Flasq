@@ -7,7 +7,7 @@
  import flixel.math.FlxPoint;
  import flixel.FlxG;
 
- class Bottle extends Player 
+ class Bottle extends PlayerAndBottle
  {
 
  	public var attached=false;
@@ -18,22 +18,15 @@
  		contents=new Potion();
  	}
 
- 	public function config(velocityX:Float, velocityY:Float, animationFrame:Int, animationName:String, direction:Int):Void{
- 		velocity.x=velocityX;
- 		velocity.y=velocityY;
- 		animation.play(animationName,false,false,animationFrame);
+ 	public function config(X:Float, Y:Float, animationFrame:Int, direction:Int):Void{
+ 		x=X;
+ 		y=Y;
+ 		animation.frameIndex=animationFrame;
  		facing=direction;
  	}
 
  	override function loadSprite(){
 		loadGraphic("assets/images/bottle.png",true,122,200);
-	}
-
-	override public function update(elapsed:Float){
-		if (attached){
-			super.update(elapsed);
-		}
-		
 	}
 
 	public function empty(){
