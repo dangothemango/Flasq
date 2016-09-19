@@ -48,7 +48,7 @@ class Level extends FlxState
 	public function nextLevel(){
 		var n=levelNum+1;
 		if (n>=levelMaps.length){
-			trace("TODO: Game Over, You win");
+			FlxG.switchState(new DeathState(true));
 			return;
 		}
 		FlxG.switchState(new Level(n));

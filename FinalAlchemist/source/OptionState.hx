@@ -64,9 +64,11 @@ class OptionState extends FlxState
 		
 		updateVolume();
 		
+		//temp button
 		var tempbutn = new FlxButton(0, FlxG.height - 60, "Die", clickDeath);
 		tempbutn.screenCenter(FlxAxes.X);
 		add(tempbutn);
+		//end temp button
 		
 		super.create();
 	}

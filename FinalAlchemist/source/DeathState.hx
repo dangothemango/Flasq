@@ -21,7 +21,7 @@ class DeathState extends FlxState
 	private var _retryBtn:FlxButton;
 	
 	//we take in whether or not the player has won, how they died if they didn't and what level they died
-	public function new(Win:Bool, Death:String , FromLevel:Int) {
+	public function new(Win:Bool,? Death:String ,? FromLevel:Int) {
 		_win = Win;
 		_deathType = Death;
 		_lastLevel = FromLevel;
@@ -33,7 +33,7 @@ class DeathState extends FlxState
 		FlxG.mouse.visible = true;
 		#end
 		
-		_pageTitle = new FlxText(0, 50, 0, _win ? "You Win!" : "Game Over!", 30);
+		_pageTitle = new FlxText(0, 200, 0, _win ? "You Win!" : "Game Over!", 30);
 		_pageTitle.alignment = CENTER;
 		_pageTitle.screenCenter(FlxAxes.X);
 		add(_pageTitle);
