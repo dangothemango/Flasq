@@ -123,7 +123,10 @@ class Level extends FlxState
 		}
 		level.collideWithLevel(player);
 		super.update(elapsed);
-
+		FlxG.watch.add(this, "player");
+		if (player.velocity.y > 2000){
+			FlxG.switchState(new DeathState(false, "You fell to your death...good job", 0));
+		}
 
 	}
 

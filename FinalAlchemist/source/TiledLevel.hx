@@ -193,6 +193,9 @@ class TiledLevel extends TiledMap
 				var fan = new Fan(x,y);
 				group.add(fan);
 			case "turret":
+				var turret = new Sentry(x, y, o.width, o.height);
+				turret.attachPlayer(state.player);
+				group.add(turret);
 
 			case "door":
 				var door=new Door(x,y,o.width,o.height);
