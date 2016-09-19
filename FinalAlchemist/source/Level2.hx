@@ -1,1 +1,4 @@
-Literally the worst Dan, that's what you are...
+
+class Pasha extends Lame {
+	public static var isTheWorst(default,never):Bool=true;
+}
