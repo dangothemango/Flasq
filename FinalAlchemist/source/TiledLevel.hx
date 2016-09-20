@@ -194,7 +194,9 @@ class TiledLevel extends TiledMap
 				group.add(fan);
 			case "turret":
 				var turret = new Sentry(x, y, o.width, o.height);
+				//var targetting = new TargetRadius(x, y, o.width, o.height);
 				turret.attachPlayer(state.player);
+				state.addSentry(turret);
 				group.add(turret);
 
 			case "door":
