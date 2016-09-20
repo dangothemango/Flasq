@@ -22,7 +22,7 @@ class Sentry extends RangedObject
 		if (playerStatus != "blue"){
 			animation.play("fire");
 			if (playerStatus != "purple"){
-				killPlayer("Shot To Death");
+				Level.instance.killPlayer("Shot To Death");
 			}
 		}
         if (withinRange){
