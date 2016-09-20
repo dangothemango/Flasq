@@ -39,6 +39,7 @@
  	public var bottle:Bottle;
 
  	var status:String;
+ 	public var inElevator:Bool=true;
 
  	//Status helper objects
  	public var emitter:FlxTypedEmitter<FlxParticle>;
@@ -180,6 +181,12 @@
 
 	override function handleMovement():Void
 	{
+
+		if (inElevator) {			
+			animation.stop();
+			animation.frameIndex=0;
+			return;
+		}
 
 		if (FlxG.keys.justPressed.C){
 			Level.instance.interact();

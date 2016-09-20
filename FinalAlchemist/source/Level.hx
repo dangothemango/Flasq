@@ -35,6 +35,7 @@ class Level extends FlxState
 	public var player:Player;
 	public var interactables:FlxTypedGroup<InteractableObject>;
 	public var burnables:FlxTypedGroup<Burnable>;
+	public var elevators:FlxTypedGroup<Elevator>;
 
 	public function new(l:Int){
 		super();
@@ -47,7 +48,13 @@ class Level extends FlxState
 		FlxG.mouse.visible=false;
 		interactables=new FlxTypedGroup<InteractableObject>();
 		burnables=new FlxTypedGroup<Burnable>();
+		elevators=new FlxTypedGroup<Elevator>();
 		loadTiledData(levelMaps[levelNum]);
+		for (e in elevators){
+			if (e.type=="start"){
+				e.open();
+			}
+		}
 	}
 
 	public function killPlayer(s:String) : Void {
@@ -77,6 +84,10 @@ class Level extends FlxState
 		burnables.add(b);
 	}
 
+	public function addElevator(e:Elevator){
+		elevators.add(e);
+	}
+
 	public function burn(A:FlxObject, B:FlxObject){
 		try {
 			cast(A, Burnable).burn();
@@ -103,11 +114,22 @@ class Level extends FlxState
 
 		add (level.foregroundTiles);
 
+		for (e in elevators){
+			add(e);
+			add(e.getBehindDoor());
+		}
 		add (level.objectsLayer);
+
 
 		if (levelNum!=0){
 			add(player.addBottle());
+		} else{
+			player.inElevator=false;
 		}
+		for (e in elevators){
+			add(e.getFrontDoor());
+		}
+
 
 	}
 
