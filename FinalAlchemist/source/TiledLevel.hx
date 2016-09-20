@@ -207,6 +207,12 @@ class TiledLevel extends TiledMap
 
 			case "lift":
 
+			case "floor_burnable":
+				for (i in 0...Std.int(o.width/50)){
+					var b:Burnable = new BurnableFloor(x+(50*i),y);
+					state.addBurnable(b);
+					group.add(b);
+				}
 			default:
 				trace (o.type);
 		}

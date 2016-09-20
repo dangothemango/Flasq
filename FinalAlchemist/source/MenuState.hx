@@ -50,7 +50,7 @@ class MenuState extends FlxState {
 	
 	function clickPlay(): Void {
 		//switch to play scene
-		FlxG.switchState(new Level(0));
+		FlxG.switchState(new Level(1));
 	}
 	
 	function clickOption(): Void {
