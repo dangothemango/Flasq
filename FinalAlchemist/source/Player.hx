@@ -10,8 +10,10 @@
  import flash.display.BitmapData;
  import flixel.tweens.FlxTween;
  import flixel.group.FlxGroup;
+ import flixel.effects.particles.FlxEmitter;
+ import flixel.effects.particles.FlxParticle;
 
- class Player extends FlxSprite
+ class Player extends PlayerAndBottle
  {
 
  	//Movement Varables
@@ -24,47 +26,61 @@
 	var falling:Bool;
 	var drinking:Bool=false;
 
-	public var colorCallback:UInt=null;
-
-	public var hatColor:UInt=0xFF000000;
-
- 	public var defSpeed(default,never):Float=200;
+	//defaults
+	public var defSpeed(default,never):Float=200;
  	public var defJumpSpeed(default,never):Float=500;
  	var jumpSpeed:Float;
 
- 	//Used for Asyncronous color replacement
- 	var rCRow:UInt;
- 	var rCColumn:UInt;
- 	//The color being replaced
- 	var rCOrig:UInt;
- 	//The new color
- 	var rCNew:UInt;
- 	public var rCLoop:FlxAsyncLoop;
- 	var rCPixels:BitmapData;
- 	public var rCCallback:String="none";
- 	var coloredPixels:Array<FlxPoint>;
- 	var rCPreloaded:Bool=false;
+	//flasq helpers
+	public var colorCallback:UInt=null;
+
+	public var hatColor:UInt=0xFF000000;
 
  	public var bottle:Bottle;
 
  	var status:String;
 
+ 	//Status helper objects
+ 	public var emitter:FlxTypedEmitter<FlxParticle>;
+ 	public var emitterGroup:FlxTypedGroup<FlxTypedEmitter<FlxParticle>>;
+
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
 	{
 		super(X, Y, SimpleGraphic);
-		loadSprite();
-		setGraphicSize(0,125);
-		updateHitbox();
 		animation.add("walk",[for (i in 1...24) i],30,true);
 		animation.add("jump",[24,25,26,27,28],30,false);
 		animation.add("drink",[for (i in 29...46) i],30,false);
-		setFacingFlip(FlxObject.RIGHT,false,false);
-		setFacingFlip(FlxObject.LEFT,true,false);
 		drag.x=dragC;
+		emitterGroup= new FlxTypedGroup<FlxTypedEmitter<FlxParticle>>();
 		setDefaults();
-		FlxG.debugger.visible=true;
-		FlxG.watch.add(this,"rCPreloaded");
+	}
+
+	public function addBottle():Bottle{
+		bottle=new Bottle(x,y);
+		Level.instance.add(emitterGroup);
+		return bottle;
+	}
+
+	//Emitter Helpers
+	function configRedEmit(){
+		emitter = new FlxTypedEmitter<FlxParticle>(x+width/2,y+height/5);
+		emitter.solid=true;
+		emitter.loadParticles("assets/images/fire.png",500);
+		startEmitter();
+	}
+
+
+	function configPurpleEmit(){
+		emitter=new FlxTypedEmitter<FlxParticle>(x+width/2,y+height/5);
+		emitter.solid=true;
+		emitter.loadParticles("assets/images/gas.png",200);
+		emitter.velocity.set(-5,-5,5,5);
+		startEmitter();
+	}
+
+	function configOrangeEmit(){
+		//startEmitter();
 	}
 
 	public function getStatus(){
@@ -78,6 +94,7 @@
 
 	function clearEffects(c:UInt){
 		setDefaults();
+		if (emitter!=null){ emitterGroup.remove(emitter); emitter.destroy(); emitter=null;}
 		becomeVisible(c);
 	}
 
@@ -90,49 +107,53 @@
 
 	public function setGravity(g:Float){
 		acceleration.y=g;
-		if (bottle==null) return;
-		bottle.setGravity(g);
 	}
 
 	public function setSpeeds(j:Float,s:Float){
 		jumpSpeed=j;
 		maxVelocity.x=s;
-		if (bottle==null) return;
-		bottle.setSpeeds(j,s);
+		maxVelocity.y=10000;
 	}
 
 	public function setDefaults(){
 		status="white";
 		setSpeeds(defJumpSpeed,defSpeed);
  		setGravity(defGravity);
-	}
-
-	public function rCCallbackDriver(){
-		switch (rCCallback){
-			case "invisible":
-				tweenDriver(alpha,0.4);
-				bottle.tweenDriver(alpha,0.4);
-			default:
-
-		}
-		rCCallback="none";
-		rCPreloaded=true;
-		
+ 		updateHitbox();
+ 		drag.y=0;
 	}
 
 	public function becomeVisible(c:UInt){
 		tweenDriver(alpha,1.0);
-		bottle.tweenDriver(alpha,1.0);
+		bottle.tweenDriver(bottle.alpha,1.0);
 	}
 
-	private function tweenFunction(s:FlxSprite, v:Float) { s.alpha = v; }
+	public function startEmitter(){
+		emitterGroup.add(emitter);
+		switch (status){
+			case "red":
+				emitter.start(false,.01);
+			case "purple":
+				emitter.start(false,.03);
+			case "orange":
 
-	function tweenDriver(s:Float,e:Float){
-		FlxTween.num(s, e, 2.0, {}, tweenFunction.bind(this));
-
+			default:
+		}
 	}
 
-	function loadSprite(){
+	public function lightFire(){
+		configRedEmit();
+	}
+
+	public function sublimate(){
+		configPurpleEmit();
+		drag.y=dragC;
+		setGravity(0);
+		maxVelocity.y=defSpeed;
+		height=height/2;
+	}
+
+	override function loadSprite(){
 		loadGraphic("assets/images/player.png",true,122,200);
 	}
 
@@ -141,8 +162,15 @@
 			setHatColor(colorCallback);
 			colorCallback=null;
 		}
-		handleMovement();
 		super.update(elapsed);
+		configBottle();
+		emitterFollow();
+	}
+
+	function emitterFollow(){
+		if (emitter==null) return;
+		emitter.x=x+width/2;
+		emitter.y=y+width/5;
 	}
 
 	public function fillBottle(p:Potion){
@@ -150,8 +178,20 @@
 		bottle.fill(p);
 	}
 
-	function handleMovement():Void
+	override function handleMovement():Void
 	{
+
+		if (FlxG.keys.justPressed.C){
+			Level.instance.interact();
+		}
+		if (FlxG.keys.justPressed.B && bottle==null){
+			Level.instance.add(addBottle());
+		}
+
+		if (status=="purple"){
+			handleFlight();
+			return;
+		}
 
 		if (drinking){
 			if (animation.finished) { 
@@ -210,51 +250,54 @@
 		}
 	}
 
-	public function replaceColorDriver(Color:UInt,NewColor:UInt,mult:Float=(2/3)){
-		if (rCLoop != null){
-			rCLoop.kill();
-			rCLoop.destroy();
+	function handleFlight(){
+		
+		if (drinking){
+			drinking=false; 
+			if (bottle!=null) bottle.contents.drink(this);
 		}
-		rCColumn=0;
-		rCOrig=Color;
-		rCNew=NewColor;
-		rCPixels=get_pixels();
-		if (!rCPreloaded){
-			rCRow=Std.int(rCPixels.height*mult);
-			rCLoop=new FlxAsyncLoop(rCRow, replaceColorAsync,1);
+
+		left=FlxG.keys.anyPressed([LEFT,A]);
+		right=FlxG.keys.anyPressed([RIGHT,D]);
+		var up=FlxG.keys.anyPressed([UP,W]);
+		var down=FlxG.keys.anyPressed([DOWN,S]);
+
+		if(left&&right){
+			left=right=false;
 		}
-		else{
-			rCRow=0;
-			trace("Preloaded");
-			rCLoop=new FlxAsyncLoop(coloredPixels.length, replaceColorPreloaded,500);
+		if (up&&down){
+			up=down=false;
+		}
+		if (left){
+			acceleration.x=-dragC;
+			facing=FlxObject.LEFT;
+		} else if (right){
+			acceleration.x=dragC;
+			facing=FlxObject.RIGHT;
+		} else {
+			acceleration.x=0;
+		}
+		if (status=="purple")
+		{if (down){
+					acceleration.y=dragC;
+				} else if (up){
+					acceleration.y=-dragC;
+				} else {
+					acceleration.y=0;
+				}}
+
+		if (FlxG.keys.justPressed.F){
+			drink();
 		}
 	}
 
-	public function replaceColorPreloaded(){
-		var pix:FlxPoint=coloredPixels[rCRow];
-		rCPixels.setPixel32(Std.int(pix.x),Std.int(pix.y),rCNew);
-		rCRow++;
-	}
-
-	public function replaceColorAsync():Void
-	{
-		if (coloredPixels==null){
-			coloredPixels=new Array<FlxPoint>();
+	function configBottle(){
+		if (bottle==null) return;
+		var anim:Int=animation.frameIndex;
+		if (status=="purple"){
+			trace ("TODO: Purple Bottle Animation");
 		}
-
-
-		var columns:UInt = rCPixels.width;
-		var column:UInt = 0;
-		while(column < columns)
-		{
-			if(rCPixels.getPixel32(column,rCRow) == rCOrig)
-			{
-				rCPixels.setPixel32(column,rCRow,rCNew);
-				coloredPixels.push(new FlxPoint(column,rCRow));
-			}
-			column++;
-		}
-		rCRow--;
+		bottle.config(x,y,anim,facing);
 	}
 
 	public function drink(){
@@ -262,6 +305,19 @@
 		animation.play("drink");
 		drinking=true;
 		acceleration.x=0;
+	}
+
+	override public function rCCallbackDriver(){
+		switch (rCCallback){
+			case "invisible":
+				tweenDriver(alpha,0.4);
+				bottle.tweenDriver(bottle.alpha,0.4);
+			case "sublimate":
+				tweenDriver(alpha,0,0.3);
+				sublimate();
+			default:
+		}
+		super.rCCallbackDriver();
 	}
 
  }

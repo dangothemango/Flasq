@@ -8,7 +8,7 @@ import flixel.math.FlxPoint;
 class RangedObject extends FlxSprite
 {
 
-    var range:Float=150;
+    var range:Float;
     var player:Player;
     var withinRange:Bool=false;
     var pt:FlxPoint;
