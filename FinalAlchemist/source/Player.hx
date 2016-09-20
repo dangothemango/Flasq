@@ -37,13 +37,12 @@
 	public var hatColor:UInt=0xFF000000;
 
  	public var bottle:Bottle;
- 	var gasBottle:GasFormBottle;
- 	var solidbottle:Bottle;
 
  	var status:String;
 
  	//Status helper objects
  	public var emitter:FlxTypedEmitter<FlxParticle>;
+ 	public var emitterGroup:FlxTypedGroup<FlxTypedEmitter<FlxParticle>>;
 
 
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
@@ -53,13 +52,13 @@
 		animation.add("jump",[24,25,26,27,28],30,false);
 		animation.add("drink",[for (i in 29...46) i],30,false);
 		drag.x=dragC;
+		emitterGroup= new FlxTypedGroup<FlxTypedEmitter<FlxParticle>>();
 		setDefaults();
 	}
 
 	public function addBottle():Bottle{
-		solidbottle=new Bottle(x,y);
-		gasBottle=new GasFormBottle(x,y);
-		bottle=solidbottle;
+		bottle=new Bottle(x,y);
+		Level.instance.add(emitterGroup);
 		return bottle;
 	}
 
@@ -95,7 +94,7 @@
 
 	function clearEffects(c:UInt){
 		setDefaults();
-		if (emitter!=null){emitter.destroy(); emitter=null;}
+		if (emitter!=null){ emitterGroup.remove(emitter); emitter.destroy(); emitter=null;}
 		becomeVisible(c);
 	}
 
@@ -118,11 +117,6 @@
 
 	public function setDefaults(){
 		status="white";
-		if (bottle!=null){
-			bottle=solidbottle;
-			gasBottle.tweenDriver(gasBottle.alpha,0,.3);
-			gasBottle.done=true;
-		}
 		setSpeeds(defJumpSpeed,defSpeed);
  		setGravity(defGravity);
  		updateHitbox();
@@ -135,7 +129,7 @@
 	}
 
 	public function startEmitter(){
-		Level.instance.add(emitter);
+		emitterGroup.add(emitter);
 		switch (status){
 			case "red":
 				emitter.start(false,.01);
@@ -157,8 +151,6 @@
 		setGravity(0);
 		maxVelocity.y=defSpeed;
 		height=height/2;
-		bottle=gasBottle;
-		Level.instance.add(gasBottle);
 	}
 
 	override function loadSprite(){
@@ -322,7 +314,6 @@
 				bottle.tweenDriver(bottle.alpha,0.4);
 			case "sublimate":
 				tweenDriver(alpha,0,0.3);
-				bottle.tweenDriver(alpha,0,0.3);
 				sublimate();
 			default:
 		}
