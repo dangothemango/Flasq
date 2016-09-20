@@ -37,6 +37,8 @@
 	public var hatColor:UInt=0xFF000000;
 
  	public var bottle:Bottle;
+ 	var gasBottle:GasFormBottle;
+ 	var solidbottle:Bottle;
 
  	var status:String;
 
@@ -54,22 +56,32 @@
 		setDefaults();
 	}
 
+	public function addBottle():Bottle{
+		solidbottle=new Bottle(x,y);
+		gasBottle=new GasFormBottle(x,y);
+		bottle=solidbottle;
+		return bottle;
+	}
+
 	//Emitter Helpers
 	function configRedEmit(){
 		emitter = new FlxTypedEmitter<FlxParticle>(x+width/2,y+height/5);
 		emitter.solid=true;
 		emitter.loadParticles("assets/images/fire.png",500);
+		startEmitter();
 	}
+
 
 	function configPurpleEmit(){
 		emitter=new FlxTypedEmitter<FlxParticle>(x+width/2,y+height/5);
 		emitter.solid=true;
 		emitter.loadParticles("assets/images/gas.png",200);
 		emitter.velocity.set(-5,-5,5,5);
+		startEmitter();
 	}
 
 	function configOrangeEmit(){
-
+		//startEmitter();
 	}
 
 	public function getStatus(){
@@ -106,6 +118,11 @@
 
 	public function setDefaults(){
 		status="white";
+		if (bottle!=null){
+			bottle=solidbottle;
+			gasBottle.tweenDriver(gasBottle.alpha,0,.3);
+			gasBottle.done=true;
+		}
 		setSpeeds(defJumpSpeed,defSpeed);
  		setGravity(defGravity);
  		updateHitbox();
@@ -118,6 +135,7 @@
 	}
 
 	public function startEmitter(){
+		Level.instance.add(emitter);
 		switch (status){
 			case "red":
 				emitter.start(false,.01);
@@ -139,6 +157,8 @@
 		setGravity(0);
 		maxVelocity.y=defSpeed;
 		height=height/2;
+		bottle=gasBottle;
+		Level.instance.add(gasBottle);
 	}
 
 	override function loadSprite(){
@@ -168,6 +188,13 @@
 
 	override function handleMovement():Void
 	{
+
+		if (FlxG.keys.justPressed.C){
+			Level.instance.interact();
+		}
+		if (FlxG.keys.justPressed.B && bottle==null){
+			Level.instance.add(addBottle());
+		}
 
 		if (status=="purple"){
 			handleFlight();
@@ -295,6 +322,7 @@
 				bottle.tweenDriver(bottle.alpha,0.4);
 			case "sublimate":
 				tweenDriver(alpha,0,0.3);
+				bottle.tweenDriver(alpha,0,0.3);
 				sublimate();
 			default:
 		}

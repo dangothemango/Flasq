@@ -13,6 +13,7 @@ class Sentry extends RangedObject
     {
         super(X-50,Y+50,W,H);
         loadSentry();
+        range=150;
         animation.add("fire", [0, 1, 2, 3, 4, 5, 6],10,false);
     }
 

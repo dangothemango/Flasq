@@ -16,6 +16,8 @@ import flixel.addons.editors.tiled.TiledMap;
 class Level extends FlxState
 {
 
+	static public var instance:Level;
+
 	static public var levelMaps=[	"Level00.tmx",
 									"Level01.tmx",
 									"Level02.tmx",
@@ -40,6 +42,7 @@ class Level extends FlxState
 	override public function create():Void
 	{
 		super.create();
+		instance=this;
 		FlxG.mouse.visible=false;
 		interactables=new FlxTypedGroup<InteractableObject>();
 		loadTiledData(levelMaps[levelNum]);
@@ -64,13 +67,6 @@ class Level extends FlxState
 		return player;
 	}
 
-	public function addBottleAttached(?pX:Float=0, ?pY:Float=0){
-		var bottle=new Bottle(pX,pY);
-		bottle.attached=true;
-		player.bottle=bottle;
-		add(bottle);
-	}
-
 	public function addInteractable(i:InteractableObject){
 		interactables.add(i);
 	}
@@ -87,7 +83,7 @@ class Level extends FlxState
 		add (level.objectsLayer);
 
 		if (levelNum!=0){
-			addBottleAttached();
+			add(player.addBottle());
 		}
 
 	}
@@ -101,19 +97,14 @@ class Level extends FlxState
 		}
 	}
 
-	function interact():Void{
+	public function interact():Void{
 		FlxG.overlap(player,interactables,interaction);
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		//FlxG.collide(player,wallsMap);
-		if (FlxG.keys.justPressed.C){
-			interact();
-		}
-		if (FlxG.keys.justPressed.B && player.bottle==null){
-			addBottleAttached(player.x,player.y);
-		}
+
 		if (FlxG.keys.justPressed.N){
 			nextLevel();
 		}
@@ -122,7 +113,6 @@ class Level extends FlxState
 		doAsyncLoops(player.bottle);
 
 		if (player.emitter!=null){
-			if (!player.emitter.exists) { add(player.emitter); player.startEmitter(); }
 			FlxG.collide(player.emitter, level.foregroundTiles);
 		}
 		level.collideWithLevel(player);
@@ -131,7 +121,6 @@ class Level extends FlxState
 		if (player.velocity.y > 2000){
 			killPlayer("You fell to your death...Good Job");
 		}
-
 	}
 
 	function doAsyncLoops(p:PlayerAndBottle){
