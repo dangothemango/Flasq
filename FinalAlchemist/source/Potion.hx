@@ -20,6 +20,7 @@ class Potion extends FlxBasic
 	public static var GREEN(default,never):Int = 0xFF00D500;
 	public static var BROWN(default,never):Int = 0xFF804000;
 	public static var BLACK(default,never):Int = 0xFF000000;
+	public static var WHITE(default,never):Int = 0xFFFFFFFF;
 
 	public var color:Int;
 	//Type of potion:
@@ -34,6 +35,9 @@ class Potion extends FlxBasic
     public function drink(player:Player){
     	player.bottle.empty();
     	player.setHatColor(color);
+    	if (color==Potion.BLACK){
+    		player.setStatus("white",color);
+    	}
     }
 
     public function mix(o:Potion):Potion{

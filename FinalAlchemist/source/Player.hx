@@ -81,7 +81,7 @@
 	}
 
 	function configOrangeEmit(){
-		//startEmitter();
+		startEmitter();
 	}
 
 	public function getStatus(){
@@ -137,7 +137,7 @@
 			case "purple":
 				emitter.start(false,.03);
 			case "orange":
-
+				//emitter.start(true,)
 			default:
 		}
 	}
