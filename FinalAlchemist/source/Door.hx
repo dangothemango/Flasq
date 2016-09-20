@@ -29,7 +29,7 @@ class Door extends RangedObject
         FlxTween.num(s, e, .25, {}, tweenFunction.bind(this));
     }
 
-    override function inRange(){
+    override function inRange(elapsed:Float){
         if (withinRange){
             return;
         }

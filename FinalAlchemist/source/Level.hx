@@ -34,6 +34,7 @@ class Level extends FlxState
 	public var levelNum:Int;
 	public var player:Player;
 	public var interactables:FlxTypedGroup<InteractableObject>;
+	public var burnables:FlxTypedGroup<Burnable>;
 
 	public function new(l:Int){
 		super();
@@ -45,6 +46,7 @@ class Level extends FlxState
 		instance=this;
 		FlxG.mouse.visible=false;
 		interactables=new FlxTypedGroup<InteractableObject>();
+		burnables=new FlxTypedGroup<Burnable>();
 		loadTiledData(levelMaps[levelNum]);
 	}
 
@@ -69,6 +71,27 @@ class Level extends FlxState
 
 	public function addInteractable(i:InteractableObject){
 		interactables.add(i);
+	}
+
+	public function addBurnable(b:Burnable){
+		burnables.add(b);
+	}
+
+	public function burn(A:FlxObject, B:FlxObject){
+		try {
+			cast(A, Burnable).burn();
+		} catch ( e:String ){
+			cast(B, Burnable).burn();
+		}
+
+	}
+
+	public function destroyBurnable(b:Burnable){
+		trace("Kill");
+		burnables.remove(b);
+		level.foregroundTiles.remove(b);
+		b.destroy();
+
 	}
 
 	function loadTiledData(mapData:String){
@@ -114,8 +137,12 @@ class Level extends FlxState
 
 		if (player.emitter!=null){
 			FlxG.collide(player.emitterGroup, level.foregroundTiles);
+			if (player.getStatus()=="red"){
+				FlxG.overlap(player.emitterGroup, burnables,burn);
+			}
 		}
 		level.collideWithLevel(player);
+		FlxG.collide(burnables,player);
 		super.update(elapsed);
 		FlxG.watch.add(this, "player");
 		if (player.velocity.y > 2000){

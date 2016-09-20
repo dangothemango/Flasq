@@ -27,7 +27,7 @@ class RangedObject extends FlxSprite
         player=p;
     }
 
-    function inRange(){
+    function inRange(elapsed:Float){
         
     }
 
@@ -38,7 +38,7 @@ class RangedObject extends FlxSprite
     override public function update(elapsed:Float):Void
     {
         if(pt.distanceTo(new FlxPoint(player.x,player.y))<range){
-            inRange();
+            inRange(elapsed);
         } else {
             outOfRange();
         }
