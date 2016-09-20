@@ -45,6 +45,10 @@ class Level extends FlxState
 		loadTiledData(levelMaps[levelNum]);
 	}
 
+	public function killPlayer(s:String) : Void {
+		FlxG.switchState(new DeathState(false, s, levelNum));
+	}
+	
 	public function nextLevel(){
 		var n=levelNum+1;
 		if (n>=levelMaps.length){
@@ -125,7 +129,7 @@ class Level extends FlxState
 		super.update(elapsed);
 		FlxG.watch.add(this, "player");
 		if (player.velocity.y > 2000){
-			FlxG.switchState(new DeathState(false, "You fell to your death...good job", 0));
+			killPlayer("You fell to your death...Good Job");
 		}
 
 	}

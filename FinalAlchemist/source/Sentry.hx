@@ -18,8 +18,11 @@ class Sentry extends RangedObject
 
     override function inRange(){
 		var playerStatus = player.getStatus();
-		if (playerStatus != "blue" && playerStatus != "green"){
+		if (playerStatus != "blue"){
 			animation.play("fire");
+			if (playerStatus != "purple"){
+				killPlayer("Shot To Death");
+			}
 		}
         if (withinRange){
             return;
