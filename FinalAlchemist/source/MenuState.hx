@@ -41,6 +41,7 @@ class MenuState extends FlxState {
 		add(_exitButton);
 		#end
 		
+		//FlxG.sound.playMusic(AssetPaths.MusicForMainMenu__mp3);
 		super.create();
 	}
 

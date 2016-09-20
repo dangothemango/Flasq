@@ -36,6 +36,7 @@ class Level extends FlxState
 	public var interactables:FlxTypedGroup<InteractableObject>;
 	public var burnables:FlxTypedGroup<Burnable>;
 	public var elevators:FlxTypedGroup<Elevator>;
+	public var sentries:FlxTypedGroup<Sentry>;
 
 	public function new(l:Int){
 		super();
@@ -47,8 +48,9 @@ class Level extends FlxState
 		instance=this;
 		FlxG.mouse.visible=false;
 		interactables=new FlxTypedGroup<InteractableObject>();
-		burnables=new FlxTypedGroup<Burnable>();
 		elevators=new FlxTypedGroup<Elevator>();
+		burnables = new FlxTypedGroup<Burnable>();
+		sentries = new FlxTypedGroup<Sentry>();
 		loadTiledData(levelMaps[levelNum]);
 		for (e in elevators){
 			if (e.type=="start"){
@@ -64,7 +66,7 @@ class Level extends FlxState
 	public function nextLevel(){
 		var n=levelNum+1;
 		if (n>=levelMaps.length){
-			FlxG.switchState(new DeathState(true));
+			FlxG.switchState(new DeathState(true, "I'm...impressed"));
 			return;
 		}
 		FlxG.switchState(new Level(n));
@@ -79,7 +81,26 @@ class Level extends FlxState
 	public function addInteractable(i:InteractableObject){
 		interactables.add(i);
 	}
+	
+	public function addSentry(turret:Sentry){
+		sentries.add(turret);
+	}
+	
+	public function destroySentry(turret:Sentry){
+		sentries.remove(turret);
+		level.foregroundTiles.remove(turret);
+		turret.destroy();
+	}
 
+	public function explode(A:FlxObject, B:FlxObject){
+		try {
+			cast(A, Sentry).explode();
+		} catch ( e:String ){
+			cast(B, Sentry).explode();
+		}
+
+	}
+	
 	public function addBurnable(b:Burnable){
 		burnables.add(b);
 	}
@@ -160,11 +181,13 @@ class Level extends FlxState
 		if (player.emitter!=null){
 			FlxG.collide(player.emitterGroup, level.foregroundTiles);
 			if (player.getStatus()=="red"){
-				FlxG.overlap(player.emitterGroup, burnables,burn);
+				FlxG.overlap(player.emitterGroup, burnables, burn);
+				FlxG.overlap(player.emitterGroup, sentries, explode);
 			}
 		}
 		level.collideWithLevel(player);
-		FlxG.collide(burnables,player);
+		FlxG.collide(burnables, player);
+		
 		super.update(elapsed);
 		FlxG.watch.add(this, "player");
 		if (player.velocity.y > 2000){
