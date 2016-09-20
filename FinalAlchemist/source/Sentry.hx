@@ -54,16 +54,22 @@ class Sentry extends RangedObject
 	function inViewRange(){
 		var _triangle = new FlxPoint(pt.x -player.x + 50, pt.y - player.y);
 		if (_triangle.y > 0){
-			if (_triangle.x >= 0){
+			if (_triangle.x <= 0){
 				angle = 180;
 			} else {
 				angle = 360;
 			}
 		}else {
-			angle = 270 - (180 / (Math.PI * Math.atan((pt.y - player.y) / (pt.x - player.x))))%90;
+			var _tempAngle = 270 - (180 / (Math.PI * Math.atan((pt.y - player.y) / (pt.x - player.x)))) / 2;
+			if (_tempAngle < 180){
+				angle = 180;
+			}else if (_tempAngle>360){
+				angle = 360;
+			}else{
+				angle = _tempAngle;
+			}
 		}
 		
-		trace (_triangle.x,_triangle.y,angle);
 		angularVelocity = 0;
 		if (_withinViewRange){
             return;
