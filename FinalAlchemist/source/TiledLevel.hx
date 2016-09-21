@@ -176,8 +176,10 @@ class TiledLevel extends TiledMap
 			case "start":
 				var player = state.addPlayer(x,y);
 				group.add(player);
+				if (state.levelNum!=0) {
 				var e=new Elevator("start",x,y,o.width,o.height);
 				state.addElevator(e);
+				}
 			case "blue":
 				var c=new Cooler(x,y,o.width,o.height);
 				c.fillWith(new PotionBlue());

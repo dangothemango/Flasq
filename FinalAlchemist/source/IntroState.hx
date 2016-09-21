@@ -13,8 +13,8 @@ class IntroState extends FlxState
 {
 
 	//Timing Vars
-	var lightningTime:Float=.75;
-	var fadeToBlackTime:Float=1;
+	var lightningTime:Float=1;
+	var fadeToBlackTime:Float=1.25;
 	var downTime:Float=1;
 
 	var sPath = "assets/images/Slide_";
@@ -35,6 +35,7 @@ class IntroState extends FlxState
 	override public function create():Void{
 		super.create();
 		FlxG.mouse.visible=false;
+		FlxG.camera.fade(FlxColor.BLACK,.01,false);
 		//rand=new FlxRandom();
 		getReady();
 	}
