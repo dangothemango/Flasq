@@ -30,6 +30,7 @@ class TiledLevel extends TiledMap
 	public var foregroundTiles:FlxGroup;
 	public var objectsLayer:FlxGroup;
 	public var backgroundLayer:FlxGroup;
+	public var decorationsLayer:FlxGroup;
 	private var collidableTileLayers:Array<FlxTilemap>;
 	
 	// Sprites of images layers
@@ -43,6 +44,7 @@ class TiledLevel extends TiledMap
 		foregroundTiles = new FlxGroup();
 		objectsLayer = new FlxGroup();
 		backgroundLayer = new FlxGroup();
+		decorationsLayer = new FlxGroup();
 		
 		FlxG.camera.setScrollBoundsRect(0, 0, fullWidth, fullHeight, true);
 		
@@ -80,7 +82,10 @@ class TiledLevel extends TiledMap
 			tilemap.loadMapFromArray(tileLayer.tileArray, width, height, processedPath,
 				tileSet.tileWidth, tileSet.tileHeight, OFF, tileSet.firstGID, 1, 1);
 			
-			if (tileLayer.properties.contains("nocollide"))
+			if (tileLayer.name=="Decorations"){
+				decorationsLayer.add(tilemap);
+			}
+			else if (tileLayer.properties.contains("nocollide"))
 			{
 				backgroundLayer.add(tilemap);
 			}
@@ -198,13 +203,11 @@ class TiledLevel extends TiledMap
 			case "turret":
 				var turret = new Sentry(x, y, o.width, o.height);
 				//var targetting = new TargetRadius(x, y, o.width, o.height);
-				turret.attachPlayer(state.player);
 				state.addSentry(turret);
 				group.add(turret);
 
 			case "door":
 				var door=new Door(x,y,o.width,o.height);
-				door.attachPlayer(state.player);
 				group.add(door);
 			case "lever":
 
