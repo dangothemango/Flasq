@@ -103,6 +103,14 @@ class Level extends FlxState
 		FlxG.switchState(new Level(n));
 	}
 
+		public function nextLevel(){
+		var n=levelNum-1;
+		if (n<=0){
+			n++;
+		}
+		FlxG.switchState(new Level(n));
+	}
+
 	public function addPlayer(?pX:Float=0, ?pY:Float=0):Player{
 		player=new Player(pX,pY);
 		FlxG.camera.follow(player);
@@ -233,6 +241,9 @@ class Level extends FlxState
 
 		if (FlxG.keys.justPressed.N){
 			nextLevel();
+		}
+		if (FlxG.keys.justPressed.B){
+			prevLevel();
 		}
 
 		if (FlxG.keys.justPressed.ENTER){
