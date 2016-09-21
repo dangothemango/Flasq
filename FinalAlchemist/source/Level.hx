@@ -166,9 +166,10 @@ class Level extends FlxState
 		level = new TiledLevel("assets/data/"+mapData,this);
 		if (levelNum!=0){
 			add(level.backgroundLayer);
-
 			add(level.decorationsLayer);
 		} else {
+			var back=new FlxSprite(0,0,"assets/images/sky.png");
+			back.setGraphicSize(level.fullWidth,level.fullHeight);
 			add(level.decorationsLayer);
 			add(level.backgroundLayer);
 		}

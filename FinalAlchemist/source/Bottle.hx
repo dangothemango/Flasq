@@ -24,6 +24,7 @@
 		}
 		rCPreloaded=true;
  		contents=new PotionWhite();
+ 		replaceColorDriver(Potion.BLACK,Potion.WHITE);
  	}
 
  	public function config(X:Float, Y:Float, animationFrame:Int, direction:Int):Void{
