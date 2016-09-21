@@ -6,8 +6,8 @@
  <tileset firstgid="33" name="Decorations" tilewidth="50" tileheight="50" tilecount="259" columns="37">
   <image source="../images/decorations/decorations_spritesheet.png" width="1850" height="350"/>
  </tileset>
- <layer name="Decorations New" width="40" height="30">
-  <properties>
+ <layer name="Decorations" width="40" height="30">
+    <properties>
    <property name="nocollide" value="true"/>
    <property name="tileset" value="Decorations"/>
   </properties>
