@@ -26,7 +26,7 @@ class Level extends FlxState
 													"0xFF00D500" => "This tastes gritty and tart, like an energy drink mixed with protein powder.\nYour arms and legs feel fortified.",
 													"0xFF000000" => "The water tastes stale, and is warm from the sun.\nSince you see no recycle bin nearby, you decide to hold onto the bottle. ",
 													"0xFFFFFFFF" => "You try to drink to from an empty bottle, It tastes like air....",
-													"FILL" => false,
+													"FILL" => "You fill your bottle with a liquid from the cooler.",
 													"BURN" => "The wood chars and crumbles away at your touch.",
 													"EXPLODE" => "The sentry melts into slag."
 												];
