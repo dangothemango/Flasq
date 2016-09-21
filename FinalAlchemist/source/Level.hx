@@ -46,12 +46,12 @@ class Level extends FlxState
 
 	static public var levelMaps=[	
 									"Level00.tmx",
+									"Level01.tmx",
 									"Level01-01.tmx",
 									"Level01-02.tmx",
 									"Level01-03.tmx",
 									"Level01-04.tmx",
 									"Level01-05.tmx",
-									"Level01.tmx",
 									"Level02.tmx",
 									"Level03.tmx"
 								];
@@ -356,7 +356,7 @@ class Level extends FlxState
 	}
 
 	function bottleCollisionCallback(A:FlxObject, B:FlxObject){
-		HUD.instance.updateHUD("Press C to interact");
+		HUD.instance.updateHUD("Press C to interact with objects");
 		if (FlxG.keys.justPressed.C){
 			try {
 				player.attachBottle(cast(A,Bottle));
