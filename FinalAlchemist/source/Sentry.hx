@@ -19,16 +19,25 @@ class Sentry extends RangedObject
 	private var _reFocus = 0.0;
 	private var emitter:FlxTypedEmitter<FlxParticle>;
     private var tween:FlxTween;
+
+    var radius:TargetRadius;
+    var pPt:FlxPoint;
 	
     public function new(?X:Float=0, ?Y:Float=0, ?W:Int=10,?H:Int=10)
     {
         super(X-50,Y+50,W,H);
         loadSentry();
-        range = 150;
+        range = 170;
 		immovable = true;
+		pPt=new FlxPoint();
         animation.add("fire", [0, 1, 2, 3, 4, 5, 6], 10, false);
 		emitter = new FlxTypedEmitter<FlxParticle>(x+width/2,y+height/5);
         emitter.loadParticles(AssetPaths.fire__png,500);
+        radius=new TargetRadius(x,y,width,height,Std.int(range));
+    }
+
+    public function getRadius(){
+    	return radius;
     }
 
 	function loadSentry(){
@@ -65,7 +74,7 @@ class Sentry extends RangedObject
     }
 
 	function inViewRange(){
-		var _triangle = new FlxPoint(pt.x -player.x + 50, pt.y - player.y);
+		var _triangle = new FlxPoint(pt.x -pPt.x + 50, pt.y - pPt.y);
 		if (_triangle.y > 0){
 			if (_triangle.x <= 0){
 				tweenRotateDriver(angle, 180, .1);
@@ -73,7 +82,7 @@ class Sentry extends RangedObject
 				tweenRotateDriver(angle, 360, .1);
 			}
 		}else {
-			var _tempAngle = 270 - (180 / (Math.PI * Math.atan((pt.y - player.y) / (pt.x - player.x)))) / 2;
+			var _tempAngle = 270 - (180 / (Math.PI * Math.atan((pt.y - pPt.y) / (pt.x - pPt.x)))) / 2;
 			if (_tempAngle < 180){
 				tweenRotateDriver(angle, 180, .1);
 			}else if (_tempAngle>360){
@@ -130,9 +139,14 @@ class Sentry extends RangedObject
 	
     override public function update(elapsed:Float):Void
     {
-		if (isOnScreen() && player!=null){
+    	//radius.angle=-angle;
+    	if(player!=null){
+	    	pPt.x=player.x+player.width/2;
+	    	pPt.y=player.y+player.height/2;
+	    }
+		if (isOnScreen() && pPt!=null){
 			super.update(elapsed);
-			if (pt.distanceTo(new FlxPoint(player.x, player.y)) <= _viewRange && player.getStatus() != "blue"){
+			if (pt.distanceTo(pPt) <= _viewRange && player.getStatus() != "blue"){
 				_reFocus -= 6 * elapsed;
 				if (_reFocus <= 0){
 					inViewRange();
@@ -149,6 +163,7 @@ class Sentry extends RangedObject
 		if (alpha == 0){
 			FlxG.sound.play(AssetPaths.turretDestroy__wav);
 			tween.cancel();
+			radius.destroy();
             emitter.destroy();
             Level.instance.destroySentry(this);
         }

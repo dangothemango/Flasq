@@ -20,7 +20,7 @@ class RangedObject extends FlxSprite
         y=Y;
         width=W;
         height=H;
-        pt=new FlxPoint(x,y);
+        pt=new FlxPoint(x+width/2,y+width/2);
     }
 
     function inRange(elapsed:Float){

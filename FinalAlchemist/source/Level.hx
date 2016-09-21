@@ -163,6 +163,9 @@ class Level extends FlxState
 		//I dont think we need this, uncomment it if something is missing
 		//add(level.imagesLayer);
 
+		for (s in sentries){
+			add(s.getRadius());
+		}
 		add (level.foregroundTiles);
 
 		for (e in elevators){
