@@ -25,6 +25,7 @@ class Sentry extends RangedObject
         super(X-50,Y+50,W,H);
         loadSentry();
         range = 150;
+		immovable = true;
         animation.add("fire", [0, 1, 2, 3, 4, 5, 6], 10, false);
 		emitter = new FlxTypedEmitter<FlxParticle>(x+width/2,y+height/5);
         emitter.loadParticles(AssetPaths.fire__png,500);
@@ -32,7 +33,7 @@ class Sentry extends RangedObject
 
 	function inRangeHelper(_done:String){
 		if (player.getStatus() != "purple"){
-			Level.instance.killPlayer("Shot To Death");
+			Level.instance.killPlayer("You are riddled with small holes.\nThis kills you.");
 		}
 	}
 	
@@ -61,18 +62,18 @@ class Sentry extends RangedObject
 		var _triangle = new FlxPoint(pt.x -player.x + 50, pt.y - player.y);
 		if (_triangle.y > 0){
 			if (_triangle.x <= 0){
-				angle = 180;
+				tweenRotateDriver(angle, 180, .1);
 			} else {
-				angle = 360;
+				tweenRotateDriver(angle, 360, .1);
 			}
 		}else {
 			var _tempAngle = 270 - (180 / (Math.PI * Math.atan((pt.y - player.y) / (pt.x - player.x)))) / 2;
 			if (_tempAngle < 180){
-				angle = 180;
+				tweenRotateDriver(angle, 180, .1);
 			}else if (_tempAngle>360){
-				angle = 360;
+				tweenRotateDriver(angle, 360, .1);
 			}else{
-				angle = _tempAngle;
+				tweenRotateDriver(angle, _tempAngle, .1);
 			}
 		}
 		
@@ -109,18 +110,22 @@ class Sentry extends RangedObject
 	}
 	
 	private function tweenFunction(s:FlxSprite, v:Float) { s.alpha = v; }
+	private function tweenRotate(s:FlxSprite, v:Float) { s.angle = v; }
 
     function tweenDriver(s:Float,e:Float,?t:Float=1.0){
+        FlxTween.num(s, e, t, {}, tweenFunction.bind(this));
+	}
+	
+	function tweenRotateDriver(s:Float,e:Float,?t:Float=1.0){
         if (tween!=null)tween.cancel();
-        tween=FlxTween.num(s, e, t, {}, tweenFunction.bind(this));
+        tween=FlxTween.num(s, e, t, {}, tweenRotate.bind(this));
 		}
-
 
     public function explode(){
         solid=false;
         Level.instance.add(emitter);
-        emitter.start(false,.01);
-        tweenDriver(alpha,0);
+        emitter.start(true, 0);
+        tweenDriver(alpha,0,.5);
     }
 	
     override public function update(elapsed:Float):Void
