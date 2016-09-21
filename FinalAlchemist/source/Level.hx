@@ -41,6 +41,7 @@ class Level extends FlxState
 	public var burnables:FlxTypedGroup<Burnable>;
 	public var elevators:FlxTypedGroup<Elevator>;
 	public var sentries:FlxTypedGroup<Sentry>;
+	public var boxes:FlxTypedGroup<Box>;
 
 	public function new(l:Int){
 		super();
@@ -56,6 +57,7 @@ class Level extends FlxState
 		elevators=new FlxTypedGroup<Elevator>();
 		burnables = new FlxTypedGroup<Burnable>();
 		sentries = new FlxTypedGroup<Sentry>();
+		boxes = new FlxTypedGroup<Box>();
 		loadTiledData(levelMaps[levelNum]);
 		for (e in elevators){
 			if (e.type=="start"){
@@ -91,6 +93,10 @@ class Level extends FlxState
 		sentries.add(turret);
 	}
 	
+	public function addBoxes(b:Box){
+		boxes.add(b);
+	}
+	
 	public function destroySentry(turret:Sentry){
 		sentries.remove(turret);
 		level.foregroundTiles.remove(turret);
@@ -120,9 +126,8 @@ class Level extends FlxState
 		} catch ( e:String ){
 			cast(B, Burnable).burn();
 		}
-
 	}
-
+	
 	public function destroyBurnable(b:Burnable){
 		burnables.remove(b);
 		level.foregroundTiles.remove(b);
@@ -171,6 +176,14 @@ class Level extends FlxState
 		FlxG.overlap(player,interactables,interaction);
 	}
 
+	function boxesCollide(A:FlxObject, B:FlxObject){
+		if (player.getStatus() == "green"){
+			FlxObject.separate(A,B);
+		}else{
+			player.velocity.set(0,0);
+		}
+	}
+	
 	override public function update(elapsed:Float):Void
 	{
 		//FlxG.collide(player,wallsMap);
@@ -192,6 +205,8 @@ class Level extends FlxState
 			}
 		}
 		level.collideWithLevel(player);
+		FlxG.overlap(boxes, player, boxesCollide);
+		FlxG.collide(boxes, level.foregroundTiles);
 		FlxG.collide(burnables, player);
 		FlxG.collide(sentries, player);
 		if (player.justTouched(FlxObject.DOWN) && _floorhit){

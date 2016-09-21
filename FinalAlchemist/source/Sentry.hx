@@ -31,6 +31,12 @@ class Sentry extends RangedObject
         emitter.loadParticles(AssetPaths.fire__png,500);
     }
 
+	function loadSentry(){
+		loadGraphic(AssetPaths.sentry__png, true, 150, 39);
+		
+		angle = 270;
+	}
+
 	function inRangeHelper(_done:String){
 		if (player.getStatus() != "purple"){
 			Level.instance.killPlayer("You are riddled with small holes.\nThis kills you.");
@@ -101,12 +107,6 @@ class Sentry extends RangedObject
             return;
         }
 		_withinViewRange = false;
-	}
-
-	function loadSentry(){
-		loadGraphic(AssetPaths.sentry__png, true, 150, 39);
-		
-		angle = 270;
 	}
 	
 	private function tweenFunction(s:FlxSprite, v:Float) { s.alpha = v; }

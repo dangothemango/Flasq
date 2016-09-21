@@ -209,7 +209,9 @@ class TiledLevel extends TiledMap
 			case "lever":
 
 			case "box":
-				var box=new Box(x,y,o.width,o.height);
+				var box = new Box(x, y, o.width, o.height);
+				box.attachPlayer(state.player);
+				state.addBoxes(box);
 				group.add(box);
 			case "lift":
 
@@ -219,6 +221,9 @@ class TiledLevel extends TiledMap
 					state.addBurnable(b);
 					group.add(b);
 				}
+			case "pitty_the_fool":
+				var p=new PitMonster(x,y);
+				group.add(p);
 			default:
 				trace (o.type);
 		}
