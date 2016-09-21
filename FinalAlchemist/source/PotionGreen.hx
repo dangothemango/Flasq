@@ -10,7 +10,7 @@ class PotionGreen extends Potion
     public function new(){super(); color=Potion.GREEN; type=2;}
 
     override public function drink(player:Player){
-    	player.setStatus("green",color);
+    	player.setStatus("green", color);
         super.drink(player);
     }
 

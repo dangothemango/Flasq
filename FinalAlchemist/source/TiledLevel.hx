@@ -209,7 +209,9 @@ class TiledLevel extends TiledMap
 			case "lever":
 
 			case "box":
-				var box=new Box(x,y,o.width,o.height);
+				var box = new Box(x, y, o.width, o.height);
+				box.attachPlayer(state.player);
+				state.addBoxes(box);
 				group.add(box);
 			case "lift":
 
