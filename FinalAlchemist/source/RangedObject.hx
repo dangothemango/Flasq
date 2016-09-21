@@ -37,10 +37,12 @@ class RangedObject extends FlxSprite
 
     override public function update(elapsed:Float):Void
     {
-        if(pt.distanceTo(new FlxPoint(player.x,player.y))<range){
-            inRange(elapsed);
-        } else {
-            outOfRange();
+        if (player!=null){ 
+            if(pt.distanceTo(new FlxPoint(player.x,player.y))<range){
+               inRange(elapsed);
+            } else {
+               outOfRange();
+            }
         }
         super.update(elapsed);
     }

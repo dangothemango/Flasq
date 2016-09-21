@@ -130,7 +130,7 @@ class Sentry extends RangedObject
 	
     override public function update(elapsed:Float):Void
     {
-		if (isOnScreen()){
+		if (isOnScreen() && player!=null){
 			super.update(elapsed);
 			if (pt.distanceTo(new FlxPoint(player.x, player.y)) <= _viewRange && player.getStatus() != "blue"){
 				_reFocus -= 6 * elapsed;
