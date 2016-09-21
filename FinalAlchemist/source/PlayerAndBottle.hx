@@ -39,6 +39,7 @@ package;
 		updateHitbox();
 		setFacingFlip(FlxObject.RIGHT,false,false);
 		setFacingFlip(FlxObject.LEFT,true,false);
+		
 	}
 
 	public function rCCallbackDriver(){

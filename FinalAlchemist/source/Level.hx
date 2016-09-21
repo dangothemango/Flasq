@@ -12,11 +12,15 @@ import openfl.Assets;
 import flixel.group.FlxGroup;
 import flixel.tile.FlxTilemap;
 import flixel.addons.editors.tiled.TiledMap;
+import flixel.math.FlxPoint;
 
 class Level extends FlxState
 {
 
 	static public var instance:Level;
+
+	static public var PRCPreloadedArray:Array<FlxPoint>;
+	static public var BRCPreloadedArray:Array<FlxPoint>;
 
 	static public var levelMaps=[	"Level00.tmx",
 									"Level01.tmx",
@@ -30,11 +34,13 @@ class Level extends FlxState
 	//FlxGroup[levels];
 
 	public var level:TiledLevel;
-
+	private var _floorhit:Bool;
 	public var levelNum:Int;
 	public var player:Player;
 	public var interactables:FlxTypedGroup<InteractableObject>;
 	public var burnables:FlxTypedGroup<Burnable>;
+	public var elevators:FlxTypedGroup<Elevator>;
+	public var sentries:FlxTypedGroup<Sentry>;
 
 	public function new(l:Int){
 		super();
@@ -44,10 +50,18 @@ class Level extends FlxState
 	{
 		super.create();
 		instance=this;
-		FlxG.mouse.visible=false;
+		FlxG.mouse.visible = false;
+		_floorhit = false;
 		interactables=new FlxTypedGroup<InteractableObject>();
-		burnables=new FlxTypedGroup<Burnable>();
+		elevators=new FlxTypedGroup<Elevator>();
+		burnables = new FlxTypedGroup<Burnable>();
+		sentries = new FlxTypedGroup<Sentry>();
 		loadTiledData(levelMaps[levelNum]);
+		for (e in elevators){
+			if (e.type=="start"){
+				e.open();
+			}
+		}
 	}
 
 	public function killPlayer(s:String) : Void {
@@ -57,7 +71,7 @@ class Level extends FlxState
 	public function nextLevel(){
 		var n=levelNum+1;
 		if (n>=levelMaps.length){
-			FlxG.switchState(new DeathState(true));
+			FlxG.switchState(new DeathState(true, "I'm...impressed"));
 			return;
 		}
 		FlxG.switchState(new Level(n));
@@ -72,9 +86,32 @@ class Level extends FlxState
 	public function addInteractable(i:InteractableObject){
 		interactables.add(i);
 	}
+	
+	public function addSentry(turret:Sentry){
+		sentries.add(turret);
+	}
+	
+	public function destroySentry(turret:Sentry){
+		sentries.remove(turret);
+		level.foregroundTiles.remove(turret);
+		turret.destroy();
+	}
 
+	public function explode(A:FlxObject, B:FlxObject){
+		try {
+			cast(A, Sentry).explode();
+		} catch ( e:String ){
+			cast(B, Sentry).explode();
+		}
+
+	}
+	
 	public function addBurnable(b:Burnable){
 		burnables.add(b);
+	}
+
+	public function addElevator(e:Elevator){
+		elevators.add(e);
 	}
 
 	public function burn(A:FlxObject, B:FlxObject){
@@ -87,7 +124,6 @@ class Level extends FlxState
 	}
 
 	public function destroyBurnable(b:Burnable){
-		trace("Kill");
 		burnables.remove(b);
 		level.foregroundTiles.remove(b);
 		b.destroy();
@@ -103,11 +139,22 @@ class Level extends FlxState
 
 		add (level.foregroundTiles);
 
+		for (e in elevators){
+			add(e);
+			add(e.getBehindDoor());
+		}
 		add (level.objectsLayer);
+
 
 		if (levelNum!=0){
 			add(player.addBottle());
+		} else{
+			player.inElevator=false;
 		}
+		for (e in elevators){
+			add(e.getFrontDoor());
+		}
+
 
 	}
 
@@ -138,15 +185,25 @@ class Level extends FlxState
 		if (player.emitter!=null){
 			FlxG.collide(player.emitterGroup, level.foregroundTiles);
 			if (player.getStatus()=="red"){
-				FlxG.overlap(player.emitterGroup, burnables,burn);
+				FlxG.overlap(player.emitterGroup, burnables, burn);
+			}
+			if (player.getStatus()=="orange"){
+				FlxG.overlap(player.emitterGroup, sentries, explode);
 			}
 		}
 		level.collideWithLevel(player);
-		FlxG.collide(burnables,player);
+		FlxG.collide(burnables, player);
+		FlxG.collide(sentries, player);
+		if (player.justTouched(FlxObject.DOWN) && _floorhit){
+			killPlayer("You slam into the ground a little too quickly\nYou black out.\nForever.");
+		}
 		super.update(elapsed);
 		FlxG.watch.add(this, "player");
-		if (player.velocity.y > 2000){
-			killPlayer("You fell to your death...Good Job");
+		if (player.velocity.y > 1500 && player.getStatus() != "green"){
+			_floorhit = true;
+		}
+		if (player.velocity.y > 2500){
+			killPlayer("You forget that you are no longer wearing a	parachute, and spread yourself thinly over the distant pavement.\nWhy did you do that?");
 		}
 	}
 

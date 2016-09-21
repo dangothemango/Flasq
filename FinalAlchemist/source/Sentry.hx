@@ -4,7 +4,9 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.math.FlxPoint;
+import flixel.effects.particles.FlxEmitter;
 import flixel.tweens.FlxTween;
+import flixel.effects.particles.FlxParticle;
 import flixel.math.FlxMath;
 
 class Sentry extends RangedObject
@@ -15,18 +17,23 @@ class Sentry extends RangedObject
 	private var _turnDirection = 10;
 	private var _waitShoot = 0.0;
 	private var _reFocus = 0.0;
+	private var emitter:FlxTypedEmitter<FlxParticle>;
+    private var tween:FlxTween;
 	
     public function new(?X:Float=0, ?Y:Float=0, ?W:Int=10,?H:Int=10)
     {
         super(X-50,Y+50,W,H);
         loadSentry();
         range = 150;
-        animation.add("fire", [0, 1, 2, 3, 4, 5, 6],10,false);
+		immovable = true;
+        animation.add("fire", [0, 1, 2, 3, 4, 5, 6], 10, false);
+		emitter = new FlxTypedEmitter<FlxParticle>(x+width/2,y+height/5);
+        emitter.loadParticles(AssetPaths.fire__png,500);
     }
 
 	function inRangeHelper(_done:String){
 		if (player.getStatus() != "purple"){
-			Level.instance.killPlayer("Shot To Death");
+			Level.instance.killPlayer("You are riddled with small holes.\nThis kills you.");
 		}
 	}
 	
@@ -55,18 +62,18 @@ class Sentry extends RangedObject
 		var _triangle = new FlxPoint(pt.x -player.x + 50, pt.y - player.y);
 		if (_triangle.y > 0){
 			if (_triangle.x <= 0){
-				angle = 180;
+				tweenRotateDriver(angle, 180, .1);
 			} else {
-				angle = 360;
+				tweenRotateDriver(angle, 360, .1);
 			}
 		}else {
 			var _tempAngle = 270 - (180 / (Math.PI * Math.atan((pt.y - player.y) / (pt.x - player.x)))) / 2;
 			if (_tempAngle < 180){
-				angle = 180;
+				tweenRotateDriver(angle, 180, .1);
 			}else if (_tempAngle>360){
-				angle = 360;
+				tweenRotateDriver(angle, 360, .1);
 			}else{
-				angle = _tempAngle;
+				tweenRotateDriver(angle, _tempAngle, .1);
 			}
 		}
 		
@@ -97,10 +104,29 @@ class Sentry extends RangedObject
 	}
 
 	function loadSentry(){
-		loadGraphic("assets/images/sentry.png", true, 150, 39);
+		loadGraphic(AssetPaths.sentry__png, true, 150, 39);
 		
 		angle = 270;
 	}
+	
+	private function tweenFunction(s:FlxSprite, v:Float) { s.alpha = v; }
+	private function tweenRotate(s:FlxSprite, v:Float) { s.angle = v; }
+
+    function tweenDriver(s:Float,e:Float,?t:Float=1.0){
+        FlxTween.num(s, e, t, {}, tweenFunction.bind(this));
+	}
+	
+	function tweenRotateDriver(s:Float,e:Float,?t:Float=1.0){
+        if (tween!=null)tween.cancel();
+        tween=FlxTween.num(s, e, t, {}, tweenRotate.bind(this));
+		}
+
+    public function explode(){
+        solid=false;
+        Level.instance.add(emitter);
+        emitter.start(true, 0);
+        tweenDriver(alpha,0,.5);
+    }
 	
     override public function update(elapsed:Float):Void
     {
@@ -119,5 +145,10 @@ class Sentry extends RangedObject
 		else {
 			angularVelocity = 0;
 		}
+		if (alpha == 0){
+			FlxG.sound.play(AssetPaths.turretDestroy__wav);
+            emitter.destroy();
+            Level.instance.destroySentry(this);
+        }
     }
 }

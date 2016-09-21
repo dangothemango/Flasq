@@ -10,8 +10,9 @@ class PotionOrange extends Potion
     public function new(){super(); color=Potion.ORANGE; type=2;}
 
     override public function drink(player:Player){
-    	trace ("dragons breath, Orange Potion");
-        super.drink(player);
+    	super.drink(player);
+        player.setStatus("orange",color);
+        player.fusRohDah();
     }
 
     override public function mix(o:Potion):Potion{

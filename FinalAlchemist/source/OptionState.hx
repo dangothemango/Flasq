@@ -112,6 +112,6 @@ class OptionState extends FlxState
 	
 	//temp for testing
 	function clickDeath() : Void {
-		Level.instance.killPlayer("test");
+		FlxG.switchState(new DeathState(false, "test", -1));
 	}
 }

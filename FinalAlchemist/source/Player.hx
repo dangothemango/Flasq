@@ -39,6 +39,7 @@
  	public var bottle:Bottle;
 
  	var status:String;
+ 	public var inElevator:Bool=true;
 
  	//Status helper objects
  	public var emitter:FlxTypedEmitter<FlxParticle>;
@@ -48,6 +49,14 @@
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
 	{
 		super(X, Y, SimpleGraphic);
+		if (Level.PRCPreloadedArray==null){
+			coloredPixels=replaceColor(Potion.BLACK,Potion.BLACK,true);
+			Level.PRCPreloadedArray=coloredPixels;
+		}
+		else {
+			coloredPixels=Level.PRCPreloadedArray;
+		}
+		rCPreloaded=true;
 		animation.add("walk",[for (i in 1...24) i],30,true);
 		animation.add("jump",[24,25,26,27,28],30,false);
 		animation.add("drink",[for (i in 29...46) i],30,false);
@@ -80,7 +89,14 @@
 	}
 
 	function configOrangeEmit(){
-		//startEmitter();
+		trace("hello");
+		emitter=new FlxTypedEmitter<FlxParticle>(x+width/2+height/5);
+		emitter.solid=true;
+		emitter.loadParticles("assets/images/fire.png",200);
+		emitter.launchMode == FlxEmitterMode.SQUARE;
+		emitter.scale.set(1, 1, 1, 1, 4, 4, 8, 8);
+		emitter.velocity.set(10000,10000,10000,10000);
+		startEmitter();
 	}
 
 	public function getStatus(){
@@ -135,8 +151,6 @@
 				emitter.start(false,.01);
 			case "purple":
 				emitter.start(false,.03);
-			case "orange":
-
 			default:
 		}
 	}
@@ -151,6 +165,10 @@
 		setGravity(0);
 		maxVelocity.y=defSpeed;
 		height=height/2;
+	}
+
+	public function fusRohDah(){
+		configOrangeEmit();
 	}
 
 	override function loadSprite(){
@@ -171,6 +189,15 @@
 		if (emitter==null) return;
 		emitter.x=x+width/2;
 		emitter.y=y+width/5;
+		if (status=="orange"){
+			if (facing==FlxObject.RIGHT){
+
+		emitter.launchAngle.set(-45, 45);
+			} else {
+
+		emitter.launchAngle.set(135, 225);
+			}
+		}
 	}
 
 	public function fillBottle(p:Potion){
@@ -180,6 +207,17 @@
 
 	override function handleMovement():Void
 	{
+
+		if (inElevator) {			
+			animation.stop();
+			animation.frameIndex=0;
+			return;
+		}
+
+		if(status=="orange"&&FlxG.keys.justPressed.SPACE){
+			trace("?");
+			emitter.start(true,0,0);
+		}
 
 		if (FlxG.keys.justPressed.C){
 			Level.instance.interact();

@@ -130,7 +130,7 @@ class TiledLevel extends TiledMap
 		var tileImagesSource:TiledImageTile = tilesImageCollection.getImageSourceByGid(object.gid);
 		
 		//decorative sprites
-		var levelsDir:String = "assets/tiled/";
+		var levelsDir:String = "assets/images/decorations/";
 		
 		var decoSprite:FlxSprite = new FlxSprite(0, 0, levelsDir + tileImagesSource.source);
 		if (decoSprite.width != object.width ||
@@ -171,7 +171,8 @@ class TiledLevel extends TiledMap
 			case "start":
 				var player = state.addPlayer(x,y);
 				group.add(player);
-				trace("TODO: make start be an elevator");
+				var e=new Elevator("start",x,y,o.width,o.height);
+				state.addElevator(e);
 			case "blue":
 				var c=new Cooler(x,y,o.width,o.height);
 				c.fillWith(new PotionBlue());
@@ -188,13 +189,17 @@ class TiledLevel extends TiledMap
 				state.addInteractable(c);
 				group.add(c);
 			case "end":
-				trace("TODO: end level and elevator");
+				var e=new Elevator("end",x,y,o.width,o.height);
+				state.addElevator(e);
+				state.addInteractable(e);
 			case "fan":
 				var fan = new Fan(x,y);
 				group.add(fan);
 			case "turret":
 				var turret = new Sentry(x, y, o.width, o.height);
+				//var targetting = new TargetRadius(x, y, o.width, o.height);
 				turret.attachPlayer(state.player);
+				state.addSentry(turret);
 				group.add(turret);
 
 			case "door":
@@ -204,7 +209,8 @@ class TiledLevel extends TiledMap
 			case "lever":
 
 			case "box":
-
+				var box=new Box(x,y,o.width,o.height);
+				group.add(box);
 			case "lift":
 
 			case "floor_burnable":

@@ -20,7 +20,7 @@ class DeathState extends FlxState
 	private var _mainMenuBtn:FlxButton;
 	private var _retryBtn:FlxButton;
 	
-	//we take in whether or not the player has won, how they died if they didn't and what level they died
+	//take in whether the player has died, how they died and what level they died
 	public function new(Win:Bool,? Death:String ,? FromLevel:Int) {
 		_win = Win;
 		_deathType = Death;
@@ -39,7 +39,7 @@ class DeathState extends FlxState
 		add(_pageTitle);
 		
 		if (!_win) {
-			_deathMessage = new FlxText(0, (FlxG.height / 2) - 18, 0, "Death By: " + _deathType, 16);
+			_deathMessage = new FlxText(0, (FlxG.height / 2) - 18, 0, _deathType, 16);
 			_deathMessage.alignment = CENTER;
 			_deathMessage.screenCenter(FlxAxes.X);
 			add(_deathMessage);
@@ -65,7 +65,7 @@ class DeathState extends FlxState
 		FlxG.switchState(new MenuState());
 	}
 	
-	//will return to where you came from, will be edited once level structure is changed
+	//will return to where you came from
 	function retryLevel() : Void {
 		if (_lastLevel == -1){
 			FlxG.switchState(new OptionState());
