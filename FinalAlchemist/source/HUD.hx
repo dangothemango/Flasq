@@ -11,6 +11,8 @@ import flixel.util.FlxAxes;
 
 class HUD extends FlxTypedGroup<FlxSprite>
 {
+	static public var instance:HUD;
+	
 	private var _infoBox:FlxSprite;
 	private var _infoText:FlxText;
 	private var _continueText:FlxText;
@@ -18,6 +20,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	public function new()
 	{
 		super();
+		instance=this;
 		var sixthWidth = Std.int(FlxG.width / 6);
 		var sixthHeight = Std.int(FlxG.height / 6);
 		
@@ -29,7 +32,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		_infoText.alignment = CENTER;
 		_infoText.screenCenter(FlxAxes.X);
 		
-		_continueText = new FlxText(4*sixthWidth, 5 * sixthHeight - 10, 0, "Click Enter to Continue", 8);
+		_continueText = new FlxText(4*sixthWidth, 5 * sixthHeight - 30, 0, "Press Enter to Continue", 8);
 		
 		add(_infoBox);
 		add(_infoText);

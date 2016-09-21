@@ -17,6 +17,20 @@ import flixel.math.FlxPoint;
 class Level extends FlxState
 {
 
+	static public var firsts:Map<String,Bool> = [
+													"0xFFD50000" => false,
+													"0xFF005CD5" => false,
+													"0xFFD5BC00" => false,
+													"0xFFFF6600" => false,
+													"0xFF99004D" => false,
+													"0xFF00D500" => false,
+													"0xFF804000" => false,
+													"0xFF000000" => false,
+													"0xFFFFFFFF" => false,
+													"FILL" => false,
+													"BURN" => false,
+													"EXPLODE" => false
+												];
 	static public var instance:Level;
 
 	static public var PRCPreloadedArray:Array<FlxPoint>;
@@ -26,8 +40,8 @@ class Level extends FlxState
 									"Level00.tmx",
 									"Level01-01.tmx",
 									"Level01-02.tmx",
-									"Level01-03.tmx",								
-									"Level01-04.tmx",									
+									"Level01-03.tmx",
+									"Level01-04.tmx",
 									"Level01-05.tmx",
 									"Level01.tmx",
 									"Level02.tmx",

@@ -34,6 +34,11 @@ class Potion extends FlxBasic
 
     public function drink(player:Player){
     	player.bottle.empty();
+		var colorString = Std.string(color);
+		if (!Level.firsts.get(colorString)){
+			HUD.instance.updateHUD("nice!");
+			Level.firsts.set(colorString,true);
+		}
     	player.setHatColor(color);
     	if (color==Potion.BLACK){
     		player.setStatus("white",color);
