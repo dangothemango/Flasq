@@ -209,8 +209,6 @@ class TiledLevel extends TiledMap
 			case "door":
 				var door=new Door(x,y,o.width,o.height);
 				group.add(door);
-			case "lever":
-
 			case "box":
 				var box = new Box(x, y, o.width, o.height);
 				box.attachPlayer(state.player);
@@ -220,11 +218,13 @@ class TiledLevel extends TiledMap
 				var lift = new Lift(x, y, o.width, o.height);
 				state.addLift(lift);
 				group.add(lift);
-			case "floor_burnable":
-				for (i in 0...Std.int(o.width/50)){
-					var b:Burnable = new BurnableFloor(x+(50*i),y);
-					state.addBurnable(b);
-					group.add(b);
+			case "burnable":
+				for (j in 0...Std.int(o.height/50)){
+					for (i in 0...Std.int(o.width/50)){
+						var b:Burnable = new BurnableFloor(x+(50*i),y+(50*j));
+						state.addBurnable(b);
+						group.add(b);
+					}
 				}
 			case "pitty_the_fool":
 				var p=new PitMonster(x,y);

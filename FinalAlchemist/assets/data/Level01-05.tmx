@@ -43,7 +43,7 @@
  </layer>
  <objectgroup name="Objects">
   <object id="1" type="blue" x="152" y="349.333" width="44" height="101.333"/>
-  <object id="2" type="burnable_wall" x="352" y="250.667" width="45.3333" height="200"/>
+  <object id="2" type="burnable" x="350" y="250" width="50" height="200"/>
   <object id="3" type="door" x="852" y="250.667" width="45.3333" height="200"/>
   <object id="4" type="start" x="452" y="250.667" width="144" height="200"/>
   <object id="5" type="red" x="1001.33" y="346.667" width="44" height="100"/>

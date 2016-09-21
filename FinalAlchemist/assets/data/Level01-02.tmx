@@ -46,7 +46,7 @@
   <object id="2" type="end" x="1754.67" y="600" width="140" height="202.667"/>
   <object id="3" type="red" x="553.333" y="1048" width="46.6667" height="102.667"/>
   <object id="4" type="yellow" x="1604" y="1301.33" width="42.6667" height="101.333"/>
-  <object id="5" type="burnable_wall" x="754.667" y="952" width="44" height="196"/>
-  <object id="6" type="burnable_floor" x="1550.67" y="1148" width="150" height="48"/>
+  <object id="5" type="burnable" x="750" y="950" width="50" height="200"/>
+  <object id="6" type="burnable" x="1550" y="1150" width="150" height="50"/>
  </objectgroup>
 </map>
