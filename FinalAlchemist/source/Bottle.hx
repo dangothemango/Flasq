@@ -23,7 +23,7 @@
 			coloredPixels=Level.BRCPreloadedArray;
 		}
 		rCPreloaded=true;
- 		contents=new Potion();
+ 		contents=new PotionWhite();
  	}
 
  	public function config(X:Float, Y:Float, animationFrame:Int, direction:Int):Void{

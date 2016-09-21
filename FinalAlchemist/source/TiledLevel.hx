@@ -199,7 +199,7 @@ class TiledLevel extends TiledMap
 				state.addInteractable(e);
 			case "fan":
 				var fan = new Fan(x,y);
-				group.add(fan);
+				state.addFan(fan);
 			case "turret":
 				var turret = new Sentry(x, y, o.width, o.height);
 				//var targetting = new TargetRadius(x, y, o.width, o.height);
@@ -214,10 +214,10 @@ class TiledLevel extends TiledMap
 				box.attachPlayer(state.player);
 				state.addBoxes(box);
 				group.add(box);
-			case "lift":
+			/*case "lift":
 				var lift = new Lift(x, y, o.width, o.height);
 				state.addLift(lift);
-				group.add(lift);
+				group.add(lift);*/
 			case "burnable":
 				for (j in 0...Std.int(o.height/50)){
 					for (i in 0...Std.int(o.width/50)){

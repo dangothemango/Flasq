@@ -49,7 +49,7 @@ class Level extends FlxState
 	public var elevators:FlxTypedGroup<Elevator>;
 	public var sentries:FlxTypedGroup<Sentry>;
 	public var boxes:FlxTypedGroup<Box>;
-	public var lifts:FlxTypedGroup<Lift>;
+	public var fans:FlxTypedGroup<Fan>;
 
 	public function new(l:Int){
 		super();
@@ -66,7 +66,8 @@ class Level extends FlxState
 		burnables = new FlxTypedGroup<Burnable>();
 		sentries = new FlxTypedGroup<Sentry>();
 		boxes = new FlxTypedGroup<Box>();
-		lifts = new FlxTypedGroup<Lift>();
+		fans = new FlxTypedGroup<Fan>();
+		//lifts = new FlxTypedGroup<Lift>();
 		
 		loadTiledData(levelMaps[levelNum]);
 		for (e in elevators){
@@ -102,9 +103,9 @@ class Level extends FlxState
 	public function addSentry(turret:Sentry){
 		sentries.add(turret);
 	}
-	
-	public function addLift(l:Lift){
-		lifts.add(l);
+
+	public function addFan(f:Fan){
+		fans.add(f);
 	}
 	
 	public function addBoxes(b:Box){
@@ -146,7 +147,6 @@ class Level extends FlxState
 		burnables.remove(b);
 		level.foregroundTiles.remove(b);
 		b.destroy();
-
 	}
 
 	function loadTiledData(mapData:String){
@@ -163,6 +163,9 @@ class Level extends FlxState
 		//I dont think we need this, uncomment it if something is missing
 		//add(level.imagesLayer);
 
+		for (s in sentries){
+			add(s.getRadius());
+		}
 		add (level.foregroundTiles);
 
 		for (e in elevators){
@@ -176,6 +179,11 @@ class Level extends FlxState
 			add(player.addBottle());
 		} else{
 			player.inElevator=false;
+		}
+		for (f in fans){
+			add(f);
+			add(f.emitter);
+			f.startEmitter();
 		}
 		for (e in elevators){
 			add(e.getFrontDoor());
@@ -243,9 +251,9 @@ class Level extends FlxState
 			}
 		}
 		FlxG.collide(boxes, level.foregroundTiles);
-		for (l in lifts){
+		/*for (l in lifts){
 			FlxG.collide(l, player);
-		}
+		}*/
 		FlxG.collide(burnables, player);
 		FlxG.collide(sentries, player);
 		if (player.justTouched(FlxObject.DOWN) && _floorhit){
