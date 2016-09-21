@@ -30,7 +30,9 @@ class Potion extends FlxBasic
 	//3=Brown, Bad Potion
 	public var type:Int=0;
 
-    public function new(){super(); color=Potion.BLACK;}
+	public var colorString:String;
+
+    public function new(){super(); color=Potion.BLACK; colorString = "black";}
 
     public function drink(player:Player){
     	player.bottle.empty();
@@ -42,9 +44,7 @@ class Potion extends FlxBasic
 			Level.firsts.set(colorString,null);
 		}
     	player.setHatColor(color);
-    	if (color==Potion.BLACK || color==Potion.WHITE){
-    		player.setStatus("white",color);
-    	}
+    	player.setStatus(colorString,color);
     }
 
     public function mix(o:Potion):Potion{
