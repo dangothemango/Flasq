@@ -217,7 +217,9 @@ class TiledLevel extends TiledMap
 				state.addBoxes(box);
 				group.add(box);
 			case "lift":
-
+				var lift = new Lift(x, y, o.width, o.height);
+				state.addLift(lift);
+				group.add(lift);
 			case "burnable":
 				for (j in 0...Std.int(o.height/50)){
 					for (i in 0...Std.int(o.width/50)){

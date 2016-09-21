@@ -48,6 +48,7 @@ class Level extends FlxState
 	public var elevators:FlxTypedGroup<Elevator>;
 	public var sentries:FlxTypedGroup<Sentry>;
 	public var boxes:FlxTypedGroup<Box>;
+	public var lifts:FlxTypedGroup<Lift>;
 
 	public function new(l:Int){
 		super();
@@ -64,6 +65,8 @@ class Level extends FlxState
 		burnables = new FlxTypedGroup<Burnable>();
 		sentries = new FlxTypedGroup<Sentry>();
 		boxes = new FlxTypedGroup<Box>();
+		lifts = new FlxTypedGroup<Lift>();
+		
 		loadTiledData(levelMaps[levelNum]);
 		for (e in elevators){
 			if (e.type=="start"){
@@ -79,7 +82,7 @@ class Level extends FlxState
 	public function nextLevel(){
 		var n=levelNum+1;
 		if (n>=levelMaps.length){
-			FlxG.switchState(new DeathState(true, "I'm...impressed"));
+			FlxG.switchState(new DeathState(true, "I'm...impressed",0));
 			return;
 		}
 		FlxG.switchState(new Level(n));
@@ -97,6 +100,10 @@ class Level extends FlxState
 	
 	public function addSentry(turret:Sentry){
 		sentries.add(turret);
+	}
+	
+	public function addLift(l:Lift){
+		lifts.add(l);
 	}
 	
 	public function addBoxes(b:Box){
@@ -231,6 +238,9 @@ class Level extends FlxState
 			}
 		}
 		FlxG.collide(boxes, level.foregroundTiles);
+		for (l in lifts){
+			FlxG.collide(l, player);
+		}
 		FlxG.collide(burnables, player);
 		FlxG.collide(sentries, player);
 		if (player.justTouched(FlxObject.DOWN) && _floorhit){

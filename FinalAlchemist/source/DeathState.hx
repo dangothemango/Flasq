@@ -33,7 +33,7 @@ class DeathState extends FlxState
 		FlxG.mouse.visible = true;
 		#end
 		
-		_pageTitle = new FlxText(0, 200, 0, _win ? "You Win!" + _deathMessage : "Game Over!", 30);
+		_pageTitle = new FlxText(0, 200, 0, _win ? "You Win!\n" + _deathType : "Game Over!", 30);
 		_pageTitle.alignment = CENTER;
 		_pageTitle.screenCenter(FlxAxes.X);
 		add(_pageTitle);
