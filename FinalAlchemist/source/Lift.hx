@@ -25,7 +25,8 @@ class Lift extends FlxSprite
 		loadGraphic(AssetPaths.Lift__png, false, 250, 200);
 	}
     
-	function callback(A:FlxObject,B:FlxObject){
+	function callback(A:FlxObject, B:FlxObject){
+		FlxObject.separate(A, B);
 		velocity.y *= -1;
 	}
 	

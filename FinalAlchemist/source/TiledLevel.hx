@@ -209,8 +209,6 @@ class TiledLevel extends TiledMap
 			case "door":
 				var door=new Door(x,y,o.width,o.height);
 				group.add(door);
-			case "lever":
-
 			case "box":
 				var box = new Box(x, y, o.width, o.height);
 				box.attachPlayer(state.player);
