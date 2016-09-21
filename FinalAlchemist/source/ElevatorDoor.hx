@@ -7,6 +7,8 @@ import flixel.util.FlxColor;
 class ElevatorDoor extends FlxSprite
 {
 
+	//an elevator door, each elevator has 2 of these has some basic animations and thats all
+
     var elevator:Elevator;
 
     public function new(e:Elevator,?X:Float=0, ?Y:Float=0, ?W:Int=10,?H:Int=10)
