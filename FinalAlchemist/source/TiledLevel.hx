@@ -218,11 +218,13 @@ class TiledLevel extends TiledMap
 				group.add(box);
 			case "lift":
 
-			case "floor_burnable":
-				for (i in 0...Std.int(o.width/50)){
-					var b:Burnable = new BurnableFloor(x+(50*i),y);
-					state.addBurnable(b);
-					group.add(b);
+			case "burnable":
+				for (j in 0...Std.int(o.height/50)){
+					for (i in 0...Std.int(o.width/50)){
+						var b:Burnable = new BurnableFloor(x+(50*i),y+(50*j));
+						state.addBurnable(b);
+						group.add(b);
+					}
 				}
 			case "pitty_the_fool":
 				var p=new PitMonster(x,y);

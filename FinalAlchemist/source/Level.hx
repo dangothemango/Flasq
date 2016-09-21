@@ -26,7 +26,7 @@ class Level extends FlxState
 									"Level00.tmx",
 									"Level01-01.tmx",
 									"Level01-02.tmx",
-									"Level01-03.tmx",								
+									//"Level01-03.tmx",								
 									"Level01-04.tmx",									
 									"Level01-05.tmx",
 									"Level01.tmx",

@@ -47,7 +47,7 @@
   <object id="3" type="door" x="500" y="749.333" width="48" height="201.333"/>
   <object id="4" type="blue" x="653.333" y="848" width="46.6667" height="105.333"/>
   <object id="5" type="turret" x="950.667" y="650.667" width="46.6667" height="46.6667"/>
-  <object id="6" type="burnable_wall" x="1352" y="750" width="44" height="200"/>
+  <object id="6" type="burnable" x="1350" y="750" width="50" height="200"/>
   <object id="7" type="yellow" x="1505.33" y="850.667" width="38.6667" height="98.6667"/>
   <object id="8" type="turret" x="1752" y="652" width="45.3333" height="45.3333"/>
   <object id="9" type="turret" x="1952" y="649.333" width="46.6667" height="48"/>
