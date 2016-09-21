@@ -11,7 +11,6 @@ class PotionPurple extends Potion
 
     override public function drink(player:Player){
         super.drink(player);
-        player.setStatus("purple",color);
         player.rCCallback="sublimate";
     }
 
