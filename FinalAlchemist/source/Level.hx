@@ -22,8 +22,13 @@ class Level extends FlxState
 	static public var PRCPreloadedArray:Array<FlxPoint>;
 	static public var BRCPreloadedArray:Array<FlxPoint>;
 
-	static public var levelMaps=[	"box_test.tmx",
+	static public var levelMaps=[	
 									"Level00.tmx",
+									"level01-01.tmx"
+									"level01-02.tmx"
+									"level01-03.tmx"									
+									"level01-04.tmx"									
+									"level01-05.tmx"
 									"Level01.tmx",
 									"Level02.tmx",
 									"Level03.tmx"
