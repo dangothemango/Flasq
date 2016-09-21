@@ -219,7 +219,7 @@ class Player extends PlayerAndBottle
 		}
 
 		if(status=="orange"&&FlxG.keys.justPressed.SPACE){
-			trace("?");
+			FlxG.sound.play(AssetPaths.dragonbreathFire__wav);
 			emitter.start(true,0,0);
 		}
 

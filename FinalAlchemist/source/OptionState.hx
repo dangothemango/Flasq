@@ -89,12 +89,14 @@ class OptionState extends FlxState
 	//turns volume down
 	function clickVolumeDown() : Void {
 		FlxG.sound.volume -= 0.1;
+		FlxG.sound.play(AssetPaths.turretDetect__wav);
 		updateVolume();
 	}
 	
 	//turns volume up
 	function clickVolumeUp() : Void {
 		FlxG.sound.volume += 0.1;
+		FlxG.sound.play(AssetPaths.turretDetect__wav);
 		updateVolume();
 	}
 	

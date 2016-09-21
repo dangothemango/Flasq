@@ -171,8 +171,9 @@ class Level extends FlxState
 	}
 
 	function loadTiledData(mapData:String){
+		_hud = new HUD();
 		level = new TiledLevel("assets/data/"+mapData,this);
-		if (levelNum!=0){
+		if (levelNum != 0){
 			add(level.backgroundLayer);
 			add(level.decorationsLayer);
 		} else {
@@ -180,6 +181,8 @@ class Level extends FlxState
 			back.setGraphicSize(level.fullWidth,level.fullHeight);
 			add(level.decorationsLayer);
 			add(level.backgroundLayer);
+			FlxG.sound.play(AssetPaths.Slide1__wav, 1, true);
+			HUD.instance.updateHUD("It seems you’ve landed here.\nYou feel thirsty.\nIronic really. The fight attendant was JUST about to pour your drink");
 		}
 
 		//I dont think we need this, uncomment it if something is missing
@@ -210,7 +213,6 @@ class Level extends FlxState
 		for (e in elevators){
 			add(e.getFrontDoor());
 		}
-		_hud = new HUD();
 		add(_hud);
 	}
 
@@ -279,6 +281,7 @@ class Level extends FlxState
 		FlxG.collide(burnables, player);
 		FlxG.collide(sentries, player);
 		if (player.justTouched(FlxObject.DOWN) && _floorhit){
+			FlxG.sound.play(AssetPaths.fallDeath__wav);
 			killPlayer("You slam into the ground a little too quickly\nYou black out.\nForever.");
 		}
 		super.update(elapsed);

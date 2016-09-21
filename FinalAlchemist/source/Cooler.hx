@@ -24,6 +24,7 @@ class Cooler extends InteractableObject
 
     override public function interact(player:Player):Void{ 
         if (onCooldown) return;
+		FlxG.sound.play(AssetPaths.potionFill__wav);
         player.fillBottle(potion); 
         onCooldown=true;
         t=0;

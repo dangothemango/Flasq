@@ -52,6 +52,7 @@ class Elevator extends InteractableObject
     }
 
     public function open(){
+		FlxG.sound.play(AssetPaths.elevatoropen__wav);
         openDoor.open();
     }
 
