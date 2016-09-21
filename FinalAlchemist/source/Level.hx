@@ -22,14 +22,14 @@ class Level extends FlxState
 													"0xFF005CD5" => false,
 													"0xFFD5BC00" => false,
 													"0xFFFF6600" => false,
-													"0xFF99004D" => false,
-													"0xFF00D500" => false,
+													"0xFF99004D" => "The purple fluid tastes like lemon juice, but somehow, you taste it with your whole body, and not just your mouth.\nYour form dissolves into a loose cloud.",
+													"0xFF00D500" => "This tastes gritty and tart, like an energy drink mixed with protein powder.\nYour arms and legs feel fortified.",
 													"0xFF804000" => false,
-													"0xFF000000" => false,
-													"0xFFFFFFFF" => false,
+													"0xFF000000" => "The water tastes stale, and is warm from the sun.\nSince you see no recycle bin nearby, you decide to hold onto the bottle. ",
+													"0xFFFFFFFF" => "You try to drink to from an empty bottle, It tastes like air....",
 													"FILL" => false,
-													"BURN" => false,
-													"EXPLODE" => false
+													"BURN" => "The wood chars and crumbles away at your touch.",
+													"EXPLODE" => "The sentry melts into slag."
 												];
 	static public var instance:Level;
 
