@@ -131,6 +131,10 @@ class Sentry extends RangedObject
 		}
 
     public function explode(){
+		if (Level.firsts.get("EXPLODE") != null){
+			HUD.instance.updateHUD(Level.firsts.get("EXPLODE");
+			Level.firsts.set("EXPLODE",null);
+		}
         solid=false;
         Level.instance.add(emitter);
         emitter.start(true, 0);

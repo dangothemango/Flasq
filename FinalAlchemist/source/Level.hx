@@ -28,7 +28,7 @@ class Level extends FlxState
 													"white" => "You try to drink to from an empty bottle, It tastes like air....",
 													"FILL" => "You fill your bottle with a liquid from the cooler.",
 													"BURN" => "The wood chars and crumbles away at your touch.",
-													"EXPLODE" => "The sentry melts into slag."
+													"EXPLODE" => "The sentry explodes in a shower of sparks."
 												];
 	static public var instance:Level;
 
