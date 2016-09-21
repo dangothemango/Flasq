@@ -47,6 +47,7 @@ class Potion extends FlxBasic
     	player.setHatColor(color);
     }
 
+    //each subclass has its own mix tree for mixing
     public function mix(o:Potion):Potion{
     	switch (o.type){
     		case 0:

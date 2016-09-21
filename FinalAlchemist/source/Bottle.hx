@@ -29,6 +29,7 @@
 		rCPreloaded=true;
  		contents=new PotionWhite();
  		replaceColorDriver(Potion.BLACK,Potion.WHITE);
+ 		height-=5;
  	}
 
  	//used to allow the bottle to follow the player, run from player update if bottle is attached

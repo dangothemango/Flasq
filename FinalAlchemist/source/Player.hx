@@ -66,7 +66,6 @@ class Player extends PlayerAndBottle
 		animation.add("drink",[for (i in 29...46) i],30,false);
 		drag.x=dragC;
 		emitterGroup= new FlxTypedGroup<FlxTypedEmitter<FlxParticle>>();
-		height-=2;
 		setDefaults();
 	}
 
@@ -151,6 +150,7 @@ class Player extends PlayerAndBottle
 		setSpeeds(defJumpSpeed,defSpeed);
  		setGravity(defGravity);
  		updateHitbox();
+ 		height-=5;
  		drag.y=0;
 	}
 
