@@ -18,9 +18,10 @@ class Box extends FlxSprite
 		loadBox();
 		setGraphicSize(W);
 		updateHitbox();
-		drag.x = 1000;
+        drag.x=1000;
 		solid = true;
 		acceleration.y = 1;
+        maxVelocity.x=0;
 		immovable = false;
     }
 
