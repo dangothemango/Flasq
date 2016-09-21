@@ -243,7 +243,7 @@ class TiledLevel extends TiledMap
 				state.addBottle(b);
 			case "pitty_the_fool":
 				var p=new PitMonster(x,y);
-				group.add(p);
+				state.addPitty(p);
 			default:
 				trace (o.type);
 		}

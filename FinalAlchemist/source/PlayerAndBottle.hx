@@ -93,7 +93,6 @@ package;
 		}
 		else{
 			rCRow=0;
-			trace("Preloaded");
 			rCLoop=new FlxAsyncLoop(coloredPixels.length, replaceColorPreloaded,500);
 		}
 	}

@@ -76,7 +76,9 @@ class Level extends FlxState
 	public var boxes:FlxTypedGroup<Box>;
 	public var fans:FlxTypedGroup<Fan>;
 
+	//miscilaneous level specific helpers
 	var bottle:Bottle;
+	var pitty:PitMonster;
 
 	public function new(l:Int){
 		super();
@@ -142,6 +144,10 @@ class Level extends FlxState
 
 	public function addBottle(b:Bottle){
 		bottle=b;
+	}
+
+	public function addPitty(p:PitMonster){
+		pitty=p;
 	}
 
 	public function addInteractable(i:InteractableObject){
@@ -240,6 +246,10 @@ class Level extends FlxState
 		} else {
 			add(bottle);
 			player.inElevator=false;
+		}
+
+		if (pitty!=null){
+			add(pitty);
 		}
 		//start emitters on fans
 		for (f in fans){

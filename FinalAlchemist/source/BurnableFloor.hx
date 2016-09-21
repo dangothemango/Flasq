@@ -26,7 +26,6 @@ class BurnableFloor extends Burnable
 
     override function loadSprite(){
         var p="assets/images/"+sprites[rand.int(0,sprites.length-1)];
-        trace(p);
         loadGraphic(p);
     }
 }

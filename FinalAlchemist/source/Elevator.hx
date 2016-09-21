@@ -58,7 +58,6 @@ class Elevator extends InteractableObject
     }
 
     public function getBehindDoor():ElevatorDoor{
-        trace(getBehindDoor);
         return behind;
     }
 
@@ -77,7 +76,6 @@ class Elevator extends InteractableObject
 
     //animation callback
     public function onClose(e:ElevatorDoor){
-        trace("OnClose");
         if (type=="end"){
             Level.instance.nextLevel();
         } else {

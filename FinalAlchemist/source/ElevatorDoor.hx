@@ -14,7 +14,6 @@ class ElevatorDoor extends FlxSprite
     public function new(e:Elevator,?X:Float=0, ?Y:Float=0, ?W:Int=10,?H:Int=10)
     {
         super(X,Y);
-        trace(X,Y,W,H);
         elevator=e;
         loadGraphic("assets/images/elevatordoor.png",true,440,713);
         setGraphicSize(Std.int(W/6.6*6),H);
