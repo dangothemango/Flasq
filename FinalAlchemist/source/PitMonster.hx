@@ -19,7 +19,8 @@ class PitMonster extends FlxSprite
     }
 
     function callback(A:FlxObject,B:FlxObject){
-        Level.instance.killPlayer("You fell into the mouth of the pit monster\nIn its belly, you will find a new definition of pain and suffering\nas you are slowly ground over a thousand years.");
+        if (player.status!="purple")
+            Level.instance.killPlayer("You fell into the mouth of the pit monster\nIn its belly, you will find a new definition of pain and suffering\nas you are slowly ground over a thousand years.");
     }
 
     override public function update(elapsed:Float):Void
