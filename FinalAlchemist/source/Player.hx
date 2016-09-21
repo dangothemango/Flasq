@@ -219,6 +219,7 @@
 		if (inElevator) {			
 			animation.stop();
 			animation.frameIndex=0;
+			velocity.set(0,0);
 			return;
 		}
 
@@ -233,9 +234,6 @@
 
 		if (FlxG.keys.justPressed.C){
 			Level.instance.interact();
-		}
-		if (FlxG.keys.justPressed.B && bottle==null){
-			Level.instance.add(addBottle());
 		}
 
 		if (status=="purple"){

@@ -36,8 +36,14 @@ class Elevator extends InteractableObject
 
     }
 
+    public function centerPlayer(){
+        Level.instance.player.y=y+75;
+        Level.instance.player.x=x+30;
+    }
+
     override public function interact(p:Player){
         p.inElevator=true;
+        centerPlayer();
         open();
 
     }

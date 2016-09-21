@@ -218,6 +218,9 @@ class Level extends FlxState
 		}
 		for (e in elevators){
 			add(e.getFrontDoor());
+			if (e.type=="start"){
+				e.centerPlayer();
+			}
 		}
 		_hud = new HUD();
 		add(_hud);
