@@ -35,22 +35,23 @@ class DeathState extends FlxState
 		FlxG.mouse.visible = true;
 		#end
 		
-		_pageTitle = new FlxText(0, 200, 0, _win ? "You Win!\n" + _deathType + "\nTotal Death Count: " + deathcount : "Game Over!", 30);
+		_pageTitle = new FlxText(0, 200, 0, _win ? "You Win!\n" : "Game Over!", 30);
 		_pageTitle.alignment = CENTER;
 		_pageTitle.screenCenter(FlxAxes.X);
 		add(_pageTitle);
 		
 		if (!_win) {
 			deathcount += 1;
-			if (deathcount >= 100){
-				_deathMessage = new FlxText(0, (FlxG.height / 2) - 18, 0, "HAHAHA! You actually thought I would let you hit 100?!\nDon't be ridiculous! It has been set back to 0!", 16);
-				deathcount = 0;
-			}
-			_deathMessage = new FlxText(0, (FlxG.height / 2) - 18, 0, _deathType + "\nDeath Count: " + deathcount, 16);
-			_deathMessage.alignment = CENTER;
-			_deathMessage.screenCenter(FlxAxes.X);
-			add(_deathMessage);
 		}
+		if (deathcount >= 100){
+			_deathMessage = new FlxText(0, (FlxG.height / 2) - 18, 0, "HAHAHA! You actually thought I would let you hit 100 Deaths?!\nDon't be ridiculous! Your Death Count has been set back to 0!", 16);
+			deathcount = 0;
+		}else{
+			_deathMessage = new FlxText(0, (FlxG.height / 2) - 18, 0, _deathType + "\nDeath Count: " + deathcount, 16);
+		}
+		_deathMessage.alignment = CENTER;
+		_deathMessage.screenCenter(FlxAxes.X);
+		add(_deathMessage);
 		
 		
 		

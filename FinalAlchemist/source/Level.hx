@@ -351,7 +351,7 @@ class Level extends FlxState
 		}
 
 		if (player.velocity.y > 2200){
-			killPlayer("You forget that you are no longer wearing a	parachute, and spread yourself thinly over the distant pavement.\nWhy did you do that?");
+			killPlayer("You forget that you are no longer wearing a	parachute\n and spread yourself thinly over the distant pavement.\nWhy would you do that?");
 		}
 	}
 
