@@ -39,8 +39,7 @@ package;
 		updateHitbox();
 		setFacingFlip(FlxObject.RIGHT,false,false);
 		setFacingFlip(FlxObject.LEFT,true,false);
-		coloredPixels=replaceColor(Potion.BLACK,Potion.BLACK,true);
-		rCPreloaded=true;
+		
 	}
 
 	public function rCCallbackDriver(){

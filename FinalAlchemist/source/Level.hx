@@ -12,11 +12,15 @@ import openfl.Assets;
 import flixel.group.FlxGroup;
 import flixel.tile.FlxTilemap;
 import flixel.addons.editors.tiled.TiledMap;
+import flixel.math.FlxPoint;
 
 class Level extends FlxState
 {
 
 	static public var instance:Level;
+
+	static public var PRCPreloadedArray:Array<FlxPoint>;
+	static public var BRCPreloadedArray:Array<FlxPoint>;
 
 	static public var levelMaps=[	"Level00.tmx",
 									"Level01.tmx",

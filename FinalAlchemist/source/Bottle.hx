@@ -15,6 +15,14 @@
 
  	public function new(X:Float, Y:Float, ?SimpleGraphic:FlxGraphicAsset){
  		super(X,Y,SimpleGraphic);
+ 		if (Level.BRCPreloadedArray==null){
+			coloredPixels=replaceColor(Potion.BLACK,Potion.BLACK,true);
+			Level.BRCPreloadedArray=coloredPixels;
+		}
+		else {
+			coloredPixels=Level.BRCPreloadedArray;
+		}
+		rCPreloaded=true;
  		contents=new Potion();
  	}
 

@@ -49,6 +49,14 @@
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
 	{
 		super(X, Y, SimpleGraphic);
+		if (Level.PRCPreloadedArray==null){
+			coloredPixels=replaceColor(Potion.BLACK,Potion.BLACK,true);
+			Level.PRCPreloadedArray=coloredPixels;
+		}
+		else {
+			coloredPixels=Level.PRCPreloadedArray;
+		}
+		rCPreloaded=true;
 		animation.add("walk",[for (i in 1...24) i],30,true);
 		animation.add("jump",[24,25,26,27,28],30,false);
 		animation.add("drink",[for (i in 29...46) i],30,false);
