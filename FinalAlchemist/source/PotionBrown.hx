@@ -10,8 +10,9 @@ class PotionBrown extends Potion
     public function new(){super(); color=Potion.BROWN; type=3;}
 
     override public function drink(player:Player){
-    	trace ("poop, Brown Potion");
     	super.drink(player);
+    	player.setStatus("brown",color);
+    	Level.instance.killPlayer("Acid dissolved your intestines");
     }
 
     override public function mix(o:Potion):Potion{

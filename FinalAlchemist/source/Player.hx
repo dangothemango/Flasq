@@ -214,6 +214,10 @@
 			return;
 		}
 
+		if(FlxG.keys.justPressed.E){
+			bottle.empty();
+		}
+
 		if(status=="orange"&&FlxG.keys.justPressed.SPACE){
 			trace("?");
 			emitter.start(true,0,0);
