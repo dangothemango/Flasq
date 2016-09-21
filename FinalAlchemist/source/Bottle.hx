@@ -43,6 +43,7 @@
 		loadGraphic("assets/images/bottle.png",true,122,200);
 	}
 
+	//resets the potion to an empty bottle with no effects
 	public function empty(){
 		replaceColorDriver(contents.color,Potion.WHITE);
 		contents.kill();
@@ -50,8 +51,8 @@
 		contents=new PotionWhite();
 	}
 
+	//fills the potion with the appropriate drink
 	public function fill(p:Potion){
-
 		//the first time you see a potion, get a little hint
 		if (Level.firsts.get("FILL") != null){
 			HUD.instance.updateHUD(Level.firsts.get("FILL"));
