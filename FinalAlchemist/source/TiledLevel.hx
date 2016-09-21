@@ -230,7 +230,7 @@ class TiledLevel extends TiledMap
 				}
 			case "bottle":
 				var b = new Bottle(x,y);
-				b.animation.frameIndex=47;
+				b.animation.frameIndex=46;
 				b.contents=new Potion();
 				b.replaceColorDriver(Potion.WHITE,Potion.BLACK);
 				state.addBottle(b);

@@ -343,7 +343,7 @@ class Player extends PlayerAndBottle
 		if (bottle==null) return;
 		var anim:Int=animation.frameIndex;
 		if (status=="purple"){
-			anim=46;
+			anim=47;
 		}
 		bottle.config(x,y,anim,facing);
 	}
