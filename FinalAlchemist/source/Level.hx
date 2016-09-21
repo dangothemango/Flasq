@@ -103,7 +103,7 @@ class Level extends FlxState
 		FlxG.switchState(new Level(n));
 	}
 
-		public function nextLevel(){
+	public function prevLevel(){
 		var n=levelNum-1;
 		if (n<=0){
 			n++;
@@ -178,6 +178,8 @@ class Level extends FlxState
 		} else {
 			var back=new FlxSprite(0,0,"assets/images/sky.png");
 			back.setGraphicSize(level.fullWidth,level.fullHeight);
+			back.updateHitbox();
+			add(back);
 			add(level.decorationsLayer);
 			add(level.backgroundLayer);
 		}
