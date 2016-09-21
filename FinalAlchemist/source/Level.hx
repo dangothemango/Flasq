@@ -64,6 +64,8 @@ class Level extends FlxState
 	public var boxes:FlxTypedGroup<Box>;
 	public var fans:FlxTypedGroup<Fan>;
 
+	var bottle:Bottle;
+
 	public function new(l:Int){
 		super();
 		levelNum = l;
@@ -105,8 +107,8 @@ class Level extends FlxState
 
 	public function prevLevel(){
 		var n=levelNum-1;
-		if (n<=0){
-			n++;
+		if (n<0){
+			n=0;
 		}
 		FlxG.switchState(new Level(n));
 	}
@@ -115,6 +117,10 @@ class Level extends FlxState
 		player=new Player(pX,pY);
 		FlxG.camera.follow(player);
 		return player;
+	}
+
+	public function addBottle(b:Bottle){
+		bottle=b;
 	}
 
 	public function addInteractable(i:InteractableObject){
@@ -199,9 +205,10 @@ class Level extends FlxState
 		add (level.objectsLayer);
 
 
-		if (levelNum!=0){
+		if (bottle==null){
 			add(player.addBottle());
-		} else{
+		} else {
+			add(bottle);
 			player.inElevator=false;
 		}
 		for (f in fans){
@@ -286,6 +293,9 @@ class Level extends FlxState
 		}*/
 		FlxG.collide(burnables, player);
 		FlxG.collide(sentries, player);
+		if (player.bottle==null){
+			FlxG.overlap(bottle,player,bottleCollisionCallback);
+		}
 		if (player.justTouched(FlxObject.DOWN) && _floorhit){
 			killPlayer("You slam into the ground a little too quickly\nYou black out.\nForever.");
 		}
@@ -296,6 +306,17 @@ class Level extends FlxState
 		}
 		if (player.velocity.y > 2500){
 			killPlayer("You forget that you are no longer wearing a	parachute, and spread yourself thinly over the distant pavement.\nWhy did you do that?");
+		}
+	}
+
+	function bottleCollisionCallback(A:FlxObject, B:FlxObject){
+		HUD.instance.updateHUD("Press C to interact");
+		if (FlxG.keys.justPressed.C){
+			try {
+				player.attachBottle(cast(A,Bottle));
+			} catch ( e :String){
+				player.attachBottle(cast (B,Bottle));
+			}
 		}
 	}
 

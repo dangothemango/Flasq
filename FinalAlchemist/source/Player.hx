@@ -71,6 +71,14 @@
 		return bottle;
 	}
 
+	public function attachBottle(b:Bottle):Bottle{
+		HUD.instance.updateHUD("You pick up the bottle. It is full of water.\nPress F to drink");
+		bottle=b;
+		Level.instance.add(emitterGroup);
+
+		return bottle;
+	}
+
 	//Emitter Helpers
 	function configRedEmit(){
 		emitter = new FlxTypedEmitter<FlxParticle>(x+width/2,y+height/5);
@@ -337,7 +345,7 @@
 		if (bottle==null) return;
 		var anim:Int=animation.frameIndex;
 		if (status=="purple"){
-			trace ("TODO: Purple Bottle Animation");
+			anim=46;
 		}
 		bottle.config(x,y,anim,facing);
 	}

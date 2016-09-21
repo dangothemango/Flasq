@@ -228,6 +228,12 @@ class TiledLevel extends TiledMap
 						group.add(b);
 					}
 				}
+			case "bottle":
+				var b = new Bottle(x,y);
+				b.animation.frameIndex=47;
+				b.contents=new Potion();
+				b.replaceColorDriver(Potion.WHITE,Potion.BLACK);
+				state.addBottle(b);
 			case "pitty_the_fool":
 				var p=new PitMonster(x,y);
 				group.add(p);
