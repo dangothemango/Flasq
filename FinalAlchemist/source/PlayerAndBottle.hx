@@ -15,7 +15,9 @@ package;
  class PlayerAndBottle extends FlxSprite
  {
 
- 	//Used for Asyncronous color replacement
+ 	//This is a utility class for player and bottle, it handles fades and color changes
+
+ 	//Helper variables used for Asyncronous color replacement
  	var rCRow:UInt;
  	var rCColumn:UInt;
  	//The color being replaced
@@ -42,6 +44,8 @@ package;
 		
 	}
 
+
+	//a callback for replace color Kinda weird how its implented but it works
 	public function rCCallbackDriver(){
 
 		rCCallback="none";
@@ -66,11 +70,14 @@ package;
 		super.update(elapsed);
 	}
 
+	//this function should be overrided by the player and bottle, which eack do movement differently
 	function handleMovement():Void
 	{
 
 	}
 
+	//if something isnt preloaded correctly, this will preload it, else it will run the preloaded call asynchronously for speedy color changes
+	//its basically just a refactor of replaceColor() but with support for a FlxAsyncLoop()
 	public function replaceColorDriver(Color:UInt,NewColor:UInt,mult:Float=(2/3)){
 		if (rCLoop != null){
 			rCLoop.kill();

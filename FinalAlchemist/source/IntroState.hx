@@ -12,6 +12,8 @@ import flixel.FlxSprite;
 class IntroState extends FlxState
 {
 
+	//A lighting effect on a sprite slideshow for low frame rate intro cutscene, uses mostly self explanatory built in functions
+
 	//Timing Vars
 	var lightningTime:Float=1;
 	var fadeToBlackTime:Float=1.25;
