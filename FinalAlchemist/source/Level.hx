@@ -30,7 +30,7 @@ class Level extends FlxState
 	//FlxGroup[levels];
 
 	public var level:TiledLevel;
-
+	private var _floorhit:Bool;
 	public var levelNum:Int;
 	public var player:Player;
 	public var interactables:FlxTypedGroup<InteractableObject>;
@@ -46,7 +46,8 @@ class Level extends FlxState
 	{
 		super.create();
 		instance=this;
-		FlxG.mouse.visible=false;
+		FlxG.mouse.visible = false;
+		_floorhit = false;
 		interactables=new FlxTypedGroup<InteractableObject>();
 		elevators=new FlxTypedGroup<Elevator>();
 		burnables = new FlxTypedGroup<Burnable>();
@@ -187,11 +188,17 @@ class Level extends FlxState
 		}
 		level.collideWithLevel(player);
 		FlxG.collide(burnables, player);
-		
+		FlxG.collide(sentries, player);
+		if (player.justTouched(FlxObject.DOWN) && _floorhit){
+			killPlayer("You slam into the ground a little too quickly\nYou black out.\nForever.");
+		}
 		super.update(elapsed);
 		FlxG.watch.add(this, "player");
-		if (player.velocity.y > 2000){
-			killPlayer("You fell to your death...Good Job");
+		if (player.velocity.y > 1500 && player.getStatus() != "green"){
+			_floorhit = true;
+		}
+		if (player.velocity.y > 2500){
+			killPlayer("You forget that you are no longer wearing a	parachute, and spread yourself thinly over the distant pavement.\nWhy did you do that?");
 		}
 	}
 
