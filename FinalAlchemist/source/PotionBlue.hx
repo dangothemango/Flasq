@@ -11,6 +11,7 @@ class PotionBlue extends Potion
 
     override public function drink(player:Player){
         super.drink(player);
+        //requires a replace color callback because of the way alpha interacts with RC
         player.rCCallback="invisible";
     }
 

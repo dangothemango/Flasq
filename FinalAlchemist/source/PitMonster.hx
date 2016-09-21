@@ -7,6 +7,8 @@ import flixel.FlxObject;
 class PitMonster extends FlxSprite
 {
 
+    //animation of a sprite
+
     var animating:Bool=false;
 
     public function new(?X:Float=0, ?Y:Float=0, ?W:Int=10,?H:Int=10)
@@ -14,6 +16,8 @@ class PitMonster extends FlxSprite
         super(X,Y);
         loadGraphic("assets/images/mr_t.png",true,450,700);
         animation.add("idle",[for (i in 0...31) i],30,true);
+        
+        //adjust the sprite location so yo dont die till youre in the monsters belly
         offset.y+=350;
         y+=350;
         height=350;

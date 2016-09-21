@@ -11,6 +11,7 @@ import flixel.util.FlxColor;
 
 class DeathState extends FlxState
 {
+	//handles game over of all types, also displays kill count
 	static public var deathcount = 0;
 	
 	private var _pageTitle:FlxText;
@@ -34,7 +35,7 @@ class DeathState extends FlxState
 		FlxG.mouse.visible = true;
 		#end
 		
-		_pageTitle = new FlxText(0, 200, 0, _win ? "You Win!\n" + _deathType : "Game Over!", 30);
+		_pageTitle = new FlxText(0, 200, 0, _win ? "You Win!\n" + _deathType + "\nTotal Death Count: " + deathcount : "Game Over!", 30);
 		_pageTitle.alignment = CENTER;
 		_pageTitle.screenCenter(FlxAxes.X);
 		add(_pageTitle);
@@ -45,7 +46,7 @@ class DeathState extends FlxState
 				_deathMessage = new FlxText(0, (FlxG.height / 2) - 18, 0, "HAHAHA! You actually thought I would let you hit 100?!\nDon't be ridiculous! It has been set back to 0!", 16);
 				deathcount = 0;
 			}
-			_deathMessage = new FlxText(0, (FlxG.height / 2) - 18, 0, _deathType+"\nDeath Count: "+deathcount, 16);
+			_deathMessage = new FlxText(0, (FlxG.height / 2) - 18, 0, _deathType + "\nDeath Count: " + deathcount, 16);
 			_deathMessage.alignment = CENTER;
 			_deathMessage.screenCenter(FlxAxes.X);
 			add(_deathMessage);

@@ -12,6 +12,8 @@ import flixel.util.FlxColor;
 
 class OptionState extends FlxState
 {
+	//displays sound bar, ability to switch in and out of fullscreen mode and back buttons
+	
 	//bunch of vars, mostly for sound control
 	private var _pageTitle:FlxText;
 	private var _volumeText:FlxText;

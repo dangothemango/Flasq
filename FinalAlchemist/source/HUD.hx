@@ -11,6 +11,7 @@ import flixel.util.FlxAxes;
 
 class HUD extends FlxTypedGroup<FlxSprite>
 {
+	// Displays a text box with appropriate "popups" whenever necessary.
 	static public var instance:HUD;
 	
 	private var _infoBox:FlxSprite;
@@ -20,6 +21,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	public function new()
 	{
 		super();
+		//needs to be instance for referencing elsewhere
 		instance=this;
 		var sixthWidth = Std.int(FlxG.width / 6);
 		var sixthHeight = Std.int(FlxG.height / 6);
@@ -43,12 +45,14 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		});
 	}
 
+	//called when enter is pressed to rehide the HUD so that it's not in the way
 	public function hideHUD():Void{
 		forEach(function(spr:FlxSprite){
 			spr.alpha = 0;
 		});
 	}
 	
+	//takes input text, sets the box text to it and then makes textbox visible again
 	public function updateHUD(infoText:String):Void{
 		_infoText.text = infoText;
 		_infoText.alignment = CENTER;
