@@ -17,11 +17,11 @@ import flixel.math.FlxPoint;
 class Level extends FlxState
 {
 
-	static public var firsts:Map<String,Bool> = [
-													"0xFFD50000" => false,
-													"0xFF005CD5" => false,
-													"0xFFD5BC00" => false,
-													"0xFFFF6600" => false,
+	static public var firsts:Map<String,String> = [
+													"0xFFD50000" => "The red liquid tastes like Tabasco sauce mixed with liquor.\nFire wreaths your form.",
+													"0xFF005CD5" => "Your palate cannot detect any taste.\nAll of a sudden, you can see right through yourself!",
+													"0xFFD5BC00" => "You slug the fluid too quickly to determine what it tastes like.\nTime seems to slow to a crawl as you speed up.",
+													"0xFFFF6600" => "This tastes like the inside of a nuclear reactor!\nYour guts boil with voracious flames, and you can barely hold back.\n(Press C to release)",
 													"0xFF99004D" => false,
 													"0xFF00D500" => false,
 													"0xFF804000" => false,
