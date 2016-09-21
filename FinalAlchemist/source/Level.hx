@@ -186,7 +186,10 @@ class Level extends FlxState
 
 	function loadTiledData(mapData:String){
 		_hud = new HUD();
-		level = new TiledLevel("assets/data/"+mapData,this);
+		level = new TiledLevel("assets/data/" + mapData, this);
+		if (levelNum == 1){
+			FlxG.sound.playMusic(AssetPaths.SoulBoat14__wav, 1, true);
+		}
 		if (levelNum != 0){
 			add(level.backgroundLayer);
 			add(level.decorationsLayer);
@@ -197,8 +200,9 @@ class Level extends FlxState
 			add(back);
 			add(level.decorationsLayer);
 			add(level.backgroundLayer);
+			FlxG.sound.destroy(true);
 			FlxG.sound.play(AssetPaths.Slide1__wav, 1, true);
-			HUD.instance.updateHUD("It seems you’ve landed here.\nYou feel thirsty.\nIronic really. The fight attendant was JUST about to pour your drink");
+			HUD.instance.updateHUD("It seems you’ve landed here.\nYou feel thirsty.\nIronic really. The fight attendant was JUST about to pour your drink...");
 		}
 
 		//I dont think we need this, uncomment it if something is missing

@@ -65,7 +65,6 @@ class IntroState extends FlxState
 	function nextSlide(){
 		FlxG.camera.flash(FlxColor.WHITE,lightningTime,fadeOut);
 		slide=new FlxSprite(0,0,sPath+Std.string(slideNum)+".png");
-		trace(sPath+Std.string(slideNum)+".png");
 		slide.setGraphicSize(FlxG.camera.width,FlxG.camera.height);
 		slide.updateHitbox();
 		/*lightning=new FlxShapeLightning(0,0,new FlxPoint(rand.int(0,Std.int(FlxG.camera.width/2)),rand.int(0,Std.int(FlxG.camera.height/2))),

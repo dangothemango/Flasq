@@ -10,6 +10,7 @@ import flash.system.System;
 import flixel.util.FlxAxes;
 
 class MenuState extends FlxState {
+	//basic starting menu page. Has Buttons for starting the game, exiting screen and access to Options
 	
 	private var _gameTitle:FlxText;
 	private var _playButton:FlxButton;
@@ -41,7 +42,7 @@ class MenuState extends FlxState {
 		add(_exitButton);
 		#end
 		
-		FlxG.sound.playMusic(AssetPaths.SoulBoat14__wav,1,true);
+		FlxG.sound.playMusic(AssetPaths.Music_for_main_menu__wav,1,true);
 		super.create();
 	}
 
@@ -51,7 +52,6 @@ class MenuState extends FlxState {
 	
 	function clickPlay(): Void {
 		//switch to play scene
-		FlxG.sound.destroy(true);
 		FlxG.switchState(new IntroState());
 	}
 	
