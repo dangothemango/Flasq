@@ -16,6 +16,7 @@ class PitMonster extends FlxSprite
         animation.add("idle",[for (i in 0...31) i],30,true);
         offset.y+=350;
         y+=350;
+        height=350;
     }
 
     function callback(A:FlxObject,B:FlxObject){
