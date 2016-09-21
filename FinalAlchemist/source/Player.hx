@@ -71,6 +71,14 @@ class Player extends PlayerAndBottle
 		return bottle;
 	}
 
+	public function attachBottle(b:Bottle):Bottle{
+		HUD.instance.updateHUD("You pick up the bottle. It is full of water.\nPress F to drink");
+		bottle=b;
+		Level.instance.add(emitterGroup);
+
+		return bottle;
+	}
+
 	//Emitter Helpers
 	function configRedEmit(){
 		emitter = new FlxTypedEmitter<FlxParticle>(x+width/2,y+height/5);
@@ -211,6 +219,7 @@ class Player extends PlayerAndBottle
 		if (inElevator) {			
 			animation.stop();
 			animation.frameIndex=0;
+			velocity.set(0,0);
 			return;
 		}
 
@@ -225,9 +234,6 @@ class Player extends PlayerAndBottle
 
 		if (FlxG.keys.justPressed.C){
 			Level.instance.interact();
-		}
-		if (FlxG.keys.justPressed.B && bottle==null){
-			Level.instance.add(addBottle());
 		}
 
 		if (status=="purple"){
@@ -337,7 +343,7 @@ class Player extends PlayerAndBottle
 		if (bottle==null) return;
 		var anim:Int=animation.frameIndex;
 		if (status=="purple"){
-			trace ("TODO: Purple Bottle Animation");
+			anim=46;
 		}
 		bottle.config(x,y,anim,facing);
 	}

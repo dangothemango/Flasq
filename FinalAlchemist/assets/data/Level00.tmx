@@ -44,5 +44,6 @@
  <objectgroup name="Objects">
   <object id="1" type="end" x="1502.67" y="900" width="144" height="201.333"/>
   <object id="2" type="start" x="501.333" y="899.667" width="144" height="201.333"/>
+  <object id="3" type="bottle" x= "800" y="975" width="123" height="125" />
  </objectgroup>
 </map>

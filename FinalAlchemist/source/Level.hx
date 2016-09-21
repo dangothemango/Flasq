@@ -66,6 +66,8 @@ class Level extends FlxState
 	public var boxes:FlxTypedGroup<Box>;
 	public var fans:FlxTypedGroup<Fan>;
 
+	var bottle:Bottle;
+
 	public function new(l:Int){
 		super();
 		levelNum = l;
@@ -111,10 +113,22 @@ class Level extends FlxState
 		});
 	}
 
+	public function prevLevel(){
+		var n=levelNum-1;
+		if (n<0){
+			n=0;
+		}
+		FlxG.switchState(new Level(n));
+	}
+
 	public function addPlayer(?pX:Float=0, ?pY:Float=0):Player{
 		player=new Player(pX,pY);
 		FlxG.camera.follow(player);
 		return player;
+	}
+
+	public function addBottle(b:Bottle){
+		bottle=b;
 	}
 
 	public function addInteractable(i:InteractableObject){
@@ -179,6 +193,8 @@ class Level extends FlxState
 		} else {
 			var back=new FlxSprite(0,0,"assets/images/sky.png");
 			back.setGraphicSize(level.fullWidth,level.fullHeight);
+			back.updateHitbox();
+			add(back);
 			add(level.decorationsLayer);
 			add(level.backgroundLayer);
 			FlxG.sound.play(AssetPaths.Slide1__wav, 1, true);
@@ -200,9 +216,10 @@ class Level extends FlxState
 		add (level.objectsLayer);
 
 
-		if (levelNum!=0){
+		if (bottle==null){
 			add(player.addBottle());
-		} else{
+		} else {
+			add(bottle);
 			player.inElevator=false;
 		}
 		for (f in fans){
@@ -212,6 +229,9 @@ class Level extends FlxState
 		}
 		for (e in elevators){
 			add(e.getFrontDoor());
+			if (e.type=="start"){
+				e.centerPlayer();
+			}
 		}
 		add(_hud);
 	}
@@ -243,6 +263,12 @@ class Level extends FlxState
 
 		if (FlxG.keys.justPressed.N){
 			nextLevel();
+		}
+		if (FlxG.keys.justPressed.B){
+			prevLevel();
+		}
+		if (FlxG.keys.justPressed.R){
+			FlxG.switchState(new Level(levelNum));
 		}
 
 		if (FlxG.keys.justPressed.ENTER){
@@ -280,6 +306,9 @@ class Level extends FlxState
 		}*/
 		FlxG.collide(burnables, player);
 		FlxG.collide(sentries, player);
+		if (player.bottle==null){
+			FlxG.overlap(bottle,player,bottleCollisionCallback);
+		}
 		if (player.justTouched(FlxObject.DOWN) && _floorhit){
 			FlxG.sound.play(AssetPaths.fallDeath__wav);
 			killPlayer("You slam into the ground a little too quickly\nYou black out.\nForever.");
@@ -291,6 +320,17 @@ class Level extends FlxState
 		}
 		if (player.velocity.y > 2200){
 			killPlayer("You forget that you are no longer wearing a	parachute, and spread yourself thinly over the distant pavement.\nWhy did you do that?");
+		}
+	}
+
+	function bottleCollisionCallback(A:FlxObject, B:FlxObject){
+		HUD.instance.updateHUD("Press C to interact");
+		if (FlxG.keys.justPressed.C){
+			try {
+				player.attachBottle(cast(A,Bottle));
+			} catch ( e :String){
+				player.attachBottle(cast (B,Bottle));
+			}
 		}
 	}
 
