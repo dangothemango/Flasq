@@ -20,7 +20,7 @@ class Box extends FlxSprite
 		updateHitbox();
         drag.x=1000;
 		solid = true;
-		acceleration.y = 1;
+		acceleration.y = 1000;
         maxVelocity.x=0;
 		immovable = false;
     }

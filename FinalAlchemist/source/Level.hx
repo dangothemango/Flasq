@@ -143,7 +143,14 @@ class Level extends FlxState
 
 	function loadTiledData(mapData:String){
 		level = new TiledLevel("assets/data/"+mapData,this);
-		add(level.backgroundLayer);
+		if (levelNum!=0){
+			add(level.backgroundLayer);
+
+			add(level.decorationsLayer);
+		} else {
+			add(level.decorationsLayer);
+			add(level.backgroundLayer);
+		}
 
 		//I dont think we need this, uncomment it if something is missing
 		//add(level.imagesLayer);

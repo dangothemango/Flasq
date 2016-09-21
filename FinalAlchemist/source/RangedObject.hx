@@ -9,9 +9,9 @@ class RangedObject extends FlxSprite
 {
 
     var range:Float;
-    var player:Player;
     var withinRange:Bool=false;
     var pt:FlxPoint;
+    var player:Player;
 
     public function new(?X:Float=0, ?Y:Float=0, ?W:Int=10,?H:Int=10)
     {
@@ -21,10 +21,6 @@ class RangedObject extends FlxSprite
         width=W;
         height=H;
         pt=new FlxPoint(x,y);
-    }
-
-    public function attachPlayer(p:Player){
-        player=p;
     }
 
     function inRange(elapsed:Float){
@@ -43,6 +39,8 @@ class RangedObject extends FlxSprite
             } else {
                outOfRange();
             }
+        } else {
+            player=Level.instance.player;
         }
         super.update(elapsed);
     }

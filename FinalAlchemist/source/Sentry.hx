@@ -143,6 +143,7 @@ class Sentry extends RangedObject
 			}
 		}
 		else {
+			player=Level.instance.player;
 			angularVelocity = 0;
 		}
 		if (alpha == 0){
