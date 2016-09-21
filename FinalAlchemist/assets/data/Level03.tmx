@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="60" tilewidth="50" tileheight="50" nextobjectid="62">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="60" tilewidth="50" tileheight="50" nextobjectid="63">
  <tileset firstgid="1" name="Test" tilewidth="50" tileheight="50" tilecount="32" columns="16">
   <image source="../images/tileSet/TileSheet.png" width="815" height="101"/>
  </tileset>
@@ -25,7 +25,7 @@
   </data>
  </layer>
  <layer name="Decorations New" width="50" height="60">
- 	  <properties>
+  <properties>
    <property name="nocollide" value="true"/>
    <property name="tileset" value="Decorations"/>
   </properties>
@@ -58,5 +58,6 @@
   <object id="59" type="box" x="1698" y="899" width="100" height="99"/>
   <object id="60" type="lift" x="149" y="202" width="52" height="49"/>
   <object id="61" type="fan" x="1701" y="1751" width="48" height="45"/>
+  <object id="62" type="pitty_the_fool" x="801" y="1053" width="452" height="698"/>
  </objectgroup>
 </map>
