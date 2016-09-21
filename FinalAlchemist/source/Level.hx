@@ -22,7 +22,8 @@ class Level extends FlxState
 	static public var PRCPreloadedArray:Array<FlxPoint>;
 	static public var BRCPreloadedArray:Array<FlxPoint>;
 
-	static public var levelMaps=[	"Level00.tmx",
+	static public var levelMaps=[	"box_test.tmx",
+									"Level00.tmx",
 									"Level01.tmx",
 									"Level02.tmx",
 									"Level03.tmx"
@@ -205,7 +206,8 @@ class Level extends FlxState
 			}
 		}
 		level.collideWithLevel(player);
-		FlxG.overlap(boxes, player, boxesCollide);
+		//FlxG.overlap(boxes, player, boxesCollide);
+		FlxG.collide(boxes,player);
 		FlxG.collide(boxes, level.foregroundTiles);
 		FlxG.collide(burnables, player);
 		FlxG.collide(sentries, player);
