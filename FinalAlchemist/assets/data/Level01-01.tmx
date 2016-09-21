@@ -4,7 +4,7 @@
   <image source="../images/tileSet/TileSheet.png" width="815" height="101"/>
  </tileset>
  <tileset firstgid="33" name="Decorations" tilewidth="50" tileheight="50" tilecount="259" columns="37">
-  <image source="../images/decorations/decorations_spritesheet.png" width="1850" height="350"/>
+  <image source="../images/tileSet/decorations_spritesheet.png" width="1850" height="350"/>
  </tileset>
  <layer name="Background" width="50" height="30">
   <properties>
