@@ -11,6 +11,7 @@ import flixel.util.FlxColor;
 
 class DeathState extends FlxState
 {
+	static public var deathcount = 0;
 	
 	private var _pageTitle:FlxText;
 	private var _win:Bool;
@@ -39,11 +40,18 @@ class DeathState extends FlxState
 		add(_pageTitle);
 		
 		if (!_win) {
-			_deathMessage = new FlxText(0, (FlxG.height / 2) - 18, 0, _deathType, 16);
+			deathcount += 1;
+			if (deathcount >= 100){
+				_deathMessage = new FlxText(0, (FlxG.height / 2) - 18, 0, "HAHAHA! You actually thought I would let you hit 100?!\nDon't be ridiculous! It has been set back to 0!", 16);
+				deathcount = 0;
+			}
+			_deathMessage = new FlxText(0, (FlxG.height / 2) - 18, 0, _deathType+"\nDeath Count: "+deathcount, 16);
 			_deathMessage.alignment = CENTER;
 			_deathMessage.screenCenter(FlxAxes.X);
 			add(_deathMessage);
 		}
+		
+		
 		
 		_mainMenuBtn = new FlxButton(0, FlxG.height - 32, "Main Menu", goMainMenu);
 		_mainMenuBtn.screenCenter(FlxAxes.X);
@@ -68,6 +76,7 @@ class DeathState extends FlxState
 	//will return to where you came from
 	function retryLevel() : Void {
 		if (_lastLevel == -1){
+			deathcount -= 1;
 			FlxG.switchState(new OptionState());
 		}
 		else {

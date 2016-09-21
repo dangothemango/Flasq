@@ -41,7 +41,7 @@ class MenuState extends FlxState {
 		add(_exitButton);
 		#end
 		
-		//FlxG.sound.playMusic(AssetPaths.MusicForMainMenu__mp3);
+		FlxG.sound.playMusic(AssetPaths.SoulBoat14__wav,1,true);
 		super.create();
 	}
 
@@ -51,6 +51,7 @@ class MenuState extends FlxState {
 	
 	function clickPlay(): Void {
 		//switch to play scene
+		FlxG.sound.destroy(true);
 		FlxG.switchState(new IntroState());
 	}
 	
