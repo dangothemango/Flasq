@@ -78,6 +78,9 @@ class IntroState extends FlxState
 
 	override public function update(elapsed:Float){
 		super.update(elapsed);
+		if (FlxG.keys.anyJustPressed([SPACE,ENTER,ESCAPE])){
+			FlxG.switchState(new Level(0));
+		}
 		t+=elapsed;
 		if (ready&&t>downTime){
 			ready=false;
