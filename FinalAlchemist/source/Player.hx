@@ -108,7 +108,8 @@ class Player extends PlayerAndBottle
 		emitter.loadParticles("assets/images/fire.png",200);
 		emitter.launchMode == FlxEmitterMode.SQUARE;
 		emitter.scale.set(1, 1, 1, 1, 4, 4, 8, 8);
-		emitter.velocity.set(10000,10000,10000,10000);
+		emitter.velocity.set(50, 40, 60, 80, -400, -600, 400, 600);
+		emitter.frequency=100;
 		startEmitter();
 	}
 
@@ -167,6 +168,7 @@ class Player extends PlayerAndBottle
 			case "purple":
 				emitter.start(false,.03);
 			default:
+				emitter.start(false,100);
 		}
 	}
 
@@ -240,9 +242,15 @@ class Player extends PlayerAndBottle
 			bottle.empty();
 		}
 
-		if(status=="orange"&&FlxG.keys.justPressed.SPACE){
-			FlxG.sound.play(AssetPaths.dragonbreathFire__wav);
-			emitter.start(true,0,0);
+		if(status=="orange"){
+
+			if (FlxG.keys.justPressed.SPACE){
+				FlxG.sound.play(AssetPaths.dragonbreathFire__wav);
+			} else if (FlxG.keys.pressed.SPACE){
+				emitter.frequency=.01;
+			} else if (status=="orange") {
+				emitter.frequency=100;
+			}
 		}
 
 		if (FlxG.keys.justPressed.C){

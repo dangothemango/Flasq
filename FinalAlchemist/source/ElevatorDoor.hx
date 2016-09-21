@@ -29,6 +29,7 @@ class ElevatorDoor extends FlxSprite
             destroy();
         } else if (s=="close"){
             elevator.onClose(this);
+            
         }
     }
 
