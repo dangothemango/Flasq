@@ -146,7 +146,6 @@ class Level extends FlxState
 		burnables.remove(b);
 		level.foregroundTiles.remove(b);
 		b.destroy();
-
 	}
 
 	function loadTiledData(mapData:String){
