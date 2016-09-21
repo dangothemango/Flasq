@@ -207,7 +207,17 @@ class Level extends FlxState
 		}
 		level.collideWithLevel(player);
 		//FlxG.overlap(boxes, player, boxesCollide);
+		if (player.getStatus()!="green"){
+			for (b in boxes){
+				b.immovable=true;
+			}
+		}
 		FlxG.collide(boxes,player);
+		if (player.getStatus()!="green"){
+			for (b in boxes){
+				b.immovable=false;
+			}
+		}
 		FlxG.collide(boxes, level.foregroundTiles);
 		FlxG.collide(burnables, player);
 		FlxG.collide(sentries, player);
