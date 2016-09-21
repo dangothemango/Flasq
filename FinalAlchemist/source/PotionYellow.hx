@@ -7,7 +7,7 @@ import flixel.util.FlxColor;
 class PotionYellow extends Potion
 {
 
-    public function new(){super(); color=Potion.YELLOW; type=1;}
+    public function new(){super(); color=Potion.YELLOW; type=1;colorString = "yellow";}
 
     override public function drink(player:Player){
     	player.setStatus("yellow",color);

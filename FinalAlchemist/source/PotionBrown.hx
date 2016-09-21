@@ -7,11 +7,10 @@ import flixel.util.FlxColor;
 class PotionBrown extends Potion
 {
 
-    public function new(){super(); color=Potion.BROWN; type=3;}
+    public function new(){super(); color=Potion.BROWN; type=3;colorString = "brown";}
 
     override public function drink(player:Player){
     	super.drink(player);
-    	player.setStatus("brown",color);
     	Level.instance.killPlayer("Acid dissolved your intestines");
     }
 
