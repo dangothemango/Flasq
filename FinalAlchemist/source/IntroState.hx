@@ -17,13 +17,13 @@ class IntroState extends FlxState
 	var fadeToBlackTime:Float=1;
 	var downTime:Float=1;
 
-	var sPath = "assets/images/Slides/Slide_";
+	var sPath = "assets/images/Slide_";
 
 	var t:Float;
 
 	var slide:FlxSprite;
 
-	var slideNum:Int=4;
+	var slideNum:Int=-1;
 	var slides:Int=6;
 
 	var ready:Bool;
