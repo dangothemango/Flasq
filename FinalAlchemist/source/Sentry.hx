@@ -11,6 +11,7 @@ import flixel.math.FlxMath;
 
 class Sentry extends RangedObject
 {
+	//Sentry class, shoots & kills player if they get too close, pseudo-locks onto them if they come within larger range
 	
 	private var _viewRange = 300;
 	private var _withinViewRange = false;
@@ -52,6 +53,7 @@ class Sentry extends RangedObject
 		}
 	}
 	
+	//checks if player is close enough to be shot at
     override function inRange(elapsed:Float){
 		_waitShoot -= 6 * elapsed;
 		if (player.getStatus() != "blue" && _waitShoot <= 0){
@@ -73,6 +75,7 @@ class Sentry extends RangedObject
         withinRange=false;
     }
 
+	//checks whether the player iswithin viewrange and if so, turret follows player as best it can, semi derpy
 	function inViewRange(){
 		var _triangle = new FlxPoint(pt.x -pPt.x + 50, pt.y - pPt.y);
 		if (_triangle.y > 0){
@@ -82,6 +85,7 @@ class Sentry extends RangedObject
 				tweenRotateDriver(angle, 360, .1);
 			}
 		}else {
+			//because reasons
 			var _tempAngle = 270 - (180 / (Math.PI * Math.atan((pt.y - pPt.y) / (pt.x - pPt.x)))) / 2;
 			if (_tempAngle < 180){
 				tweenRotateDriver(angle, 180, .1);
@@ -100,6 +104,7 @@ class Sentry extends RangedObject
 		_withinViewRange = true;
 	}
 	
+	//make the sentry guns rotate at a fixed speed between 180 and 360 degrees
 	function outOfViewRange(){
 		if (angularVelocity == 0){
 			angularVelocity = _turnDirection;
@@ -128,8 +133,9 @@ class Sentry extends RangedObject
 	function tweenRotateDriver(s:Float,e:Float,?t:Float=1.0){
         if (tween!=null)tween.cancel();
         tween=FlxTween.num(s, e, t, {}, tweenRotate.bind(this));
-		}
+	}
 
+	//blows up the sentry
     public function explode(){
 		if (Level.firsts.get("EXPLODE") != null){
 			HUD.instance.updateHUD(Level.firsts.get("EXPLODE"));
