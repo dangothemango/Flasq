@@ -10,11 +10,15 @@
  class Bottle extends PlayerAndBottle
  {
 
+ 	//this is THE bottle, the holy grail of recyclable plastic
+ 	//inherits some utility from Player and bottle, like replace color logic
+
  	public var attached=false;
  	public var contents:Potion;
 
  	public function new(X:Float, Y:Float, ?SimpleGraphic:FlxGraphicAsset){
  		super(X,Y,SimpleGraphic);
+ 		//similarly to in player, a static array is used to make load times that much faster, I could probably keep this in the bottle class, but i didnt and now its too late
  		if (Level.BRCPreloadedArray==null){
 			coloredPixels=replaceColor(Potion.BLACK,Potion.BLACK,true);
 			Level.BRCPreloadedArray=coloredPixels;
@@ -27,6 +31,7 @@
  		replaceColorDriver(Potion.BLACK,Potion.WHITE);
  	}
 
+ 	//used to allow the bottle to follow the player, run from player update if bottle is attached
  	public function config(X:Float, Y:Float, animationFrame:Int, direction:Int):Void{
  		x=X;
  		y=Y;
@@ -46,6 +51,8 @@
 	}
 
 	public function fill(p:Potion){
+
+		//the first time you see a potion, get a little hint
 		if (Level.firsts.get("FILL") != null){
 			HUD.instance.updateHUD(Level.firsts.get("FILL"));
 			Level.firsts.set("FILL",null);

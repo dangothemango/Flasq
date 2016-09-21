@@ -8,6 +8,10 @@ import flixel.tweens.FlxTween;
 
 class Box extends FlxSprite
 {
+
+	//This is a heavy box, it can only be pushed while the player is green
+	//set some physics constants and thats all it really needs
+
 	var player:Player;
 
     public function new(?X:Float=0, ?Y:Float=0, ?W:Int=10,?H:Int=10)

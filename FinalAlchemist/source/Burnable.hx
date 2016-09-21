@@ -10,6 +10,9 @@ import flixel.effects.particles.FlxParticle;
 class Burnable extends FlxSprite
 {
 
+	//Burnable is an abstract class that all objects the react to the red potion inherit from
+	//has a flx emitter for some fire effects and some fade out logic, only thing that needs to be overridden is load sprite
+
     var emitter:FlxTypedEmitter<FlxParticle>;
     var tween:FlxTween;
 

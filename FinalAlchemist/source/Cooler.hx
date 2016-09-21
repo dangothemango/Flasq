@@ -7,6 +7,8 @@ import flixel.util.FlxColor;
 class Cooler extends InteractableObject
 {
 
+	//inherits from interactable, fills the players bottle when interacted with
+
     var potion:Potion;
     var onCooldown:Bool=false;
 
@@ -32,6 +34,8 @@ class Cooler extends InteractableObject
 
     override public function update(elapsed:Float):Void
     {
+    	//cooldown is so people cant accidentally press twice and fill twice when they dont want to
+    	//without this was causing a bug where mixing 2 colors would make brown
         if (onCooldown){
             t+=elapsed;
             if (t>=cd){

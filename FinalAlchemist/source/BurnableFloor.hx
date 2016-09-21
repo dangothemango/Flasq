@@ -10,6 +10,9 @@ import flixel.math.FlxRandom;
 class BurnableFloor extends Burnable
 {
 
+	//This class inherits from burnable only overrides loadSprite
+	//uses a little bit of random logic for some variety in the appearance
+
     static var sprites=["burnfloor1.png","burnfloor2.png"];
     static var rand:FlxRandom;
 

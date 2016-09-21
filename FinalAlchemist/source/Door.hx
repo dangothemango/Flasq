@@ -9,6 +9,10 @@ import flixel.tweens.FlxTween;
 class Door extends RangedObject
 {
 
+	//Door extends ranged object, to detect when the player is close enough for it to open on its own
+	//basically just an automatic door. not really important for gameplay.
+
+	//oheight is the original hight of the door object so we can reclose it after its opened
     var oHeight:Float;
 
     public function new(?X:Float=0, ?Y:Float=0, ?W:Int=10,?H:Int=10)
