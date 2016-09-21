@@ -120,7 +120,6 @@ class Level extends FlxState
 	}
 
 	public function destroyBurnable(b:Burnable){
-		trace("Kill");
 		burnables.remove(b);
 		level.foregroundTiles.remove(b);
 		b.destroy();
@@ -183,6 +182,8 @@ class Level extends FlxState
 			FlxG.collide(player.emitterGroup, level.foregroundTiles);
 			if (player.getStatus()=="red"){
 				FlxG.overlap(player.emitterGroup, burnables, burn);
+			}
+			if (player.getStatus()=="orange"){
 				FlxG.overlap(player.emitterGroup, sentries, explode);
 			}
 		}
