@@ -148,6 +148,7 @@ class Sentry extends RangedObject
 		}
 		if (alpha == 0){
 			FlxG.sound.play(AssetPaths.turretDestroy__wav);
+			tween.cancel();
             emitter.destroy();
             Level.instance.destroySentry(this);
         }
