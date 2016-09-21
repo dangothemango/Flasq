@@ -24,11 +24,11 @@ class Level extends FlxState
 
 	static public var levelMaps=[	
 									"Level00.tmx",
-									"level01-01.tmx"
-									"level01-02.tmx"
-									"level01-03.tmx"									
-									"level01-04.tmx"									
-									"level01-05.tmx"
+									"Level01-01.tmx",
+									"Level01-02.tmx",
+									"Level01-03.tmx",								
+									"Level01-04.tmx",									
+									"Level01-05.tmx",
 									"Level01.tmx",
 									"Level02.tmx",
 									"Level03.tmx"

@@ -45,7 +45,7 @@
   <object id="2" type="turret" x="1002" y="1052" width="47" height="48"/>
   <object id="4" type="turret" x="1402" y="1051" width="48" height="47"/>
   <object id="5" type="door" x="503" y="1102" width="44" height="201"/>
-  <object id="8" type=" start" x="155" y="1100" width="144" height="200"/>
+  <object id="8" type="start" x="155" y="1100" width="144" height="200"/>
   <object id="11" type="yellow" x="600" y="1199" width="47" height="100"/>
   <object id="12" type="end" x="2255" y="752" width="141" height="198"/>
   <object id="13" type="door" x="1953" y="1101" width="44" height="197"/>
