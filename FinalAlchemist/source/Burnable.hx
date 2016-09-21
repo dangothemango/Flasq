@@ -39,7 +39,7 @@ class Burnable extends FlxSprite
 
     public function burn(){
 		if (Level.firsts.get("BURN") != null){
-			HUD.instance.updateHUD(Level.firsts.get("BURN");
+			HUD.instance.updateHUD(Level.firsts.get("BURN"));
 			Level.firsts.set("BURN",null);
 		}
         solid=false;
