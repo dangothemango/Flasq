@@ -40,7 +40,7 @@ class Potion extends FlxBasic
 			Level.firsts.set(colorString,null);
 		}
     	player.setHatColor(color);
-    	if (color==Potion.BLACK){
+    	if (color==Potion.BLACK || color==Potion.WHITE){
     		player.setStatus("white",color);
     	}
     }
