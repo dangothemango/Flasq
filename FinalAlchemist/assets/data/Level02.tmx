@@ -25,7 +25,7 @@
   </data>
  </layer>
  <layer name="Decorations" width="50" height="40">
-    <properties>
+  <properties>
    <property name="nocollide" value="true"/>
    <property name="tileset" value="Decorations"/>
   </properties>
