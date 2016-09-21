@@ -19,6 +19,10 @@ import flixel.math.FlxPoint;
 class Level extends FlxState
 {
 
+	//This is the playstate super class that handles most if not all of the inter object interactions
+
+
+	//a static list of text prompts for the first time certain actions are performed in game
 	static public var firsts:Map<String,String> = [
 													"red" => "The red liquid tastes like Tabasco sauce mixed with liquor.\nFire wreaths your form.",
 													"blue" => "Your palate cannot detect any taste.\nAll of a sudden, you can see right through yourself!",
@@ -32,8 +36,11 @@ class Level extends FlxState
 													"BURN" => "The wood chars and crumbles away at your touch.",
 													"EXPLODE" => "The sentry explodes in a shower of sparks."
 												];
+	
+	//used as a static reference of the current level
 	static public var instance:Level;
 
+	//static arrays for preloading replace color pixels for player and bottle and haivng them persist across levels
 	static public var PRCPreloadedArray:Array<FlxPoint>;
 	static public var BRCPreloadedArray:Array<FlxPoint>;
 
@@ -53,12 +60,15 @@ class Level extends FlxState
 	//and iterate through that instead
 	//TODO:
 	//FlxGroup[levels];
+	//Good job, we did this
 
 	public var level:TiledLevel;
 	private var _floorhit:Bool;
 	public var levelNum:Int;
 	private var _hud:HUD;
 	public var player:Player;
+
+	//various lists of objects in the scene of different types, used mostly for collision and adding logic
 	public var interactables:FlxTypedGroup<InteractableObject>;
 	public var burnables:FlxTypedGroup<Burnable>;
 	public var elevators:FlxTypedGroup<Elevator>;
@@ -72,6 +82,7 @@ class Level extends FlxState
 		super();
 		levelNum = l;
 	}	
+
 	override public function create():Void
 	{
 		FlxG.camera.fade(FlxColor.BLACK, .33, true);
@@ -79,6 +90,8 @@ class Level extends FlxState
 		instance=this;
 		FlxG.mouse.visible = false;
 		_floorhit = false;
+
+
 		interactables=new FlxTypedGroup<InteractableObject>();
 		elevators=new FlxTypedGroup<Elevator>();
 		burnables = new FlxTypedGroup<Burnable>();
@@ -208,11 +221,13 @@ class Level extends FlxState
 		//I dont think we need this, uncomment it if something is missing
 		//add(level.imagesLayer);
 
+		//add sentry targetting radii to draw order
 		for (s in sentries){
 			add(s.getRadius());
 		}
 		add (level.foregroundTiles);
 
+		//have to add one set of elevator doors before objects because player is in there
 		for (e in elevators){
 			add(e);
 			add(e.getBehindDoor());
@@ -226,11 +241,13 @@ class Level extends FlxState
 			add(bottle);
 			player.inElevator=false;
 		}
+		//start emitters on fans
 		for (f in fans){
 			add(f);
 			add(f.emitter);
 			f.startEmitter();
 		}
+		//as secnd set of elevator doors
 		for (e in elevators){
 			add(e.getFrontDoor());
 			if (e.type=="start"){
@@ -265,12 +282,14 @@ class Level extends FlxState
 	{
 		//FlxG.collide(player,wallsMap);
 
+		#if debug
 		if (FlxG.keys.justPressed.N){
 			nextLevel();
 		}
 		if (FlxG.keys.justPressed.B){
 			prevLevel();
 		}
+		#end
 		if (FlxG.keys.justPressed.R){
 			FlxG.switchState(new Level(levelNum));
 		}
@@ -279,9 +298,11 @@ class Level extends FlxState
 			_hud.hideHUD();
 		}
 		
+		//Logic to handle starting async loops created in player and bottle
 		doAsyncLoops(player);
 		doAsyncLoops(player.bottle);
 
+		//logic for player emitter collisions with appropriate callbacks
 		if (player.emitter!=null){
 			FlxG.collide(player.emitterGroup, level.foregroundTiles);
 			if (player.getStatus()=="red"){
@@ -293,6 +314,7 @@ class Level extends FlxState
 		}
 		level.collideWithLevel(player);
 		//FlxG.overlap(boxes, player, boxesCollide);
+		//Enable or disable movablitly based on whether or not the player is green
 		if (player.getStatus()!="green"){
 			for (b in boxes){
 				b.immovable=true;
@@ -310,6 +332,8 @@ class Level extends FlxState
 		}*/
 		FlxG.collide(burnables, player);
 		FlxG.collide(sentries, player);
+
+		//for picking up the bottle on level 0
 		if (player.bottle==null){
 			FlxG.overlap(bottle,player,bottleCollisionCallback);
 		}
@@ -317,11 +341,15 @@ class Level extends FlxState
 			FlxG.sound.play(AssetPaths.fallDeath__wav);
 			killPlayer("You slam into the ground a little too quickly\nYou black out.\nForever.");
 		}
+
 		super.update(elapsed);
 		FlxG.watch.add(this, "player");
+
+		//fallDamage
 		if (player.velocity.y > 1100 && player.getStatus() != "green"){
 			_floorhit = true;
 		}
+
 		if (player.velocity.y > 2200){
 			killPlayer("You forget that you are no longer wearing a	parachute, and spread yourself thinly over the distant pavement.\nWhy did you do that?");
 		}

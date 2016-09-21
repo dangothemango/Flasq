@@ -16,29 +16,32 @@ import flixel.effects.particles.FlxParticle;
 class Player extends PlayerAndBottle
 {
 
+	//this is the player super class, it handles all of the input and most of the color funcitonality
+
  	//Movement Varables
  	var left:Bool=false;
  	var right:Bool=false;
- 	var dragC:Float=1000;
- 	public var defGravity:Float=1000;
  	var walking:Bool;
 	var jumping:Bool;
 	var falling:Bool;
 	var drinking:Bool=false;
 
-	//defaults
+	//defaults movement constaants
+ 	var dragC:Float=1000;
+ 	public var defGravity:Float=1000;
 	public var defSpeed(default,never):Float=200;
  	public var defJumpSpeed(default,never):Float=500;
  	var jumpSpeed:Float;
 
 	//flasq helpers
 	public var colorCallback:UInt=null;
-
 	public var hatColor:UInt=0xFF000000;
-
  	public var bottle:Bottle;
 
+ 	//current color
  	var status:String;
+
+ 	//if the player is in the elevator they cant move
  	public var inElevator:Bool=true;
 
  	//Status helper objects
@@ -49,6 +52,7 @@ class Player extends PlayerAndBottle
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
 	{
 		super(X, Y, SimpleGraphic);
+		//performance array preload for replace color
 		if (Level.PRCPreloadedArray==null){
 			coloredPixels=replaceColor(Potion.BLACK,Potion.BLACK,true);
 			Level.PRCPreloadedArray=coloredPixels;
@@ -62,9 +66,11 @@ class Player extends PlayerAndBottle
 		animation.add("drink",[for (i in 29...46) i],30,false);
 		drag.x=dragC;
 		emitterGroup= new FlxTypedGroup<FlxTypedEmitter<FlxParticle>>();
+		height-=2;
 		setDefaults();
 	}
 
+	//YOU HAVE TO ADD THE EMITTER BEFORE THE BOTTLE BUT AFTER THE PLAYER SO THE DRAW ORDER IS CORRECT
 	public function addBottle():Bottle{
 		bottle=new Bottle(x,y);
 		Level.instance.add(emitterGroup);
@@ -116,6 +122,7 @@ class Player extends PlayerAndBottle
 		status=s;
 	}
 
+	//reset the player to the defaults
 	function clearEffects(c:UInt){
 		setDefaults();
 		if (emitter!=null){ emitterGroup.remove(emitter); emitter.destroy(); emitter=null;}
@@ -163,10 +170,12 @@ class Player extends PlayerAndBottle
 		}
 	}
 
+	//setup red potion
 	public function lightFire(){
 		configRedEmit();
 	}
 
+	//setup purple potion
 	public function sublimate(){
 		configPurpleEmit();
 		drag.y=dragC;
@@ -175,6 +184,7 @@ class Player extends PlayerAndBottle
 		height=height/2;
 	}
 
+	//setup orange potion
 	public function fusRohDah(){
 		configOrangeEmit();
 	}
@@ -184,11 +194,13 @@ class Player extends PlayerAndBottle
 	}
 
 	override public function update(elapsed:Float):Void{
+		//colorcallback it the color is should change to after it has faded back in from being invisible under the blue potion
 		if (colorCallback!=null && alpha==1.0){
 			setHatColor(colorCallback);
 			colorCallback=null;
 		}
 		super.update(elapsed);
+		//attached objects follow logic
 		configBottle();
 		emitterFollow();
 	}
@@ -216,6 +228,7 @@ class Player extends PlayerAndBottle
 	override function handleMovement():Void
 	{
 
+		//if in elevator dont move
 		if (inElevator) {			
 			animation.stop();
 			animation.frameIndex=0;
@@ -299,6 +312,8 @@ class Player extends PlayerAndBottle
 	}
 
 	function handleFlight(){
+
+		//used for movement when the player is purple
 		
 		if (drinking){
 			drinking=false; 
@@ -355,6 +370,8 @@ class Player extends PlayerAndBottle
 		acceleration.x=0;
 	}
 
+	//this is the player version of the callback for replace color, useful for some of the more intense effects
+	//where you need to replace the color before changing somthing else
 	override public function rCCallbackDriver(){
 		switch (rCCallback){
 			case "invisible":
