@@ -42,6 +42,7 @@ class Level extends FlxState
 	public var level:TiledLevel;
 	private var _floorhit:Bool;
 	public var levelNum:Int;
+	private var _hud:HUD;
 	public var player:Player;
 	public var interactables:FlxTypedGroup<InteractableObject>;
 	public var burnables:FlxTypedGroup<Burnable>;
@@ -52,7 +53,7 @@ class Level extends FlxState
 
 	public function new(l:Int){
 		super();
-		levelNum=l;
+		levelNum = l;
 	}	
 	override public function create():Void
 	{
@@ -179,8 +180,8 @@ class Level extends FlxState
 		for (e in elevators){
 			add(e.getFrontDoor());
 		}
-
-
+		_hud = new HUD();
+		add(_hud);
 	}
 
 	private function interaction(A:FlxObject, B:FlxObject):Void
@@ -212,6 +213,10 @@ class Level extends FlxState
 			nextLevel();
 		}
 
+		if (FlxG.keys.justPressed.ENTER){
+			_hud.hideHUD();
+		}
+		
 		doAsyncLoops(player);
 		doAsyncLoops(player.bottle);
 
