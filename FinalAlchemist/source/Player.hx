@@ -81,6 +81,13 @@
 	}
 
 	function configOrangeEmit(){
+		trace("hello");
+		emitter=new FlxTypedEmitter<FlxParticle>(x+width/2+height/5);
+		emitter.solid=true;
+		emitter.loadParticles("assets/images/fire.png",200);
+		emitter.launchMode == FlxEmitterMode.SQUARE;
+		emitter.scale.set(1, 1, 1, 1, 4, 4, 8, 8);
+		emitter.velocity.set(10000,10000,10000,10000);
 		startEmitter();
 	}
 
@@ -136,8 +143,6 @@
 				emitter.start(false,.01);
 			case "purple":
 				emitter.start(false,.03);
-			case "orange":
-				//emitter.start(true,)
 			default:
 		}
 	}
@@ -152,6 +157,10 @@
 		setGravity(0);
 		maxVelocity.y=defSpeed;
 		height=height/2;
+	}
+
+	public function fusRohDah(){
+		configOrangeEmit();
 	}
 
 	override function loadSprite(){
@@ -172,6 +181,15 @@
 		if (emitter==null) return;
 		emitter.x=x+width/2;
 		emitter.y=y+width/5;
+		if (status=="orange"){
+			if (facing==FlxObject.RIGHT){
+
+		emitter.launchAngle.set(-45, 45);
+			} else {
+
+		emitter.launchAngle.set(135, 225);
+			}
+		}
 	}
 
 	public function fillBottle(p:Potion){
@@ -186,6 +204,11 @@
 			animation.stop();
 			animation.frameIndex=0;
 			return;
+		}
+
+		if(status=="orange"&&FlxG.keys.justPressed.SPACE){
+			trace("?");
+			emitter.start(true,0,0);
 		}
 
 		if (FlxG.keys.justPressed.C){

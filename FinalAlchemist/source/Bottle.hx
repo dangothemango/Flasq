@@ -30,10 +30,10 @@
 	}
 
 	public function empty(){
-		replaceColorDriver(contents.color,Potion.BLACK);
+		replaceColorDriver(contents.color,Potion.WHITE);
 		contents.kill();
 		contents.destroy();
-		contents=new Potion();
+		contents=new PotionWhite();
 	}
 
 	public function fill(p:Potion){
