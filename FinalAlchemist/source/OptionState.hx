@@ -112,6 +112,6 @@ class OptionState extends FlxState
 	
 	//temp for testing
 	function clickDeath() : Void {
-		FlxG.switchState(new DeathState(false, "test", -1));
+		FlxG.switchState(new DeathState(false, "You pressed the button to kill yourself...Wow", -1));
 	}
 }

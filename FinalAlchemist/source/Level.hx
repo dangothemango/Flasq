@@ -9,10 +9,12 @@ import flixel.ui.FlxButton;
 import flixel.math.FlxMath;
 import flixel.tile.FlxTilemap;
 import openfl.Assets;
+import flixel.util.FlxColor;
 import flixel.group.FlxGroup;
 import flixel.tile.FlxTilemap;
 import flixel.addons.editors.tiled.TiledMap;
 import flixel.math.FlxPoint;
+
 
 class Level extends FlxState
 {
@@ -21,7 +23,7 @@ class Level extends FlxState
 													"red" => "The red liquid tastes like Tabasco sauce mixed with liquor.\nFire wreaths your form.",
 													"blue" => "Your palate cannot detect any taste.\nAll of a sudden, you can see right through yourself!",
 													"yellow" => "You slug the fluid too quickly to determine what it tastes like.\nTime seems to slow to a crawl as you speed up.",
-													"orange" => "This tastes like the inside of a nuclear reactor!\nYour guts boil with voracious flames, and you can barely hold back.\n(Press C to release)",
+													"orange" => "This tastes like the inside of a nuclear reactor!\nYour guts boil with voracious flames, and you can barely hold back.\n(Press SPACE to belch)",
 													"purple" => "The purple fluid tastes like lemon juice, but somehow, you taste it with your whole body, and not just your mouth.\nYour form dissolves into a loose cloud.",
 													"green" => "This tastes gritty and tart, like an energy drink mixed with protein powder.\nYour arms and legs feel fortified.",
 													"black" => "The water tastes stale, and is warm from the sun.\nSince you see no recycle bin nearby, you decide to hold onto the bottle. ",
@@ -70,6 +72,7 @@ class Level extends FlxState
 	}	
 	override public function create():Void
 	{
+		FlxG.camera.fade(FlxColor.BLACK, .33, true);
 		super.create();
 		instance=this;
 		FlxG.mouse.visible = false;
@@ -91,16 +94,21 @@ class Level extends FlxState
 	}
 
 	public function killPlayer(s:String) : Void {
-		FlxG.switchState(new DeathState(false, s, levelNum));
+		FlxG.camera.fade(FlxColor.BLACK, .33, false, function()
+		{
+			FlxG.switchState(new DeathState(false, s, levelNum));
+		});
 	}
 	
 	public function nextLevel(){
-		var n=levelNum+1;
-		if (n>=levelMaps.length){
-			FlxG.switchState(new DeathState(true, "I'm...impressed",0));
-			return;
-		}
-		FlxG.switchState(new Level(n));
+		var n = levelNum + 1;
+		FlxG.camera.fade(FlxColor.BLACK, .33, false, function(){
+			if (n >= levelMaps.length){
+				FlxG.switchState(new DeathState(true, "I'm...impressed",0));
+				return;
+			}
+			FlxG.switchState(new Level(n));
+		});
 	}
 
 	public function addPlayer(?pX:Float=0, ?pY:Float=0):Player{
@@ -275,10 +283,10 @@ class Level extends FlxState
 		}
 		super.update(elapsed);
 		FlxG.watch.add(this, "player");
-		if (player.velocity.y > 1500 && player.getStatus() != "green"){
+		if (player.velocity.y > 1100 && player.getStatus() != "green"){
 			_floorhit = true;
 		}
-		if (player.velocity.y > 2500){
+		if (player.velocity.y > 2200){
 			killPlayer("You forget that you are no longer wearing a	parachute, and spread yourself thinly over the distant pavement.\nWhy did you do that?");
 		}
 	}

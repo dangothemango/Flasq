@@ -1,20 +1,20 @@
  package;
 
- import flixel.FlxSprite;
- import flixel.addons.util.FlxAsyncLoop;
- import flixel.system.FlxAssets.FlxGraphicAsset;
- import flixel.util.FlxColor;
- import flixel.FlxObject;
- import flixel.math.FlxPoint;
- import flixel.FlxG;
- import flash.display.BitmapData;
- import flixel.tweens.FlxTween;
- import flixel.group.FlxGroup;
- import flixel.effects.particles.FlxEmitter;
- import flixel.effects.particles.FlxParticle;
+import flixel.FlxSprite;
+import flixel.addons.util.FlxAsyncLoop;
+import flixel.system.FlxAssets.FlxGraphicAsset;
+import flixel.util.FlxColor;
+import flixel.FlxObject;
+import flixel.math.FlxPoint;
+import flixel.FlxG;
+import flash.display.BitmapData;
+import flixel.tweens.FlxTween;
+import flixel.group.FlxGroup;
+import flixel.effects.particles.FlxEmitter;
+import flixel.effects.particles.FlxParticle;
 
- class Player extends PlayerAndBottle
- {
+class Player extends PlayerAndBottle
+{
 
  	//Movement Varables
  	var left:Bool=false;
@@ -362,4 +362,4 @@
 		super.rCCallbackDriver();
 	}
 
- }
+}
