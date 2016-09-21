@@ -18,6 +18,7 @@ class Cooler extends InteractableObject
     public function new(?X:Float=0, ?Y:Float=0, ?W:Int=10,?H:Int=10)
     {
         super(X,Y,W,H);
+        makeGraphic(0,0,0x00000000);
     }
 
     public function fillWith(p:Potion){
