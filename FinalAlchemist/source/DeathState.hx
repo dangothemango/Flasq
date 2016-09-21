@@ -57,6 +57,9 @@ class DeathState extends FlxState
 	}
 
 	override public function update(elapsed:Float):Void{
+		if (FlxG.keys.justPressed.R){
+			retryLevel();
+		}
 		super.update(elapsed);
 	}
 	

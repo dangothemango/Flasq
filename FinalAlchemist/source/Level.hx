@@ -247,6 +247,9 @@ class Level extends FlxState
 		if (FlxG.keys.justPressed.B){
 			prevLevel();
 		}
+		if (FlxG.keys.justPressed.R){
+			FlxG.switchState(new Level(levelNum));
+		}
 
 		if (FlxG.keys.justPressed.ENTER){
 			_hud.hideHUD();
