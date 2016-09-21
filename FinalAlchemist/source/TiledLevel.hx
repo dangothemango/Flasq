@@ -82,6 +82,7 @@ class TiledLevel extends TiledMap
 			tilemap.loadMapFromArray(tileLayer.tileArray, width, height, processedPath,
 				tileSet.tileWidth, tileSet.tileHeight, OFF, tileSet.firstGID, 1, 1);
 			
+			//adding this in to  allow for a transparent layer between background and foreground based on our tmx
 			if (tileLayer.name=="Decorations"){
 				decorationsLayer.add(tilemap);
 			}
@@ -171,6 +172,8 @@ class TiledLevel extends TiledMap
 		if (o.gid != -1)
 			y -= g.map.getGidOwner(o.gid).tileHeight;
 		
+		//this is generally pretty straight forward, depending on the type of the object, instantiate said object with a few quirks
+		//
 		switch (o.type.toLowerCase())
 		{
 			case "start":
@@ -221,6 +224,7 @@ class TiledLevel extends TiledMap
 				state.addLift(lift);
 				group.add(lift);*/
 			case "burnable":
+			//burnable objects are single tiles, make them as such using for loops on the width
 				for (j in 0...Std.int(o.height/50)){
 					for (i in 0...Std.int(o.width/50)){
 						var b:Burnable = new BurnableFloor(x+(50*i),y+(50*j));
@@ -229,9 +233,12 @@ class TiledLevel extends TiledMap
 					}
 				}
 			case "bottle":
+			//only used on level 0 before the player picks up the bottle
 				var b = new Bottle(x,y);
+				//this is the frame where its lying on the ground
 				b.animation.frameIndex=46;
 				b.contents=new Potion();
+				// on level 0 it starts with water on it
 				b.replaceColorDriver(Potion.WHITE,Potion.BLACK);
 				state.addBottle(b);
 			case "pitty_the_fool":

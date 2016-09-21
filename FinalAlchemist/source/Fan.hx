@@ -9,6 +9,8 @@ import flixel.FlxObject;
 class Fan extends InteractableObject
 {
 
+	//creates wind, wind only effects player in gass form
+
     public var emitter:FlxEmitter;
 
     public function new(?X:Float=0, ?Y:Float=0, ?W:Int=10,?H:Int=10)
@@ -17,6 +19,7 @@ class Fan extends InteractableObject
         loadGraphic("assets/images/fan.png",true,50,50);
         animation.add("blow",[0,1],5,true);
         emitter=new FlxEmitter(x,y+15);
+        //use an emitter to simulate wind
         emitter.width=width;
         emitter.makeParticles(2,2,FlxColor.WHITE,200);
         emitter.launchMode == FlxEmitterMode.SQUARE;
