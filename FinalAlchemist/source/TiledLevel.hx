@@ -209,7 +209,8 @@ class TiledLevel extends TiledMap
 			case "lever":
 
 			case "box":
-
+				var box=new Box(x,y,o.width,o.height);
+				group.add(box);
 			case "lift":
 
 			case "floor_burnable":
