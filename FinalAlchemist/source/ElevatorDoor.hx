@@ -14,17 +14,18 @@ class ElevatorDoor extends FlxSprite
         super(X,Y);
         trace(X,Y,W,H);
         elevator=e;
-        loadGraphic("assets/images/elevatordoor.png",true,441,713);
-        setGraphicSize(0,H);
+        loadGraphic("assets/images/elevatordoor.png",true,440,713);
+        setGraphicSize(Std.int(W/6.5*6),H);
         updateHitbox();
-        animation.add("open",[for (i in 0...15) i],30,false);
-        animation.add("close",[for (i in 15...30) i],30,false);
+        animation.add("open",[for (i in 0...17) i],15,false);
+        animation.add("close",[for (i in 16...32) i],15,false);
         animation.finishCallback=callback;
     }
 
     public function callback(s:String){
         if (s=="open"){
             elevator.close();
+            destroy();
         } else if (s=="close"){
             elevator.onClose(this);
         }

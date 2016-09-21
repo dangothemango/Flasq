@@ -19,8 +19,8 @@ class Elevator extends InteractableObject
         loadGraphic("assets/images/elevator.png");
         setGraphicSize(0,H);
         updateHitbox();
-        behind=new ElevatorDoor(this,X,Y,W,H);
-        front=new ElevatorDoor(this,X,Y,W,H);
+        behind=new ElevatorDoor(this,X,Y,Std.int(width),H);
+        front=new ElevatorDoor(this,X,Y,Std.int(width),H);
         type=s;
         if (s=="start"){
             openDoor=front;
@@ -31,8 +31,8 @@ class Elevator extends InteractableObject
         } else {
             trace ("THIS SHOULD NEVER PRINT, IF IT DOES YOU ARE NOT CONSTRUCTING Elevator PROPERLY");
         }
-        //openDoor.animation.frameIndex=0;
-        //closeDoor.animation.frameIndex=15;
+        openDoor.animation.frameIndex=0;
+        closeDoor.animation.frameIndex=15;
 
     }
 
