@@ -45,6 +45,10 @@
 	}
 
 	public function fill(p:Potion){
+		if (Level.firsts.get("FILL") != null){
+			HUD.instance.updateHUD(Level.firsts.get("FILL"));
+			Level.firsts.set("FILL",null);
+		}
 		var tmp:Potion = contents.mix(p);
 		if (tmp==contents){ return; }
 		replaceColorDriver(contents.color,tmp.color);
