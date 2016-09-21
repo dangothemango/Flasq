@@ -120,9 +120,8 @@ class Level extends FlxState
 		} catch ( e:String ){
 			cast(B, Burnable).burn();
 		}
-
 	}
-
+	
 	public function destroyBurnable(b:Burnable){
 		burnables.remove(b);
 		level.foregroundTiles.remove(b);

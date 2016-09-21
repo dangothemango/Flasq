@@ -15,10 +15,10 @@ class ElevatorDoor extends FlxSprite
         trace(X,Y,W,H);
         elevator=e;
         loadGraphic("assets/images/elevatordoor.png",true,440,713);
-        setGraphicSize(Std.int(W/6.5*6),H);
+        setGraphicSize(Std.int(W/6.6*6),H);
         updateHitbox();
-        animation.add("open",[for (i in 0...17) i],15,false);
-        animation.add("close",[for (i in 16...32) i],15,false);
+        animation.add("open",[for (i in 0...17) i],30,false);
+        animation.add("close",[for (i in 16...32) i],30,false);
         animation.finishCallback=callback;
     }
 

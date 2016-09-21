@@ -219,6 +219,9 @@ class TiledLevel extends TiledMap
 					state.addBurnable(b);
 					group.add(b);
 				}
+			case "pitty_the_fool":
+				var p=new PitMonster(x,y);
+				group.add(p);
 			default:
 				trace (o.type);
 		}
