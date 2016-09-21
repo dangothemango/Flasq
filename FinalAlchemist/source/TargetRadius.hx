@@ -5,7 +5,7 @@ import flixel.math.FlxPoint;
 
 class TargetRadius extends FlxSprite
 {
-
+	//target radius sprite centered on sentry
     public function new(?X:Float=0, ?Y:Float=0, W:Float, H:Float,r:Int)
     {
         super(X,Y);

@@ -7,7 +7,8 @@ import flixel.math.FlxPoint;
 
 class RangedObject extends FlxSprite
 {
-
+	//basic ranged item class used for several others
+	
     var range:Float;
     var withinRange:Bool=false;
     var pt:FlxPoint;

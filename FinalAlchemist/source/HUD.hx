@@ -29,7 +29,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		_infoBox = new FlxSprite(sixthWidth, 4 * sixthHeight).makeGraphic(4 * sixthWidth, sixthHeight, FlxColor.WHITE);
 		_infoBox.drawRect(5, 5, 4 * sixthWidth - 10, sixthHeight - 10, FlxColor.GRAY);
 		
-		_infoText = new FlxText(sixthWidth + 10, 4 * sixthHeight + 5, 0, "WELCOME PLAYER", 12);
+		_infoText = new FlxText(sixthWidth + 10, 4 * sixthHeight + 5, 4 * sixthWidth - 30, "WELCOME PLAYER", 12);
 		_infoText.setBorderStyle(SHADOW, FlxColor.BLACK, 1, 1);
 		_infoText.alignment = CENTER;
 		_infoText.screenCenter(FlxAxes.X);

@@ -10,7 +10,8 @@ import flixel.system.scaleModes.PixelPerfectScaleMode;
 
 class Main extends Sprite
 {
-
+	//basic setup
+	
 	public function new()
 	{
 		super();
