@@ -34,7 +34,7 @@ class Player extends PlayerAndBottle
  	var jumpSpeed:Float;
 
 	//flasq helpers
-	public var colorCallback:UInt=null;
+	public var colorCallback:Null<UInt>=null;
 	public var hatColor:UInt=0xFF000000;
  	public var bottle:Bottle;
 
