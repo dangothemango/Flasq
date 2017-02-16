@@ -3,6 +3,8 @@
 ### The Tech
 Flasq is a game written using the HaxeFlixel multiplatform game engine. It should run on any modern computer but may require a Haxe and Flixel installation.
 
+The game is fully contained in the "Flask" folder in the root directory.
+
 ### The Concept
 This game was made as the first assignment of Game Development 1 at Rensselaer Polytechnic Institute. The challenge was to create a game based on the phrase "Its dangerous to go alone, take this." With the only constrain being that "this" cannot be a weapon.
 
