@@ -8,7 +8,7 @@ The game is fully contained in the "Flasq" folder in the root directory.
 ### The Concept
 This game was made as the first assignment of Game Development 1 at Rensselaer Polytechnic Institute. The challenge was to create a game based on the phrase "Its dangerous to go alone, take this." With the only constrain being that "this" cannot be a weapon.
 
-In Flasq, you play an agent who was in a plane accident. After landing on the top of an abandoned building, you must find your way to the bottom using nothing but the watter bottle you found on the roof.
+In Flasq, you play an agent who was in a plane accident. After landing on the top of an abandoned building, you must find your way to the bottom using nothing but the water bottle you found on the roof.
 
 ### Gameplay
 Following traditional platformer conventions, you start each level by exiting an elevator and must find the elevator that will let you continue down the building.
